@@ -7,7 +7,7 @@
   [IMG ID]
   ID=[% mapid %]
   Name=[% mapname %]
-  Copyright=OpenStreetMap project contributors under CC-BY-SA|Converted by
+  Copyright=OpenStreetMap project contributors under CC-BY-SA|Converted by dimuzz
  
   TypeSet=Navitel
 
@@ -42,6 +42,28 @@
 
   [END-IMG ID]
   
+
+
+################################
+##  Common types
+################################
+
+
+
+
+--- types
+---
+
+
+background:
+    type:       0x4B
+    endlevel:   4
+
+
+sea:
+    type:       0x3C
+    endlevel:   4
+
 
 
 ################################
