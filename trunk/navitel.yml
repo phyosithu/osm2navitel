@@ -7,7 +7,7 @@
   [IMG ID]
   ID=[% mapid %]
   Name=[% mapname %]
-  Copyright=OpenStreetMap project contributors under CC-BY-SA|Converted by dimuzz
+  Copyright=OpenStreetMap project contributors under CC-BY-SA|Converted by
  
   TypeSet=Navitel
 
