@@ -7,7 +7,7 @@
   [IMG ID]
   ID=[% mapid %]
   Name=[% mapname %]
-  Copyright=OpenStreetMap project contributors under CC-BY-SA|Converted by
+  Copyright=OpenStreetMap project contributors under CC-BY-SA|Converted by dimuzz
  
   TypeSet=Navitel
 
@@ -94,16 +94,25 @@ sea:
 
 
 - condition:
-    - place = suburb
-  action:
-    - type:         load_suburb
-      name:         %place
-
-
-- condition:
     - place = village
   action:
     - type:         load_city
       name:         %place
       region:       %region
       country:      %country
+
+
+- condition:
+    - place = hamlet
+  action:
+    - type:         load_city
+      name:         %place
+      region:       %region
+      country:      %country
+
+
+- condition:
+    - place = suburb
+  action:
+    - type:         load_suburb
+      name:         %place
