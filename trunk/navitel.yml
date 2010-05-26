@@ -133,6 +133,21 @@ destination:    0
 
 
 ################################
+##  Barriers
+################################
+
+# emergency, delivery, car, bus, taxi, foot, bike, truck
+# default: 1,1,1,1,1,1,1,1 - restricts all
+
+--- barrier
+---
+
+toll_booth:     0,0,0,0,0,0,0,0
+cattle_grid:    0,0,0,0,0,0,0,0
+
+
+
+################################
 ##  Addressible places
 ################################
 
