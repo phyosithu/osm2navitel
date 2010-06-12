@@ -1,4 +1,16 @@
 ################################
+##  Load configs
+################################
+
+--- load
+---
+
+- nodes-navitel.yml
+- ways-lines-common.yml
+
+
+
+################################
 ##  MP header
 ################################
 
@@ -7,8 +19,8 @@
   [IMG ID]
   ID=[% mapid %]
   Name=[% mapname %]
-  Copyright=OpenStreetMap project contributors under CC-BY-SA|Converted by 
- 
+  Copyright=OpenStreetMap project contributors under CC-BY-SA|Converted by dimuzz
+
   TypeSet=Navitel
 
   [% IF codepage %]
@@ -41,7 +53,62 @@
   Level5=15
 
   [END-IMG ID]
-  
+
+
+
+################################
+##  Tags to skip
+################################
+
+
+--- skip_tags
+---
+
+created_by:         1
+
+
+
+################################
+##  Tags for comment
+################################
+
+
+--- comment
+---
+
+access:             1
+aerialway:          1
+aeroway:            1
+admin_level:        1
+amenity:            1
+barrier:            1
+boundary:           1
+bridge:             1
+building:           1
+capital:            1
+highway:            1
+historic:           1
+junction:           1
+layer:              1
+landuse:            1
+leisure:            1
+man_made:           1
+military:           1
+natural:            1
+place:              1
+power:              1
+railway:            1
+route:              1
+service:            1
+shop:               1
+sport:              1
+tourism:            1
+tracktype:          1
+traffic_calming:    1
+tunnel:             1
+waterway:           1
+whitewater:         1
+
 
 
 ################################
@@ -49,16 +116,12 @@
 ################################
 
 
-
-
 --- types
 ---
-
 
 background:
     type:       0x4B
     endlevel:   4
-
 
 sea:
     type:       0x3C
@@ -86,7 +149,7 @@ false:          0
 private:        0
 restricted:     0
 destination:    0
-  
+
 
 
 ################################
