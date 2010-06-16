@@ -7,7 +7,8 @@
 
 - nodes-navitel.yml
 - ways-lines-common.yml
-
+- ways-lines-navitel.yml
+- ways-areas-navitel.yml
 
 
 ################################
@@ -19,7 +20,7 @@
   [IMG ID]
   ID=[% mapid %]
   Name=[% mapname %]
-  Copyright=OpenStreetMap project contributors under CC-BY-SA|Converted by dimuzz
+  Copyright=OpenStreetMap project contributors under CC-BY-SA|Converted by 
 
   TypeSet=Navitel
 

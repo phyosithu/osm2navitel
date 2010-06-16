@@ -76,7 +76,7 @@
       type: 0x3004
       contacts: yes
 - condition:
-    - amenity = crematorium|grave_yard
+    - amenity = crematorium
   action:
     - action: write_poi
       type: 0x6403
@@ -134,6 +134,12 @@
   action:
     - action: write_poi
       type: 0x2f01
+      contacts: yes
+- condition:
+    - amenity = grave_yard
+  action:
+    - action: write_poi
+      type: 0x6403
       contacts: yes
 - condition:
     - amenity = hospital
@@ -435,11 +441,25 @@
 
 - condition:
     - building = house|yes
+    - abandoned != *
     - only_node
   action:
     - action: write_poi
       type: 0x6100
       contacts: yes
+- condition:
+    - building = house|yes
+    - abandoned = yes
+  action:
+    - action: write_poi
+      type: 0x6415
+      contacts: yes
+
+- condition:
+    - covered = yes
+  action:
+    - action: write_poi
+      type: 0x6601
 
 - condition:
     - highway = bus_stop
@@ -481,7 +501,14 @@
       contacts: yes
 
 - condition:
+    - internet_access = public|wlan
+  action:
+    - action: write_poi
+      type: 0xf615
+
+- condition:
     - landuse = cemetery
+    - only_node
   action:
     - action: write_poi
       type: 0x6403
@@ -545,6 +572,7 @@
       contacts: yes
 - condition:
     - leisure = stadium
+    - named
   action:
     - action: write_poi
       type: 0x2c08
@@ -1193,7 +1221,6 @@
 
 - condition:
     - tunnel = yes
-    - only_node
     - highway != service|footway|steps|residential
   action:
     - action: write_poi
