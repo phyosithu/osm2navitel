@@ -1,0 +1,66 @@
+--- ways
+---
+
+- condition:
+    - barrier = fence|hedge|wall
+  action:
+    - action: write_line
+      type: 0x46
+
+- condition:
+    - footway = sidewalk
+  action:
+    - action: write_line
+      type: 0x16
+
+- condition:
+    - highway = construction
+  action:
+    - action: write_line
+      type: 0x00
+
+- condition:
+    - man_made = cutline
+  action:
+    - action: write_line
+      type: 0x48
+      level_h: 2
+
+- condition:
+    - natural = cliff
+  action:
+    - action: write_line
+      type: 0x22
+
+
+
+
+- condition:
+    - power = minor_line
+  action:
+    - action: write_line
+      type: 0x29
+
+- condition:
+    - railway = monorail
+  action:
+    - action: write_line
+      type: 0x40
+
+- condition:
+    -  railway = tram
+  action:
+    - action: write_line
+      type: 0x3f
+
+- condition:
+    - 
+  action:
+    - action: write_line
+      type: 
+
+- condition:
+    - 
+  action:
+    - action: write_line
+      type: 
