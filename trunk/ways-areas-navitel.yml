@@ -303,6 +303,14 @@
       level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
 
 - condition:
+    - highway = *
+    - area = yes
+  action:
+    - action: write_polygon
+      type: 0x6a
+      level_h: [ 0, 0.002 ]
+
+- condition:
     - natural = beach
   action:
     - action: write_polygon
