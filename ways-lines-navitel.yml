@@ -8,7 +8,7 @@
       type: 0x46
 
 - condition:
-    - footway = sidewalk
+    - highway = footway
   action:
     - action: write_line
       type: 0x16

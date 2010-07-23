@@ -131,9 +131,17 @@
       type: 0xf302
 - condition:
     - amenity = fuel
+    - fuel:lpg != *
   action:
     - action: write_poi
       type: 0x2f01
+      contacts: yes
+- condition:
+    - amenity = fuel
+    - fuel:lpg = yes
+  action:
+    - action: write_poi
+      type: 0xf208
       contacts: yes
 - condition:
     - amenity = grave_yard
@@ -410,6 +418,11 @@
       type: 0x3006
       level_h: 1
       contacts: yes
+- condition:
+    - barrier = toll_booth
+  action:
+    - action: write_poi
+      type: 0x2500
 
 - condition:
     - boundary = administrative
@@ -432,12 +445,11 @@
 
 - condition:
     - bridge = yes
-    - highway != steps|\w+_link
+    - highway != construction|steps|\w+_link
+    - railway != construction|tram|subway|monorail|funicular
   action:
     - action: write_poi
       type: 0x6401
-      level_l: 2
-      level_h: 2
 
 - condition:
     - building = house|yes
@@ -477,6 +489,12 @@
   action:
     - action: write_poi
       type: 0xf20c
+- condition:
+    - highway = speed_camera
+    - only_node
+  action:
+    - action: write_poi
+      type: 0xf205
 - condition:
     - highway = traffic_signals
   action:
@@ -631,6 +649,19 @@
   action:
     - action: write_poi
       type: 0xf303
+
+- condition:
+    - maxheight = *
+  action:
+    - action: write_poi
+      type: 0xf206
+- condition:
+    - mountain_pass = yes
+  action:
+    - action: write_poi
+      type: 0xf306
+      level_h: 1
+      ele: yes
 
 - condition:
     - military = airfield|barracks|bunker|naval_base|range
