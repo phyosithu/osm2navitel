@@ -973,7 +973,7 @@
       type: 0xf707
       contacts: yes
 - condition:
-    - shop = books|hearing_aids|stationery
+    - shop = books|hearing_aids|photo|stationery
   action:
     - action: write_poi
       type: 0x2e0a
@@ -1124,6 +1124,12 @@
   action:
     - action: write_poi
       type: 0xf70c
+      contacts: yes
+- condition:
+    - shop = photo_studio
+  action:
+    - action: write_poi
+      type: 0xf605
       contacts: yes
 - condition:
     - shop = shoes
