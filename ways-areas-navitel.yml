@@ -188,7 +188,7 @@
     - natural = heath
   action:
     - action: write_polygon
-      type: 0x18
+      type: 0x95
       level_h: 2
 
 - condition:
