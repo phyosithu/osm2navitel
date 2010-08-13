@@ -9,6 +9,7 @@
 - ways-lines-common.yml
 - ways-lines-navitel.yml
 - ways-areas-navitel.yml
+- ways-roads-navitel.yml
 
 
 ################################
@@ -57,6 +58,26 @@
 
 
 ################################
+##  Name selection priority
+################################
+
+
+--- taglist
+---
+
+label:          [ name, loc_name, addr:housenumber, operator ]
+house:          [ addr:housenumber, addr:housename ]
+entrance:       [ name, ref ]
+place:          [ addr:city, place_name, name ]
+suburb:         [ addr:suburb, place_name, name ]
+street:         [ addr:street, name ]
+region:         [ addr:region, is_in:region, addr:state, is_in:state ]
+country:        [ addr:country, is_in:country_code, is_in:country ]
+destination:    [ destination, label, name ]
+
+
+
+################################
 ##  Tags to skip
 ################################
 
@@ -86,6 +107,7 @@ boundary:           1
 bridge:             1
 building:           1
 capital:            1
+footway:            1
 highway:            1
 historic:           1
 junction:           1
@@ -102,6 +124,7 @@ route:              1
 service:            1
 shop:               1
 sport:              1
+surface:            1
 tourism:            1
 tracktype:          1
 traffic_calming:    1
@@ -220,34 +243,7 @@ cattle_grid:    0,0,0,0,0,0,0,0
 
 
 - condition:
-    - place = city
-  action:
-    - type:         load_city
-      name:         %place
-      region:       %region
-      country:      %country
-
-
-- condition:
-    - place = town
-  action:
-    - type:         load_city
-      name:         %place
-      region:       %region
-      country:      %country
-
-
-- condition:
-    - place = village
-  action:
-    - type:         load_city
-      name:         %place
-      region:       %region
-      country:      %country
-
-
-- condition:
-    - place = hamlet
+    - place = city|town|village|hamlet
   action:
     - type:         load_city
       name:         %place
@@ -259,4 +255,4 @@ cattle_grid:    0,0,0,0,0,0,0,0
     - place = suburb
   action:
     - type:         load_suburb
-      name:         %place
+      name:         %suburb
