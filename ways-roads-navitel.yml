@@ -33,7 +33,7 @@
     - inside_city
   action:
     - action: load_road
-      type: 0x01
+      type: 0x04
       level_h: 4
       routeparams: '3,3,0,0,0,0,0,0,0,0,0,0'
 
@@ -141,7 +141,24 @@
       routeparams: '2,1,0,0,0,0,0,0,0,0,0,0'
 
 - condition:
-    - highway = residential|road
+    - highway = road
+  action:
+    - action: load_road
+      type: 0x03
+      level_h: 1
+      routeparams: '2,0,0,0,0,0,0,0,0,0,0,0'
+
+- condition:
+    - highway = road
+    - inside_city
+  action:
+    - action: load_road
+      type: 0x06
+      level_h: 1
+      routeparams: '2,0,0,0,0,0,0,0,0,0,0,0'
+
+- condition:
+    - highway = residential
   action:
     - action: load_road
       type: 0x06
@@ -198,20 +215,12 @@
 
 
 - condition:
-    - highway = construction
-  action:
-    - action: load_road
-      type: 0x12
-      level_h: 1
-      routeparams: '1,0,0,0,1,1,1,1,1,1,1,1'
-
-- condition:
     - route = ferry
   action:
     - action: load_road
       type: 0x1b
       level_h: 2
-      routeparams: '0,0,0,0,0,0,0,0,0,0,0,0'
+      routeparams: '1,0,0,1,0,0,0,0,0,0,0,0'
 
 
 
@@ -239,34 +248,6 @@
   action:
     - action: modify_road
       level_h: 2
-
-
-
-## Transport platforms
-
-- condition:
-    - railway = platform
-  action:
-    - action: load_road
-      type: 0x11
-      level_h: 1
-      routeparams: '0,0,0,0,1,1,1,1,1,0,1,1'
-
-- condition:
-    - pt = platform
-  action:
-    - action: load_road
-      type: 0x11
-      level_h: 1
-      routeparams: '0,0,0,0,1,1,1,1,1,0,1,1'
-
-- condition:
-    - public_transport = platform
-  action:
-    - action: load_road
-      type: 0x11
-      level_h: 1
-      routeparams: '0,0,0,0,1,1,1,1,1,0,1,1'
 
 
 
@@ -307,6 +288,14 @@
 
 # unpaved roads
 - condition:
+    - highway = unclassified|road
+    - surface = compacted|gravel
+    - ~inside_city
+  action:
+    - action: modify_road
+      type: 0x42
+
+- condition:
     - highway = unclassified|residential|road
     - surface = unpaved|ground|earth|mud|grass|sand|dirt
   action:
@@ -329,6 +318,13 @@
       routeparams: '.,+1,.,.,.,.,.,.,.,.,.,.'
 
 
+# tunnel
+- condition:
+    - tunnel = yes
+    - highway != footway|steps
+    - covered != yes
+  action:
+    - action: modify_road
+      type: 0x43
+
 # RouteParams=speed,class,oneway,toll,emergency,delivery,car,bus,taxi,foot,bike,truck
-
-

@@ -6,7 +6,6 @@
 ---
 
 - nodes-navitel.yml
-- ways-lines-common.yml
 - ways-lines-navitel.yml
 - ways-areas-navitel.yml
 - ways-roads-navitel.yml
