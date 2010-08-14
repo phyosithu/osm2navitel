@@ -1263,15 +1263,6 @@
       type: 0xf204
 
 - condition:
-    - tunnel = yes
-    - highway != service|footway|steps|residential
-  action:
-    - action: write_poi
-      type: 0x6413
-      level_l: 2
-      level_h: 2
-
-- condition:
     - waterway = rapids
   action:
     - action: write_poi
