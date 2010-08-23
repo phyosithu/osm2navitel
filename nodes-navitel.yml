@@ -10,7 +10,7 @@
       contacts: yes
 
 - condition:
-    - amenity = arts_centre
+    - amenity = arts_centre|community_centre|social_centre
   action:
     - action: write_poi
       type: 0x2c09
@@ -406,11 +406,12 @@
       type: 0xf802
       contacts: yes
 
-- condition:
-    - barrier = block|bollard|chain|gate
-  action:
-    - action: write_poi
-      type: 0xf207
+#- condition:
+#    - barrier = block|bollard|chain|gate|lift_gate
+#  action:
+#    - action: write_poi
+#      type: 0xf207
+
 - condition:
     - barrier = border_control
   action:
@@ -927,7 +928,7 @@
     - railway = level_crossing
   action:
     - action: write_poi
-      type: 0xf20b
+      type: 0xf203
 - condition:
     - railway = station
   action:

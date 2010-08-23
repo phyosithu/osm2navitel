@@ -249,6 +249,14 @@
     - action: modify_road
       level_h: 2
 
+- condition:
+    - highway = ford
+  action:
+    - action: load_road
+      type: 0x16
+      level_h: 1
+      routeparams: '0,0,0,0,1,1,1,1,1,1,0,1'
+
 
 
 ## Modifiers
@@ -296,6 +304,12 @@
       type: 0x42
 
 - condition:
+    - surface = compacted|gravel
+  action:
+    - action: modify_road
+      routeparams: '2,.,.,.,.,.,.,.,.,.,.,.'
+
+- condition:
     - highway = unclassified|residential|road
     - surface = unpaved|ground|earth|mud|grass|sand|dirt
   action:
@@ -306,7 +320,7 @@
     - surface = unpaved|ground|earth|mud|grass|sand|dirt
   action:
     - action: modify_road
-      routeparams: '.,-1,.,.,.,.,.,.,.,.,.,.'
+      routeparams: '1,-1,.,.,.,.,.,.,.,.,.,.'
 
 
 # motorroads
