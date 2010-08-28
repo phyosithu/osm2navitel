@@ -147,6 +147,7 @@
 - condition:
     - highway = footway
     - footway != sidewalk
+    - area != yes
   action:
     - action: write_line
       type: 0x16

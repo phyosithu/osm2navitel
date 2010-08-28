@@ -109,7 +109,7 @@
 
 - condition:
     - building = *
-    - building != no|factory|industrial|manufacture|apartments|dormitory|house|hut|residential|administrative|office|garage|garages
+    - building != no|factory|industrial|manufacture|apartments|dormitory|house|hut|residential|administrative|office|garage|garages|parking
     - amenity != *
     - man_made != works
     - office != *
@@ -130,7 +130,7 @@
       type: 0x6d
 
 - condition:
-    - building = garage|garages
+    - building = garage|garages|parking
   action:
     - action: write_polygon
       type: 0x06
@@ -225,6 +225,13 @@
   action:
     - action: write_polygon
       type: 0x1a
+      level_h: 1
+
+- condition:
+    - landuse = vineyard
+  action:
+    - action: write_polygon
+      type: 0x86
       level_h: 1
 
 

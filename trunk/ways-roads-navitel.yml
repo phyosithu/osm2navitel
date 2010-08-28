@@ -307,7 +307,7 @@
     - surface = compacted|gravel
   action:
     - action: modify_road
-      routeparams: '2,.,.,.,.,.,.,.,.,.,.,.'
+      routeparams: '-1,.,.,.,.,.,.,.,.,.,.,.'
 
 - condition:
     - highway = unclassified|residential|road
@@ -321,6 +321,18 @@
   action:
     - action: modify_road
       routeparams: '1,-1,.,.,.,.,.,.,.,.,.,.'
+
+# Smoothness
+- condition:
+    - smoothness = very_bad
+  action:
+    - action: modify_road
+      routeparams: '-1,.,.,.,.,.,.,.,.,.,.,.'
+- condition:
+    - smoothness = horrible|very_horrible
+  action:
+    - action: modify_road
+      routeparams: '-2,.,.,.,.,.,.,.,.,.,.,.'
 
 
 # motorroads

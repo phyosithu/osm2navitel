@@ -67,7 +67,8 @@
 label:          [ name, loc_name, addr:housenumber, operator ]
 house:          [ addr:housenumber, addr:housename ]
 entrance:       [ name, ref ]
-place:          [ addr:city, place_name, name ]
+# place:        [ addr:city, place_name, name ]
+place:          [ cladr:name, addr:city, place_name, name ]
 suburb:         [ addr:suburb, place_name, name ]
 street:         [ addr:street, name ]
 region:         [ addr:region, is_in:region, addr:state, is_in:state ]
@@ -105,6 +106,7 @@ barrier:            1
 boundary:           1
 bridge:             1
 building:           1
+burnt:              1
 capital:            1
 footway:            1
 highway:            1
@@ -122,6 +124,7 @@ railway:            1
 route:              1
 service:            1
 shop:               1
+smoothness:         1
 sport:              1
 surface:            1
 tourism:            1
@@ -171,6 +174,7 @@ false:          0
 private:        0
 restricted:     0
 destination:    0
+impassable:     0
 
 
 
@@ -215,6 +219,8 @@ destination:    0
 - key:     emergency
   val:     1,0,0,0,0,0,0,0
 
+- key:     smoothness
+  val:     1,1,1,1,1,0,0,1
 
 
 ################################
