@@ -148,6 +148,7 @@
     - highway = footway
     - footway != sidewalk
     - area != yes
+    - layer != -[2-5]
   action:
     - action: write_line
       type: 0x16
@@ -192,19 +193,22 @@
       type: 0x3f
 
 - condition:
-    -  railway = platform
+    - railway = platform
+    - layer != -[1-5]
   action:
     - action: write_line
       type: 0x07
 
 - condition:
-    -  public_transport = platform
+    - public_transport = platform
+    - layer != -[1-5]
   action:
     - action: write_line
       type: 0x07
 
 - condition:
-    -  pt = platform
+    - pt = platform
+    - layer != -[1-5]
   action:
     - action: write_line
       type: 0x07

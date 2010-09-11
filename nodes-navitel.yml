@@ -171,6 +171,7 @@
 - condition:
     - amenity = parking
     - access != private
+    - parking != garages|garage_boxes
   action:
     - action: write_poi
       type: 0x2f0b
@@ -919,6 +920,7 @@
       type: 0x6406
 - condition:
     - railway = halt
+    - station != subway
   action:
     - action: write_poi
       type: 0xf006
@@ -931,17 +933,25 @@
       type: 0xf203
 - condition:
     - railway = station
+    - station != subway
   action:
     - action: write_poi
       type: 0xf007
       level_h: 2
       contacts: yes
 - condition:
+    - railway = station
+    - station = subway
+  action:
+    - action: write_poi
+      type: 0xf005
+      level_l: 1
+      DontFind: 'Y'
+- condition:
     - railway = subway_entrance
   action:
     - action: write_poi
       type: 0xf005
-      level_h: 1
       contacts: yes
 - condition:
     - railway = tram_stop
@@ -1127,6 +1137,12 @@
       type: 0x2f00
       contacts: yes
 - condition:
+    - shop = mobile_phone
+  action:
+    - action: write_poi
+      type: 0xf706
+      contacts: yes
+- condition:
     - shop = pet
   action:
     - action: write_poi
@@ -1198,6 +1214,12 @@
       type: 0x2d09
       contacts: yes
 
+- condition:
+    - tourism = alpine_hut|chalet
+  action:
+    - action: write_poi
+      type: 0x6100
+      contacts: yes
 - condition:
     - tourism = attraction
   action:
