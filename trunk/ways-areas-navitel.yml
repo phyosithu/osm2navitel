@@ -75,6 +75,7 @@
     - action: write_polygon
       type: 0x08
       level_h: [ 0, 0.01, 0.2 ]
+    - action: address_poi
 
 - condition:
     - shop = mall|supermarket
@@ -83,6 +84,7 @@
     - action: write_polygon
       type: 0x08
       level_h: 1
+    - action: address_poi
 
 - condition:
     - amenity = college|kindergarten|school|university
@@ -113,9 +115,11 @@
     - amenity != *
     - man_made != works
     - office != *
+    - shop != mall|supermarket
   action:
     - action: write_polygon
       type: 0x13
+    - action: address_poi
 
 - condition:
     - building = apartments|dormitory|house|hut|residential
@@ -128,6 +132,7 @@
   action:
     - action: write_polygon
       type: 0x6d
+    - action: address_poi
 
 - condition:
     - building = garage|garages|parking
@@ -141,6 +146,7 @@
   action:
     - action: write_polygon
       type: 0x6d
+    - action: address_poi
 
 - condition:
     - building = yes
@@ -148,6 +154,7 @@
   action:
     - action: write_polygon
       type: 0x6d
+    - action: address_poi
 
 - condition:
     - building = yes
@@ -156,6 +163,7 @@
   action:
     - action: write_polygon
       type: 0x6e
+    - action: address_poi
 
 - condition:
     - building = factory|industrial|manufacture
