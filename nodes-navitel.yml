@@ -446,20 +446,6 @@
       level_h: 4
 
 - condition:
-    - bridge = yes
-    - highway != construction|footway|steps|\w+_link
-    - railway != construction|tram|subway|monorail|funicular
-  action:
-    - action: write_poi
-      type: 0x6401
-- condition:
-    - bridge = yes
-    - highway = footway
-  action:
-    - action: write_poi
-      type: 0xf30c
-
-- condition:
     - building = house|yes
     - abandoned != *
     - only_node
