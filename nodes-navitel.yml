@@ -10,6 +10,14 @@
       contacts: yes
 
 - condition:
+    - aeroway = helipad
+  action:
+    - action: write_poi
+      type: 0x5904
+      level_h: 1
+      contacts: yes
+
+- condition:
     - amenity = arts_centre|community_centre|social_centre
   action:
     - action: write_poi
@@ -1161,7 +1169,7 @@
       contacts: yes
 
 - condition:
-    - sport = bowls
+    - sport = 9pin|10pin|bowls
   action:
     - action: write_poi
       type: 0x2d07
@@ -1193,6 +1201,11 @@
   action:
     - action: write_poi
       type: 0x2d06
+- condition:
+    - sport = scuba_diving
+  action:
+    - action: write_poi
+      type: 0x5c00
 - condition:
     - sport = swimming
   action:

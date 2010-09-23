@@ -65,7 +65,7 @@
       type: 0x06
 
 - condition:
-    - aeroway = terminal
+    - aeroway = terminal|helipad
   action:
     - action: write_polygon
       type: 0x07
@@ -117,6 +117,8 @@
     - man_made != works
     - office != *
     - shop != mall|supermarket
+    - leisure != stadium|arena|sports_centre|ice_rink
+    - sport != *
   action:
     - action: write_polygon
       type: 0x13
@@ -214,7 +216,7 @@
       level_h: 2
 
 - condition:
-    - leisure = stadium|pitch
+    - leisure = stadium|pitch|arena|sports_centre
     - named
   action:
     - action: write_polygon
@@ -222,7 +224,7 @@
       level_h: 1
 
 - condition:
-    - leisure = stadium|pitch
+    - leisure = stadium|pitch|arena|sports_centre
     - ~named
   action:
     - action: write_polygon
