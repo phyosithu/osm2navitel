@@ -60,7 +60,7 @@
   action:
     - action: load_road
       type: 0x02
-      level_h: 3
+      level_h: 4
       routeparams: '4,3,0,0,0,0,0,0,0,0,0,0'
 
 - condition:
@@ -85,7 +85,7 @@
   action:
     - action: load_road
       type: 0x02
-      level_h: 2
+      level_h: 3
       routeparams: '4,2,0,0,0,0,0,0,0,0,0,0'
 
 - condition:
@@ -127,7 +127,7 @@
   action:
     - action: load_road
       type: 0x03
-      level_h: 1
+      level_h: 2
       routeparams: '3,1,0,0,0,0,0,0,0,0,0,0'
 
 - condition:
@@ -185,7 +185,6 @@
   action:
     - action: load_road
       type: 0x07
-      level_h: 1
       routeparams: '1,0,0,0,0,0,0,0,0,0,0,0'
 
 - condition:

@@ -112,7 +112,7 @@
   action:
     - action: write_line
       type: 0x27
-      level_h: 2
+      level_h: 1
 
 - condition:
     - aeroway = taxiway
@@ -127,14 +127,14 @@
   action:
     - action: write_line
       type: 0x28
-      level_h: 2
+      level_h: 1
 
 - condition:
     - power = line
   action:
     - action: write_line
       type: 0x29
-      level_h: 2
+      level_h: 1
 
 # Navitel specific
 
