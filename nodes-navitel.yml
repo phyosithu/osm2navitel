@@ -36,6 +36,13 @@
       type: 0x2f06
       contacts: yes
 - condition:
+    - amenity = bank
+    - atm = yes
+  action:
+    - action: write_poi
+      type: 0xf601
+      contacts: yes
+- condition:
     - amenity = bar|biergarten|nightclub|pub|stripclub
   action:
     - action: write_poi
