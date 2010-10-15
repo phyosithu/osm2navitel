@@ -115,6 +115,11 @@
     - action: write_poi
       type: 0x5000
 - condition:
+    - amenity = driving_school
+  action:
+    - action: write_poi
+      type: 0xf505
+- condition:
     - amenity = embassy
   action:
     - action: write_poi
