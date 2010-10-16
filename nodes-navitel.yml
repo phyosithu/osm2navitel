@@ -972,7 +972,7 @@
       type: 0x6401
 
 - condition:
-    - shop = adult|gift|toys
+    - shop = adult|erotic|gift|toys
   action:
     - action: write_poi
       type: 0xf709
