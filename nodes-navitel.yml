@@ -293,7 +293,7 @@
     - cuisine != asian|barbecue|chinese|burger|chicken|italian|pizza|mexican|seafood|coffee_shop|french|german
   action:
     - action: write_poi
-      type: 0x2a00
+      type: 0x4500
       contacts: yes
 - condition:
     - amenity = restaurant
