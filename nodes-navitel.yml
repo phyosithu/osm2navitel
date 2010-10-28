@@ -766,10 +766,16 @@
       type: 0x660a
 
 - condition:
-    - office = accountant|architect|company
+    - office = accountant|architect
   action:
     - action: write_poi
       type: 0x2f00
+      contacts: yes
+- condition:
+    - office = company
+  action:
+    - action: write_poi
+      type: 0x2e03
       contacts: yes
 - condition:
     - office = employment_agency|government
