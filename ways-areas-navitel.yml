@@ -205,7 +205,7 @@
     - landuse = grass
   action:
     - action: write_polygon
-      type: 0x95
+      type: 0x98
       level_h: 2
 
 - condition:
