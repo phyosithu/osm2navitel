@@ -49,14 +49,14 @@
   action:
     - action: write_polygon
       type: 0x05
-      level_h: 1
+      level_h: [ 0, 0.01 ]
 
 - condition:
     - landuse = garages
   action:
     - action: write_polygon
       type: 0x06
-      level_h: 1
+      level_h: [ 0, 0.01 ]
 
 - condition:
     - amenity = garage|parking_garage
@@ -75,7 +75,7 @@
   action:
     - action: write_polygon
       type: 0x08
-      level_h: [ 0, 0.01, 0.2 ]
+      level_h: [ 0, 0.01 ]
     - action: address_poi
 
 - condition:
@@ -93,7 +93,7 @@
   action:
     - action: write_polygon
       type: 0x0a
-      level_h: 1
+      level_h: [ 0, 0.01 ]
 
 - condition:
     - amenity = hospital
@@ -108,7 +108,7 @@
   action:
     - action: write_polygon
       type: 0x0c
-      level_h: [ 0, 0.01, 0.2 ]
+      level_h: [ 0, 0.01, 0.16 ]
 
 - condition:
     - building = *
@@ -176,16 +176,13 @@
     - action: address_poi
 
 - condition:
-    - building = factory|industrial|manufacture
+    - or:
+        - building = factory|industrial|manufacture
+        - man_made = works
   action:
     - action: write_polygon
       type: 0x6f
-
-- condition:
-    - man_made = works
-  action:
-    - action: write_polygon
-      type: 0x6f
+      level_h: [ 0, 0.01 ]
 
 - condition:
     - leisure = common|garden|park
@@ -206,7 +203,7 @@
   action:
     - action: write_polygon
       type: 0x98
-      level_h: 2
+      level_h: [ 0, 0.01, 0.16 ]
 
 - condition:
     - natural = heath
@@ -229,7 +226,7 @@
   action:
     - action: write_polygon
       type: 0x19
-      level_h: [ 0, 0.002 ]
+      level_h: [ 0, 0.01 ]
 
 - condition:
     - sport = *
@@ -294,7 +291,7 @@
   action:
     - action: write_polygon
       type: 0x4e
-      level_h: 2
+      level_h: [ 0, 0.01, 0.16 ]
 
 - condition:
     - natural = scrub
@@ -355,7 +352,7 @@
   action:
     - action: write_polygon
       type: 0x6a
-      level_h: [ 0, 0.002 ]
+      level_h: [ 0, 0.01 ]
 
 - condition:
     - natural = beach
@@ -369,4 +366,4 @@
   action:
     - action: write_polygon
       type: 0x8a
-      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
+      level_h: [ 0, 0.016, 0.5, 2.5 ]

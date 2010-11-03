@@ -175,6 +175,7 @@
 
 - condition:
     - highway = pedestrian
+    - area != yes
   action:
     - action: load_road
       type: 0x06
