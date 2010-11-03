@@ -617,10 +617,16 @@
       level_h: 1
       contacts: yes
 - condition:
-    - leisure = theme_park|water_park
+    - leisure = theme_park
   action:
     - action: write_poi
       type: 0x2c01
+      contacts: yes
+- condition:
+    - leisure = water_park
+  action:
+    - action: write_poi
+      type: 0x5400
       contacts: yes
 
 - condition:
