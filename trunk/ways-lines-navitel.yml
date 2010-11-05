@@ -145,13 +145,30 @@
       type: 0x46
 
 - condition:
+    - barrier = fence|hedge
+    - ~inside_city
+  action:
+    - action: write_line
+      type: 0x46
+
+- condition:
     - highway = footway
     - footway != sidewalk
     - area != yes
+    - bridge != yes
     - layer != -[2-5]
   action:
     - action: write_line
       type: 0x16
+
+- condition:
+    - highway = footway
+    - footway != sidewalk
+    - bridge = yes
+  action:
+    - action: write_line
+      type: 0x16
+      level_h: 1
 
 - condition:
     - highway = construction

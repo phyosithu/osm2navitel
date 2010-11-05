@@ -1167,6 +1167,13 @@
       type: 0xf706
       contacts: yes
 - condition:
+    - shop = pawnbroker
+  action:
+    - action: write_poi
+      type: 0x2f06
+      contacts: yes
+      Label: %label (Ломбард)
+- condition:
     - shop = pet
   action:
     - action: write_poi
