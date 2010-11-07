@@ -1333,22 +1333,3 @@
     - action: write_poi
       type: 0x6508
       level_h: 2
-
-- condition:
-    - wood = coniferous
-  action:
-    - action: write_poi
-      type: 0xf402
-      level_h: 1
-- condition:
-    - wood = deciduous
-  action:
-    - action: write_poi
-      type: 0xf401
-      level_h: 1
-- condition:
-    - wood = mixed
-  action:
-    - action: write_poi
-      type: 0xf403
-      level_h: 1
