@@ -151,14 +151,18 @@
       type: 0xf302
 - condition:
     - amenity = fuel
-    - fuel:lpg != yes
+    - and:
+        - fuel:lpg != yes
+        - fuel:cng != yes
   action:
     - action: write_poi
       type: 0x2f01
       contacts: yes
 - condition:
     - amenity = fuel
-    - fuel:lpg = yes
+    - or:
+        - fuel:lpg = yes
+        - fuel:cng = yes
   action:
     - action: write_poi
       type: 0xf208
