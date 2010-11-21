@@ -1149,6 +1149,12 @@
       type: 0xf602
       contacts: yes
 - condition:
+    - shop = hunting
+  action:
+    - action: write_poi
+      type: 0xf708
+      contacts: yes
+- condition:
     - shop = jewelry
   action:
     - action: write_poi
