@@ -367,3 +367,10 @@
     - action: write_polygon
       type: 0x8a
       level_h: [ 0, 0.016, 0.5, 2.5 ]
+
+- condition:
+    - natural = scree
+  action:
+    - action: write_polygon
+      type: 0x8a
+      level_h: [ 0, 0.016, 0.5 ]

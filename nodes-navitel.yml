@@ -758,7 +758,8 @@
     - action: write_poi
       type: 0x6511
 - condition:
-    - natural = stone
+    - natural = scree|stone
+    - only_node
   action:
     - action: write_poi
       type: 0xf30a
