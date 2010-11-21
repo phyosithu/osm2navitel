@@ -355,7 +355,7 @@
       level_h: [ 0, 0.01 ]
 
 - condition:
-    - natural = beach
+    - natural = beach|sand
   action:
     - action: write_polygon
       type: 0x89

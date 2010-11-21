@@ -758,6 +758,11 @@
     - action: write_poi
       type: 0x6511
 - condition:
+    - natural = stone
+  action:
+    - action: write_poi
+      type: 0xf30a
+- condition:
     - natural = tree
   action:
     - action: write_poi
@@ -1012,19 +1017,19 @@
       type: 0x2e00
       contacts: yes
 - condition:
-    - shop = bakery|beverages|butcher|confectionery|farm|greengrocer|grocery
+    - shop = bakery|beverages|butcher|confectionery|deli|farm|greengrocer|grocery
   action:
     - action: write_poi
       type: 0x2e02
       contacts: yes
 - condition:
-    - shop = bicycle|outdoor|sports
+    - shop = bicycle|dive|outdoor|sports
   action:
     - action: write_poi
       type: 0xf707
       contacts: yes
 - condition:
-    - shop = books|hearing_aids|photo|stationery
+    - shop = books|frame|hearing_aids|photo|stationery
   action:
     - action: write_poi
       type: 0x2e0a
@@ -1083,6 +1088,12 @@
       type: 0x2e06
       contacts: yes
 - condition:
+    - shop = copyshop
+  action:
+    - action: write_poi
+      type: 0xf612
+      contacts: yes
+- condition:
     - shop = department_store
   action:
     - action: write_poi
@@ -1119,7 +1130,7 @@
       type: 0xf60f
       contacts: yes
 - condition:
-    - shop = fabrics|hardware
+    - shop = curtain|fabrics|hardware
   action:
     - action: write_poi
       type: 0xf703
