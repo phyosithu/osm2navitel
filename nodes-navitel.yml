@@ -274,7 +274,7 @@
       contacts: yes
 - condition:
     - amenity = police
-    - name != ГИБДД|Пост ГИБДД
+    - name != ДПС|Пост ДПС
   action:
     - action: write_poi
       type: 0x3001
@@ -282,7 +282,7 @@
       contacts: yes
 - condition:
     - amenity = police
-    - name = ГИБДД|Пост ГИБДД
+    - name = ДПС|Пост ДПС
   action:
     - action: write_poi
       type: 0xf202
