@@ -274,9 +274,18 @@
       contacts: yes
 - condition:
     - amenity = police
+    - name != ГИБДД|Пост ГИБДД
   action:
     - action: write_poi
       type: 0x3001
+      level_h: 1
+      contacts: yes
+- condition:
+    - amenity = police
+    - name = ГИБДД|Пост ГИБДД
+  action:
+    - action: write_poi
+      type: 0xf202
       level_h: 1
       contacts: yes
 - condition:
@@ -953,11 +962,6 @@
     - action: write_poi
       type: 0x6400
 
-- condition:
-    - railway = crossing
-  action:
-    - action: write_poi
-      type: 0x6406
 - condition:
     - railway = halt
     - station != subway
