@@ -151,22 +151,28 @@
       type: 0xf302
 - condition:
     - amenity = fuel
-    - and:
-        - fuel:lpg != yes
-        - fuel:cng != yes
+    - fuel:lpg != yes
+    - fuel:cng != yes
   action:
     - action: write_poi
       type: 0x2f01
       contacts: yes
 - condition:
     - amenity = fuel
-    - or:
-        - fuel:lpg = yes
-        - fuel:cng = yes
+    - fuel:lpg = yes
+    - fuel:cng != yes
   action:
     - action: write_poi
       type: 0xf208
       contacts: yes
+- condition:
+    - amenity = fuel
+    - fuel:cng = yes
+  action:
+    - action: write_poi
+      type: 0xf208
+      contacts: yes
+      Label: %label (АГНКС)
 - condition:
     - amenity = grave_yard
   action:
@@ -274,7 +280,7 @@
       contacts: yes
 - condition:
     - amenity = police
-    - name != ДПС|Пост ДПС
+    - name != ДПС|[Пп]ост ДПС
   action:
     - action: write_poi
       type: 0x3001
@@ -282,7 +288,7 @@
       contacts: yes
 - condition:
     - amenity = police
-    - name = ДПС|Пост ДПС
+    - name = ДПС|[Пп]ост ДПС
   action:
     - action: write_poi
       type: 0xf202
