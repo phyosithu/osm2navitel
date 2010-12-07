@@ -519,7 +519,9 @@
       type: 0xf002
       contacts: yes
 - condition:
-    - highway = ford
+    - or:
+        - highway = ford
+        - ford = yes
   action:
     - action: write_poi
       type: 0xf307

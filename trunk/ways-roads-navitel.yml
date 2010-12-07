@@ -253,9 +253,9 @@
     - highway = ford
   action:
     - action: load_road
-      type: 0x16
+      type: 0x0a
       level_h: 1
-      routeparams: '0,0,0,0,1,1,1,1,1,1,0,1'
+      routeparams: '0,0,0,0,1,1,1,1,1,0,1,1'
 
 
 
@@ -360,6 +360,15 @@
   action:
     - action: modify_road
       type: 0x43
+
+
+# ford
+- condition:
+    - ford = yes
+  action:
+    - action: modify_road
+      type: 0x0a
+      routeparams: '0,0,.,.,.,.,.,.,.,.,.,.'
 
 
 # Disable transit traffic
