@@ -957,14 +957,7 @@
       city: yes
 
 - condition:
-    - power = generation
-    - only_node
-  action:
-    - action: write_poi
-      type: 0x6400
-      level_h: 1
-- condition:
-    - power = sub_station
+    - power = generator|station|sub_station
     - only_node
   action:
     - action: write_poi

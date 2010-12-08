@@ -102,12 +102,14 @@ aerialway:          1
 aeroway:            1
 admin_level:        1
 amenity:            1
+area:               1
 barrier:            1
 boundary:           1
 bridge:             1
 building:           1
 burnt:              1
 capital:            1
+crossing:           1
 footway:            1
 highway:            1
 historic:           1
