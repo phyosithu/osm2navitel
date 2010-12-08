@@ -104,7 +104,9 @@
       level_h: [ 0, 0.01 ]
 
 - condition:
-    - landuse = industrial
+    - or:
+        - landuse = industrial
+        - power = generator|station
   action:
     - action: write_polygon
       type: 0x0c
@@ -116,6 +118,7 @@
     - amenity != *
     - man_made != works
     - office != *
+    - power != *
     - shop != mall|supermarket
     - leisure != stadium|arena|sports_centre|ice_rink
     - sport != *
@@ -179,6 +182,7 @@
     - or:
         - building = factory|industrial|manufacture
         - man_made = works
+        - power = sub_station
   action:
     - action: write_polygon
       type: 0x6f
