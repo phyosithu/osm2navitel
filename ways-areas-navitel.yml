@@ -257,14 +257,9 @@
 # Natural
 
 - condition:
-    - natural = water
-  action:
-    - action: write_polygon
-      type: 0x3f
-      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
-
-- condition:
-    - landuse = basin|reservoir
+    - or:
+        - landuse = basin|reservoir
+        - natural = water
   action:
     - action: write_polygon
       type: 0x3f
