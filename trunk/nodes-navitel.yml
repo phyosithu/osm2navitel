@@ -1345,7 +1345,7 @@
     - action: write_poi
       type: 0x5200
 - condition:
-    - tourism = zoo
+    - tourism = aquarium|zoo
   action:
     - action: write_poi
       type: 0x2c07
