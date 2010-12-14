@@ -20,7 +20,7 @@
   [IMG ID]
   ID=[% mapid %]
   Name=[% mapname %]
-  Copyright=OpenStreetMap project contributors under CC-BY-SA|Converted by 
+  Copyright=OpenStreetMap project contributors under CC-BY-SA|OpenStreetMap data provided by GIS-Lab.info|Converted by 
 
   TypeSet=Navitel
 
@@ -65,7 +65,7 @@
 ---
 
 label:          [ name, loc_name, operator ]
-house:          [ addr:housenumber, addr:housename ]
+house:          [ addr:housenumber, addr:housename, name ]
 entrance:       [ name, ref ]
 # place:        [ addr:city, place_name, name ]
 place:          [ cladr:name, addr:city, place_name, name ]
