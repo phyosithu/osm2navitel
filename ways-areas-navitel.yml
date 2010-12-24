@@ -21,11 +21,13 @@
       level_h: 3
 
 - condition:
-    - place = village|hamlet|farmyard
+    - or:
+        - place = village|hamlet|isolated_dwelling|farmyard
+        - landuse = residential
   action:
     - action: write_polygon
       type: 0x03
-      level_h: 2
+      level_h: [ 0, 0, 0.5 ]
 
 
 # Man-made
