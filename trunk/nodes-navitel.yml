@@ -35,6 +35,7 @@
     - action: write_poi
       type: 0x2f06
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = bank
     - atm = yes
@@ -48,6 +49,7 @@
     - action: write_poi
       type: 0x2d02
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = bus_station
   action:
@@ -60,6 +62,7 @@
     - action: write_poi
       type: 0x2a0e
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = car_sharing|car_rental
   action:
@@ -131,6 +134,7 @@
     - action: write_poi
       type: 0x2a07
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = ferry_terminal
   action:
@@ -218,6 +222,7 @@
     - action: write_poi
       type: 0x2e05
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = place_of_worship
     - religion != muslim|jewish|buddhist
@@ -300,6 +305,7 @@
     - action: write_poi
       type: 0x2f05
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = prison
   action:
@@ -928,6 +934,13 @@
       type: 0x650c
       level_h: 2
 - condition:
+    - place = isolated_dwelling
+    - only_node
+  action:
+    - action: write_poi
+      type: 0x1100
+      level_h: 2
+- condition:
     - place = locality
   action:
     - action: write_poi
@@ -1047,6 +1060,7 @@
     - action: write_poi
       type: 0x2f03
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = car
     - service = tyres
@@ -1069,6 +1083,7 @@
     - action: write_poi
       type: 0x2f07
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = chemist
   action:
@@ -1111,6 +1126,7 @@
     - action: write_poi
       type: 0x2e08
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = drugstore|optician
   action:
@@ -1184,12 +1200,13 @@
       type: 0xf604
       contacts: yes
 - condition:
-    - shop = mall
+    - shop = mall|supermarket
   action:
     - action: write_poi
       type: 0x2e04
       level_h: 1
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = massage
   action:
@@ -1226,13 +1243,6 @@
   action:
     - action: write_poi
       type: 0xf702
-      contacts: yes
-- condition:
-    - shop = supermarket
-  action:
-    - action: write_poi
-      type: 0x2e04
-      level_h: 1
       contacts: yes
 - condition:
     - shop = travel_agency
