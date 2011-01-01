@@ -75,12 +75,14 @@
     - action: write_poi
       type: 0x2f0e
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = cinema
   action:
     - action: write_poi
       type: 0x2d03
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = college
   action:
@@ -105,6 +107,7 @@
     - action: write_poi
       type: 0xf801
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = doctors
   action:
@@ -190,6 +193,7 @@
       type: 0x3002
       level_h: 1
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = kindergarten
   action:
@@ -208,6 +212,7 @@
     - action: write_poi
       type: 0xf701
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = parking
     - access != private
@@ -326,6 +331,7 @@
     - action: write_poi
       type: 0x4500
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = restaurant
     - cuisine = asian
@@ -333,6 +339,7 @@
     - action: write_poi
       type: 0x2a02
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = restaurant
     - cuisine = barbecue
@@ -340,6 +347,7 @@
     - action: write_poi
       type: 0x2a03
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = restaurant
     - cuisine = chinese
@@ -347,6 +355,7 @@
     - action: write_poi
       type: 0x2a04
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = restaurant
     - cuisine = burger|chicken
@@ -354,6 +363,7 @@
     - action: write_poi
       type: 0x2a07
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = restaurant
     - cuisine = italian
@@ -361,6 +371,7 @@
     - action: write_poi
       type: 0x2a08
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = restaurant
     - cuisine = mexican
@@ -368,6 +379,7 @@
     - action: write_poi
       type: 0x2a09
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = restaurant
     - cuisine = pizza
@@ -375,6 +387,7 @@
     - action: write_poi
       type: 0x2a0a
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = restaurant
     - cuisine = seafood
@@ -382,6 +395,7 @@
     - action: write_poi
       type: 0x2a0b
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = restaurant
     - cuisine = coffee_shop
@@ -389,6 +403,7 @@
     - action: write_poi
       type: 0x2a0e
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = restaurant
     - cuisine = french
@@ -396,6 +411,7 @@
     - action: write_poi
       type: 0x2a0f
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = restaurant
     - cuisine = german
@@ -403,12 +419,14 @@
     - action: write_poi
       type: 0x2a10
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = sauna
   action:
     - action: write_poi
       type: 0xf603
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = school
   action:
@@ -457,12 +475,14 @@
     - action: write_poi
       type: 0xf802
       contacts: yes
+      Text: %opening_hours
 
-#- condition:
-#    - barrier = block|bollard|chain|gate|lift_gate
-#  action:
-#    - action: write_poi
-#      type: 0xf207
+- condition:
+    - barrier = block|gate|lift_gate
+    - access = no|private|destination
+  action:
+    - action: write_poi
+      type: 0xf207
 
 - condition:
     - barrier = border_control
@@ -564,6 +584,7 @@
     - action: write_poi
       type: 0x2c02
       contacts: yes
+      Text: %opening_hours
 
 - condition:
     - internet_access = public|wlan
@@ -625,6 +646,7 @@
     - action: write_poi
       type: 0x2d08
       contacts: yes
+      Text: %opening_hours
 - condition:
     - leisure = marina
   action:
@@ -641,6 +663,7 @@
     - action: write_poi
       type: 0x2d0a
       contacts: yes
+      Text: %opening_hours
 - condition:
     - leisure = stadium
     - named
@@ -834,12 +857,14 @@
     - action: write_poi
       type: 0xf60f
       contacts: yes
+      Text: %opening_hours
 - condition:
     - office = insurance
   action:
     - action: write_poi
       type: 0xf60e
       contacts: yes
+      Text: %opening_hours
 - condition:
     - office = lawyer
     - lawyer != notary
@@ -847,6 +872,7 @@
     - action: write_poi
       type: 0xf60c
       contacts: yes
+      Text: %opening_hours
 - condition:
     - office = lawyer
     - lawyer = notary
@@ -854,6 +880,7 @@
     - action: write_poi
       type: 0xf60d
       contacts: yes
+      Text: %opening_hours
 - condition:
     - office = newspaper
   action:
@@ -866,6 +893,7 @@
     - action: write_poi
       type: 0xf613
       contacts: yes
+      Text: %opening_hours
 
 - condition:
     - place = airport
@@ -1029,30 +1057,35 @@
     - action: write_poi
       type: 0xf709
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = alcohol|newsagent|video
   action:
     - action: write_poi
       type: 0x2e00
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = bakery|beverages|butcher|confectionery|deli|farm|greengrocer|grocery
   action:
     - action: write_poi
       type: 0x2e02
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = bicycle|dive|outdoor|sports
   action:
     - action: write_poi
       type: 0xf707
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = books|frame|hearing_aids|photo|stationery
   action:
     - action: write_poi
       type: 0x2e0a
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = car
     - service = repair
@@ -1068,12 +1101,14 @@
     - action: write_poi
       type: 0xf209
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = car_repair
   action:
     - action: write_poi
       type: 0x2f03
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = car|car_parts|motorcycle
     - or:
@@ -1090,36 +1125,42 @@
     - action: write_poi
       type: 0xf704
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = clothes|fashion|second_hand
   action:
     - action: write_poi
       type: 0x2e07
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = computer
   action:
     - action: write_poi
       type: 0x2e0b
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = convenience|general|kiosk
   action:
     - action: write_poi
       type: 0x2e06
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = copyshop
   action:
     - action: write_poi
       type: 0xf612
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = department_store
   action:
     - action: write_poi
       type: 0x2e01
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = doityourself|garden_centre|glaziery
   action:
@@ -1133,72 +1174,84 @@
     - action: write_poi
       type: 0x2e05
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = dry_cleaning
   action:
     - action: write_poi
       type: 0xf604
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = electronics|hifi
   action:
     - action: write_poi
       type: 0xf705
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = estate_agent
   action:
     - action: write_poi
       type: 0xf60f
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = curtain|fabrics|hardware
   action:
     - action: write_poi
       type: 0xf703
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = florist
   action:
     - action: write_poi
       type: 0xf70a
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = funeral_directors
   action:
     - action: write_poi
       type: 0x2f00
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = furniture
   action:
     - action: write_poi
       type: 0x2e09
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = hairdresser
   action:
     - action: write_poi
       type: 0xf602
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = hunting
   action:
     - action: write_poi
       type: 0xf708
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = jewelry
   action:
     - action: write_poi
       type: 0xf70b
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = laundry
   action:
     - action: write_poi
       type: 0xf604
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = mall|supermarket
   action:
@@ -1213,12 +1266,14 @@
     - action: write_poi
       type: 0x2f00
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = mobile_phone
   action:
     - action: write_poi
       type: 0xf706
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = pawnbroker
   action:
@@ -1226,30 +1281,35 @@
       type: 0x2f06
       contacts: yes
       Label: %label (Ломбард)
+      Text: %opening_hours
 - condition:
     - shop = pet
   action:
     - action: write_poi
       type: 0xf70c
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = photo_studio
   action:
     - action: write_poi
       type: 0xf605
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = shoes
   action:
     - action: write_poi
       type: 0xf702
       contacts: yes
+      Text: %opening_hours
 - condition:
     - shop = travel_agency
   action:
     - action: write_poi
       type: 0xf613
       contacts: yes
+      Text: %opening_hours
 
 - condition:
     - sport = 9pin|10pin|bowls
@@ -1257,6 +1317,7 @@
     - action: write_poi
       type: 0x2d07
       contacts: yes
+      Text: %opening_hours
 - condition:
     - sport = golf
   action:
@@ -1295,6 +1356,7 @@
     - action: write_poi
       type: 0x2d09
       contacts: yes
+      Text: %opening_hours
 
 - condition:
     - tourism = alpine_hut|chalet
@@ -1308,6 +1370,7 @@
     - action: write_poi
       type: 0x2c00
       contacts: yes
+      Text: %opening_hours
 - condition:
     - tourism = camp_site|caravan_site
   action:
@@ -1360,6 +1423,7 @@
     - action: write_poi
       type: 0x2c07
       contacts: yes
+      Text: %opening_hours
 
 - condition:
     - traffic_calming = yes|bump|cushion|hump|table
