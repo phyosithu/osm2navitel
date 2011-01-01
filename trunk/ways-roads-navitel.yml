@@ -327,12 +327,13 @@
     - smoothness = very_bad
   action:
     - action: modify_road
-      routeparams: '-1,.,.,.,.,.,.,.,.,.,.,.'
+      routeparams: '-1,-1,.,.,.,.,.,.,.,.,.,.'
 - condition:
+    - highway = trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|unclassified
     - smoothness = horrible|very_horrible
   action:
     - action: modify_road
-      routeparams: '-2,.,.,.,.,.,.,.,.,.,.,.'
+      routeparams: '-2,-1,.,.,.,.,.,.,.,.,.,.'
 
 
 # motorroads

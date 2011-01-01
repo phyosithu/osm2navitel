@@ -152,7 +152,7 @@
       type: 0x46
 
 - condition:
-    - highway = footway
+    - highway = footway|steps
     - footway != sidewalk
     - area != yes
     - bridge != yes
@@ -162,7 +162,7 @@
       type: 0x16
 
 - condition:
-    - highway = footway
+    - highway = footway|steps
     - footway != sidewalk
     - bridge = yes
   action:
