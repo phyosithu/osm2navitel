@@ -44,7 +44,14 @@
       type: 0x14
       level_h: 1
 
+# Aerialway
 
+  condition:
+    - aerialway = cable_car|chair_lift|drag_lift|gondola|goods|j-bar|mixed_lift|platter|t-bar
+  action:
+    - action: write_line
+      type: 0x41
+      level_h: 1
 
 # Water
 
@@ -161,6 +168,7 @@
 - condition:
     - highway = footway|steps
     - footway != sidewalk
+    - piste:type != *
     - area != yes
     - bridge != yes
     - layer != -[2-5]
