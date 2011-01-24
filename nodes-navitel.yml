@@ -2,6 +2,13 @@
 ---
 
 - condition:
+    - aerialway = station
+  action:
+    - action: write_poi
+      type: 0xf009
+      contacts: yes
+
+- condition:
     - aeroway = aerodrome
   action:
     - action: write_poi

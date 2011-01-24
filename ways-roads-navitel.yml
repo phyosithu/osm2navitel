@@ -385,5 +385,23 @@
     - action: modify_road
       RouteParamExt: 1
 
+# Ski routes
+
+- condition:
+    - piste:type = downhill
+  action:
+    - action: load_road
+      type: 0x16
+      level_h: 1
+      routeparams: '4,0,1,0,1,1,1,1,1,0,1,1'
+
+- condition:
+    - piste:type = *
+    - piste:type != downhill
+  action:
+    - action: load_road
+      type: 0x16
+      level_h: 1
+      routeparams: '0,0,0,0,1,1,1,1,1,0,1,1'
 
 # RouteParams=speed,class,oneway,toll,emergency,delivery,car,bus,taxi,foot,bike,truck
