@@ -46,7 +46,7 @@
 
 # Aerialway
 
-  condition:
+- condition:
     - aerialway = cable_car|chair_lift|drag_lift|gondola|goods|j-bar|mixed_lift|platter|t-bar
   action:
     - action: write_line
