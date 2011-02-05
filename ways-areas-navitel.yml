@@ -118,7 +118,7 @@
     - building = *
     - building != no|factory|industrial|manufacture|apartments|dormitory|house|hut|residential|administrative|office|garage|garages|parking
     - amenity != *
-    - man_made != works
+    - man_made != works|gasometer
     - office != *
     - power != *
     - shop != mall|supermarket
@@ -183,7 +183,7 @@
 - condition:
     - or:
         - building = factory|industrial|manufacture
-        - man_made = works
+        - man_made = works|gasometer
         - power = sub_station
   action:
     - action: write_polygon
@@ -242,11 +242,26 @@
       type: 0x19
 
 - condition:
-    - landuse = cemetery
+    - landuse = cemetery|grave_yard
   action:
     - action: write_polygon
       type: 0x1a
       level_h: 1
+
+- condition:
+    - landuse = landfill
+    - natural != *
+  action:
+    - action: write_polygon
+      type: 0x0c
+      level_h: [ 0, 0.01, 0.16 ]
+
+- condition:
+    - landuse = recreation_ground
+  action:
+    - action: write_polygon
+      type: 0x17
+      level_h: [ 0, 0.01, 0.16 ]
 
 - condition:
     - landuse = vineyard
@@ -348,6 +363,14 @@
       level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
 
 - condition:
+    - landuse = peat_cutting
+    - natural != *
+  action:
+    - action: write_polygon
+      type: 0x51
+      level_h: [ 0, 0.016, 0.5 ]
+
+- condition:
     - highway = *
     - area = yes
   action:
@@ -375,3 +398,10 @@
     - action: write_polygon
       type: 0x8a
       level_h: [ 0, 0.016, 0.5 ]
+
+- condition:
+    - water = tidal|intermittent
+  action:
+    - action: write_polygon
+      type: 0x53
+      level_h: [ 0, 0.016, 0.5, 2.5 ]

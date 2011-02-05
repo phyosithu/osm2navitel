@@ -404,4 +404,16 @@
       level_h: 1
       routeparams: '0,0,0,0,1,1,1,1,1,0,1,1'
 
+# Winter roads
+- condition:
+    - or:
+        - ice_road = yes
+        - winter_road = yes
+        - surface = ice_road
+  action:
+    - action: modify_road
+      type: 0x42
+      Label: %label (Зимник)
+      routeparams: '2,0,0,0,0,0,0,1,0,0,0,0'
+
 # RouteParams=speed,class,oneway,toll,emergency,delivery,car,bus,taxi,foot,bike,truck

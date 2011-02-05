@@ -25,7 +25,7 @@
       contacts: yes
 
 - condition:
-    - amenity = arts_centre|community_centre|social_centre
+    - amenity = arts_centre
   action:
     - action: write_poi
       type: 0x2c09
@@ -84,6 +84,12 @@
       contacts: yes
       Text: %opening_hours
 - condition:
+    - amenity = casino
+  action:
+    - action: write_poi
+      type: 0x2d04
+      contacts: yes
+- condition:
     - amenity = cinema
   action:
     - action: write_poi
@@ -96,6 +102,13 @@
     - action: write_poi
       type: 0xf503
       contacts: yes
+- condition:
+    - amenity = community_centre|social_centre
+  action:
+    - action: write_poi
+      type: 0x3005
+      contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = courthouse
   action:
@@ -122,6 +135,7 @@
       type: 0x4b00
       level_h: 1
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = drinking_water
   action:
@@ -191,7 +205,10 @@
       Label: %label (АГНКС)
       Text: %opening_hours
 - condition:
-    - amenity = grave_yard
+    - or:
+        - amenity = grave_yard
+        - landuse = cemetery
+    - only_node
   action:
     - action: write_poi
       type: 0x6403
@@ -216,6 +233,7 @@
     - action: write_poi
       type: 0x2c03
       contacts: yes
+      Text: %opening_hours
 - condition:
     - amenity = marketplace
   action:
@@ -223,6 +241,12 @@
       type: 0xf701
       contacts: yes
       Text: %opening_hours
+- condition:
+    - amenity = nursing_home|social_facility
+  action:
+    - action: write_poi
+      type: 0x2f14
+      contacts: yes
 - condition:
     - amenity = parking
     - access != private
@@ -336,7 +360,7 @@
       contacts: yes
 - condition:
     - amenity = restaurant
-    - cuisine != asian|barbecue|chinese|burger|chicken|italian|pizza|mexican|seafood|coffee_shop|french|german
+    - cuisine != asian|barbecue|cake|chinese|burger|chicken|italian|pizza|mexican|sandwich|seafood|coffee_shop|french|german
   action:
     - action: write_poi
       type: 0x4500
@@ -359,6 +383,14 @@
       contacts: yes
       Text: %opening_hours
 - condition:
+    - amenity = restaurant|cafe
+    - cuisine = cake
+  action:
+    - action: write_poi
+      type: 0x2a0d
+      contacts: yes
+      Text: %opening_hours
+- condition:
     - amenity = restaurant
     - cuisine = chinese
   action:
@@ -367,8 +399,8 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - amenity = restaurant
-    - cuisine = burger|chicken
+    - amenity = restaurant|cafe
+    - cuisine = burger|chicken|sandwich
   action:
     - action: write_poi
       type: 0x2a07
@@ -391,7 +423,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - amenity = restaurant
+    - amenity = restaurant|cafe
     - cuisine = pizza
   action:
     - action: write_poi
@@ -431,7 +463,9 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - amenity = sauna
+    - or:
+        - amenity = sauna
+        - leisure = sauna
   action:
     - action: write_poi
       type: 0xf603
@@ -567,6 +601,11 @@
     - action: write_poi
       type: 0xf20c
 - condition:
+    - highway = services
+  action:
+    - action: write_poi
+      type: 0x210f
+- condition:
     - highway = speed_camera
     - only_node
   action:
@@ -603,12 +642,6 @@
       type: 0xf615
 
 - condition:
-    - landuse = cemetery
-    - only_node
-  action:
-    - action: write_poi
-      type: 0x6403
-- condition:
     - landuse = forest
     - only_node
   action:
@@ -621,10 +654,16 @@
       type: 0x2f0b
       Label: %label (Гаражи)
 - condition:
+    - landuse = peat_cutting
+  action:
+    - action: write_poi
+      type: 0xf30b
+- condition:
     - landuse = quarry
   action:
     - action: write_poi
       type: 0x640c
+      Label: %label (Карьер)
 - condition:
     - landuse = residential
     - only_node
@@ -695,6 +734,11 @@
       type: 0x5400
       contacts: yes
 
+- condition:
+    - man_made = chimney
+  action:
+    - action: write_poi
+      type: 0x6411
 - condition:
     - man_made = lighthouse
   action:
@@ -786,16 +830,25 @@
   action:
     - action: write_poi
       type: 0xf30d
+      level_h: 1
 - condition:
     - natural = cliff
   action:
     - action: write_poi
       type: 0x6607
+      level_h: 1
+- condition:
+    - natural = geyser
+  action:
+    - action: write_poi
+      type: 0x6509
+      level_h: 1
 - condition:
     - natural = glacier
   action:
     - action: write_poi
       type: 0x650a
+      level_h: 1
 - condition:
     - natural = peak
   action:
@@ -829,6 +882,7 @@
   action:
     - action: write_poi
       type: 0x6608
+      level_h: 1
       ele: yes
 - condition:
     - natural = water
@@ -842,6 +896,7 @@
   action:
     - action: write_poi
       type: 0x660a
+      level_h: 1
 
 - condition:
     - office = accountant|architect
@@ -1076,10 +1131,17 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = bakery|beverages|butcher|confectionery|deli|farm|greengrocer|grocery
+    - shop = beverages|butcher|deli|farm|greengrocer|grocery
   action:
     - action: write_poi
       type: 0x2e02
+      contacts: yes
+      Text: %opening_hours
+- condition:
+    - shop = bakery|confectionery
+  action:
+    - action: write_poi
+      type: 0x2a0d
       contacts: yes
       Text: %opening_hours
 - condition:
@@ -1441,6 +1503,11 @@
     - action: write_poi
       type: 0xf204
 
+- condition:
+    - waterway = dam|weir
+  action:
+    - action: write_poi
+      type: 0x5500
 - condition:
     - waterway = rapids
   action:

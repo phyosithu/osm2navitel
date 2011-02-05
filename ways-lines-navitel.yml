@@ -65,6 +65,7 @@
 
 - condition:
     - waterway = stream
+    - intermittent != yes
   action:
     - action: write_line
       type: 0x18
@@ -79,11 +80,19 @@
 
 - condition:
     - waterway = river
+    - intermittent != yes
   action:
     - action: write_line
       type: 0x1f
       level_h: 3
 
+- condition:
+    - waterway = river|stream
+    - intermittent = yes
+  action:
+    - action: write_line
+      type: 0x4c
+      level_h: 1
 
 
 # Boundaries
