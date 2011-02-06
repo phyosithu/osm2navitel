@@ -117,6 +117,7 @@
 - condition:
     - building = *
     - building != no|factory|industrial|manufacture|apartments|dormitory|house|hut|residential|administrative|office|garage|garages|parking
+    - building:use != apartments|residential
     - amenity != *
     - man_made != works|gasometer
     - office != *
@@ -131,7 +132,9 @@
     - action: address_poi
 
 - condition:
-    - building = apartments|dormitory|house|hut|residential
+    - or:
+        - building = apartments|dormitory|house|hut|residential
+        - building:use = apartments|residential
   action:
     - action: write_polygon
       type: 0x6c

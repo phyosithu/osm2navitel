@@ -251,9 +251,17 @@
     - amenity = parking
     - access != private
     - parking != garages|garage_boxes
+    - hgv != yes|designated
   action:
     - action: write_poi
       type: 0x2f0b
+      contacts: yes
+- condition:
+    - amenity = parking
+    - hgv = yes|designated
+  action:
+    - action: write_poi
+      type: 0x2f16
       contacts: yes
 - condition:
     - amenity = pharmacy
@@ -690,7 +698,9 @@
       type: 0x2c06
       contacts: yes
 - condition:
-    - leisure = ice_rink
+    - or:
+        - leisure = ice_rink
+        - sport = hockey|skating
   action:
     - action: write_poi
       type: 0x2d08
@@ -1400,12 +1410,6 @@
   action:
     - action: write_poi
       type: 0x2d0a
-      contacts: yes
-- condition:
-    - sport = hockey|skating
-  action:
-    - action: write_poi
-      type: 0x2d08
       contacts: yes
 - condition:
     - sport = motor
