@@ -44,11 +44,21 @@
 
   Levels=2
   Level0=24
-  Level1=22
+  Level1=23
 
   [END-IMG ID]
 
 
+
+################################
+##  Name selection priority
+################################
+
+
+--- taglist
+---
+
+label:          [ name, loc_name ]
 
 ################################
 ##  Tags to skip

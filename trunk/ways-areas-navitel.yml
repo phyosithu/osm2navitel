@@ -194,7 +194,9 @@
       level_h: [ 0, 0.01 ]
 
 - condition:
-    - leisure = common|garden|park
+    - or:
+        - leisure = common|garden|park
+        - landuse = recreation_ground
   action:
     - action: write_polygon
       type: 0x17
@@ -260,13 +262,6 @@
       level_h: [ 0, 0.01, 0.16 ]
 
 - condition:
-    - landuse = recreation_ground
-  action:
-    - action: write_polygon
-      type: 0x17
-      level_h: [ 0, 0.01, 0.16 ]
-
-- condition:
     - landuse = vineyard
   action:
     - action: write_polygon
@@ -306,7 +301,7 @@
       level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
 
 - condition:
-    - landuse = allotments
+    - landuse = allotments|orchard
   action:
     - action: write_polygon
       type: 0x4e

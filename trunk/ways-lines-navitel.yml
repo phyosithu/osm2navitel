@@ -234,22 +234,11 @@
       type: 0x3f
 
 - condition:
-    - railway = platform
+    - or:
+        - railway = platform
+        - public_transport = platform
+        - pt = platform
     - layer != -[1-5]
   action:
     - action: write_line
-      type: 0x07
-
-- condition:
-    - public_transport = platform
-    - layer != -[1-5]
-  action:
-    - action: write_line
-      type: 0x07
-
-- condition:
-    - pt = platform
-    - layer != -[1-5]
-  action:
-    - action: write_line
-      type: 0x07
+      type: 0x16
