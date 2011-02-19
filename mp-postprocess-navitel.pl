@@ -151,14 +151,8 @@ while ( my $line = readline $in ) {
         $line =~ s/Su/Вс/;
     }
 
-    if ($killrouting) {
-	    #	remove routing nodes
-	    next if ($line =~ /^Nod\d+/);
-	    #	remove turn restrictions
-	    if ($line =~ /^\[Restrict\]$/) { $RestrictSection = 1 };
-	    if ($line =~ /^\[END-Restrict\]$/) { $RestrictSection = 0 ; next;};
-	    next if $RestrictSection;
-    }
+    # kill routing
+    next if ($killrouting && $line =~ /^(Nod\d+|\[Restrict\]|TraffPoints|TraffRoads|RestrParam|\[END-Restrict\])/i);
 
     print $out $line;
 }
