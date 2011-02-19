@@ -106,6 +106,49 @@ while ( my $line = readline $in ) {
         $line =~ s/chukot/Чукотский автономный округ/;
         $line =~ s/yamal/Ямало-Ненецкий автономный округ/;
         $line =~ s/yarosl/Ярославская область/;
+        $line =~ s/Ukraine/Украина/; #районы Украины
+        $line =~ s/Ukraine-Cherkasy/Черкаська область/;
+        $line =~ s/Ukraine-Chernigov/Чернігівська область/;
+        $line =~ s/Ukraine-Chernovitsk/Чернівецька область/;
+        $line =~ s/Ukraine-Dnepropetrovsk/Дніпропетровська область/;
+        $line =~ s/Ukraine-Donetsk/Донецька область/;
+        $line =~ s/Ukraine-Ivano-Frankivsk/Івано-Франківська область/;
+        $line =~ s/Ukraine-Kharkiv/Харківська область/;
+        $line =~ s/Ukraine-Kherson/Херсонська область/;
+        $line =~ s/Ukraine-Khmelnytskyi/Хмельницька область/;
+        $line =~ s/Ukraine-Kirovograd/Кіровоградська область/;
+        $line =~ s/Ukraine-Krym/АР Крим/;
+        $line =~ s/Ukraine-Kyiv/Київська область/;
+        $line =~ s/Ukraine-Lugansk/Луганська область/;
+        $line =~ s/Ukraine-Lviv/Львівська область/;
+        $line =~ s/Ukraine-Mykolaiv/Миколаївська область/;
+        $line =~ s/Ukraine-Odesa/Одеська область/;
+        $line =~ s/Ukraine-Poltava/Полтавська область/;
+        $line =~ s/Ukraine-Rivne/Рівненська область/;
+        $line =~ s/Ukraine-Sumskaya/Сумська область/;
+        $line =~ s/Ukraine-Ternopil/Тернопільська область/;
+        $line =~ s/Ukraine-Vinnitska/Вінницька область/;
+        $line =~ s/Ukraine-Volyn/Волинська область/;
+        $line =~ s/Ukraine-Zakarpatsk/Закарпатська область/;
+        $line =~ s/Ukraine-Zaporozhsk/Запорізька область/;
+        $line =~ s/Ukraine-Zhytomyr/Житомирська область/;
+    }
+
+    if ( $line =~ /^(Label|StreetDesc|CityName|RegionName)=/i ) {
+        #SYMBOLS (рудименты параметра --textfilter)
+        $line =~ s/\\N{COMBINING ACUTE ACCENT}//;
+        $line =~ s/\\N{MASCULINE ORDINAL INDICATOR}//;
+        $line =~ s/\\N{LATIN SMALL LETTER L WITH STROKE}/l/;
+    }
+
+    if ( $line =~ /^(Text)=/i ) { #часы работы
+        $line =~ s/Mo/Пн/;
+        $line =~ s/Tu/Вт/;
+        $line =~ s/We/Ср/;
+        $line =~ s/Th/Чт/;
+        $line =~ s/Fr/Пт/;
+        $line =~ s/Sa/Сб/;
+        $line =~ s/Su/Вс/;
     }
 
     if ($killrouting) {
