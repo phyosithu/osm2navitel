@@ -795,6 +795,11 @@
   action:
     - action: write_poi
       type: 0xf303
+- condition:
+    - man_made = water_well
+  action:
+    - action: write_poi
+      type: 0x6414
 
 - condition:
     - maxheight = *
@@ -962,6 +967,13 @@
     - action: write_poi
       type: 0xf611
       contacts: yes
+- condition:
+    - office = telecommunication
+  action:
+    - action: write_poi
+      type: 0x2f12
+      contacts: yes
+      Text: %opening_hours
 - condition:
     - office = travel_agent
   action:
@@ -1141,7 +1153,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = beverages|butcher|deli|farm|greengrocer|grocery
+    - shop = beverages|butcher|deli|farm|greengrocer|grocery|supermarket
   action:
     - action: write_poi
       type: 0x2e02
@@ -1308,7 +1320,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = hairdresser
+    - shop = hairdresser|beauty
   action:
     - action: write_poi
       type: 0xf602
@@ -1336,7 +1348,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = mall|supermarket
+    - shop = mall
   action:
     - action: write_poi
       type: 0x2e04
