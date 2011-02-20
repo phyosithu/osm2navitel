@@ -81,7 +81,7 @@
     - action: address_poi
 
 - condition:
-    - shop = mall|supermarket
+    - shop = mall
     - landuse != commercial|retail
   action:
     - action: write_polygon
@@ -122,7 +122,7 @@
     - man_made != works|gasometer
     - office != *
     - power != *
-    - shop != mall|supermarket
+    - shop != mall
     - leisure != stadium|arena|sports_centre|ice_rink
     - sport != *
   action:
@@ -285,7 +285,7 @@
   action:
     - action: write_polygon
       type: 0x47
-      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
+      level_h: [ 0, 0, 0, 0, 9 ]
 
 - condition:
     - leisure = ice_rink
