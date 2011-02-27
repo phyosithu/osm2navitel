@@ -154,6 +154,7 @@
       contacts: yes
 - condition:
     - amenity = fast_food|food_court
+    - cuisine != pizza
   action:
     - action: write_poi
       type: 0x2a07
@@ -431,7 +432,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - amenity = restaurant|cafe
+    - amenity = restaurant|cafe|fast_food|food_court
     - cuisine = pizza
   action:
     - action: write_poi
