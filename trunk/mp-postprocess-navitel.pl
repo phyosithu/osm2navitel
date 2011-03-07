@@ -52,7 +52,7 @@ my $object;
 # read mp header
 while ( my $line = readline $in ) {
 
-    if ($fixrouting && $line =~ /^Level0/i) {
+    if ($line =~ /^Level0/i) {
         my ($levelname, $bits) = split /=/,$line;
         $bitlevel = $bits;
     }
@@ -60,6 +60,8 @@ while ( my $line = readline $in ) {
     print $out $line;
     last if ($line =~ /^\[END-IMG ID\]/i);
 }
+
+my $mpfmt = $bitlevel > 24 ? "%.6f" : "%.5f" ;
 
 # read mp body
 LINE:
@@ -252,11 +254,11 @@ while ( my $line = readline $in ) {
     if ($fixrouting && $line =~ /^Nod\d+/) {
         my ($nodname, $pos, $nodid, $nodtype) = split /[=,]/,$line;
         my ($lat, $lon) = split /,/, $points[$pos];
-        my ($gridlat, $gridlon) = (int $lat/(360/2**$bitlevel)+0.5, int $lon/(360/2**$bitlevel)+0.5);
-        if ($nodes{($gridlat, $gridlon)}) {
-            $line = $nodname."=".$pos.",".$nodes{($gridlat, $gridlon)}.",".$nodtype ;
+        my ($mplat, $mplon) = (sprintf ($mpfmt, $lat), sprintf ($mpfmt, $lon));
+        if ($nodes{($mplat, $mplon)}) {
+            $line = "$nodname=$pos,$nodes{($mplat, $mplon)},$nodtype" ;
         }
-        else { $nodes{($gridlat, $gridlon)} = $nodid }
+        else { $nodes{($mplat, $mplon)} = $nodid }
     }
 
     # kill routing
