@@ -249,20 +249,21 @@ while ( my $line = readline $in ) {
 
     # fix routing
     if ($fixrouting && $line =~ /^Data\d+/) {
-        (@points) = ($line =~ /(\d+\.?\d*,\d+\.?\d*)/g);
+        (@points) = ($line =~ /(-?\d+\.\d+,-?\d+\.\d+)/g);
     }
     if ($fixrouting && $line =~ /^Nod\d+/) {
         my ($nodname, $pos, $nodid, $nodtype) = split /[=,]/,$line;
         my ($lat, $lon) = split /,/, $points[$pos];
         my ($mplat, $mplon) = (sprintf ($mpfmt, $lat), sprintf ($mpfmt, $lon));
-        if ($nodes{($mplat, $mplon)}) {
+        if ($nodes{($mplat, $mplon)} && $nodes{($mplat, $mplon)} != $nodid) {
             $line = "$nodname=$pos,$nodes{($mplat, $mplon)},$nodtype" ;
+            print "Fixed duplicate nodes $nodid and $nodes{($mplat, $mplon)} near $lat,$lon / $mplat,$mplon\n";
         }
         else { $nodes{($mplat, $mplon)} = $nodid }
     }
 
     # kill routing
-    next if ($killrouting && $line =~ /^(Nod\d+|\[Restrict\]|TraffPoints|TraffRoads|RestrParam|\[END-Restrict\])/i);
+    next if ($killrouting && $line =~ /^(Nod\d*=|\[Restrict\]|TraffPoints|TraffRoads|RestrParam|\[END-Restrict\])/i);
 
     print $out $line;
 }
