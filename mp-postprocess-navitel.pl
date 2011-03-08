@@ -22,6 +22,7 @@ open my $in,  '<:encoding(cp1251)', "$file.old";
 open my $out, '>:encoding(cp1251)', $file;
 
 my $bitlevel = 24;
+my $mpfmt = "%.5f" ;
 my @points;
 my %nodes;
 
@@ -49,23 +50,14 @@ my @short = (
 
 my $object;
 
-# read mp header
+LINE:
 while ( my $line = readline $in ) {
 
     if ($line =~ /^Level0/i) {
         my ($levelname, $bits) = split /=/,$line;
         $bitlevel = $bits;
+        my $mpfmt = $bitlevel > 24 ? "%.6f" : "%.5f" ;
     }
-
-    print $out $line;
-    last if ($line =~ /^\[END-IMG ID\]/i);
-}
-
-my $mpfmt = $bitlevel > 24 ? "%.6f" : "%.5f" ;
-
-# read mp body
-LINE:
-while ( my $line = readline $in ) {
 
     if ( $line =~ /^\[(.*)\]/ ) {
         $object = $1;
