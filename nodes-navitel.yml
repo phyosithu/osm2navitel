@@ -1400,6 +1400,13 @@
       contacts: yes
       Text: %opening_hours
 - condition:
+    - shop = shoe_repair|shoes_repair
+  action:
+    - action: write_poi
+      type: 0xf60a
+      contacts: yes
+      Text: %opening_hours
+- condition:
     - shop = travel_agency
   action:
     - action: write_poi
