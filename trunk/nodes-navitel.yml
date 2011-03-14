@@ -209,7 +209,6 @@
     - or:
         - amenity = grave_yard
         - landuse = cemetery
-    - only_node
   action:
     - action: write_poi
       type: 0x6403
@@ -273,8 +272,11 @@
       Text: %opening_hours
 - condition:
     - amenity = place_of_worship
-    - religion != muslim|jewish|buddhist
-    - denomination != orthodox|catholic|protestant
+    - or:
+        - religion != muslim|jewish|buddhist|hindu
+        - and:
+            - religion = christian
+            - denomination != [a-z]*_?orthodox|old_believers|[a-z]*_?catholic|baptist|evangelical|lutheran|methodist|protestant
   action:
     - action: write_poi
       type: 0x2c0b
@@ -283,7 +285,7 @@
 - condition:
     - amenity = place_of_worship
     - religion = christian
-    - denomination = orthodox
+    - denomination = [a-z]*_?orthodox|old_believers
   action:
     - action: write_poi
       type: 0xf101
@@ -292,7 +294,7 @@
 - condition:
     - amenity = place_of_worship
     - religion = christian
-    - denomination = catholic
+    - denomination = [a-z]*_?catholic
   action:
     - action: write_poi
       type: 0xf102
@@ -301,7 +303,7 @@
 - condition:
     - amenity = place_of_worship
     - religion = christian
-    - denomination = protestant
+    - denomination = baptist|evangelical|lutheran|methodist|protestant
   action:
     - action: write_poi
       type: 0xf103
@@ -325,7 +327,7 @@
       contacts: yes
 - condition:
     - amenity = place_of_worship
-    - religion = buddhist
+    - religion = buddhist|hindu
   action:
     - action: write_poi
       type: 0xf106
