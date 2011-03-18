@@ -66,6 +66,7 @@
 - condition:
     - waterway = stream
     - intermittent != yes
+    - stream != intermittent|ephemeral
   action:
     - action: write_line
       type: 0x18
@@ -87,11 +88,17 @@
       level_h: 3
 
 - condition:
-    - waterway = river|stream
-    - intermittent = yes
+    - or:
+        - waterway = ditch|drain
+        - and:
+            - waterway = stream
+            - stream = intermittent|ephemeral
+        - and:
+            - waterway = river|stream
+            - intermittent = yes
   action:
     - action: write_line
-      type: 0x4c
+      type: 0x26
       level_h: 1
 
 
