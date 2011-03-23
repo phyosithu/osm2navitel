@@ -14,6 +14,22 @@
 
 
 ################################
+##  Predefined command-line options
+################################
+
+
+--- command-line
+--- > 
+  --navitel
+  --mp-header "TypeSet=Navitel"
+  --countrylist "iso-3166-1-a2-ru-navitel.txt"
+  --disableuturns
+  --nodestsigns
+  --shorelines
+  --hugesea 100000
+
+
+################################
 ##  Name selection priority
 ################################
 
