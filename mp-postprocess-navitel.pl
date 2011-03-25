@@ -189,6 +189,7 @@ while ( my $line = readline $in ) {
 
     if ( $line =~ /^(Label|StreetDesc|CityName|RegionName)=/i ) {
         $line =~ s/городской округ/ГО/ig;
+        $line =~ s/муниципальное образование/МО/ig;
         $line =~ s/[«»"]//g;
         $line =~ s/&#xD;//g;
         #SYMBOLS (рудименты параметра --textfilter)
