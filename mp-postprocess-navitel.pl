@@ -21,6 +21,11 @@ rename $file, "$file.old";
 open my $in,  '<:encoding(cp1251)', "$file.old";
 open my $out, '>:encoding(cp1251)', $file;
 
+my $err;
+if ( $fixrouting ) {
+    open $err, '>', "$file.err.htm";
+    }
+
 my $bitlevel = 24;
 my $mpfmt = "%.5f" ;
 my @points;
@@ -251,6 +256,8 @@ while ( my $line = readline $in ) {
         if ($nodes{($mplat, $mplon)} && $nodes{($mplat, $mplon)} != $nodid) {
             $line = "$nodname=$pos,$nodes{($mplat, $mplon)},$nodtype" ;
             print "Fixed duplicate nodes $nodid and $nodes{($mplat, $mplon)} near $lat,$lon / $mplat,$mplon\n";
+            my $left=$lon-0.0003; my $right=$lon+0.0003; my $top=$lat+0.0002; my $bottom=$lat-0.0002;
+            print $err "Duplicate nodes near <a href=http://www.openstreetmap.org/?lat=$lat&lon=$lon&zoom=18>$lat,$lon</a> <a href=http://127.0.0.1:8111/load_and_zoom?left=$left&right=$right&top=$top&bottom=$bottom>**</a><br>\n";
         }
         else { $nodes{($mplat, $mplon)} = $nodid }
     }
@@ -263,5 +270,8 @@ while ( my $line = readline $in ) {
 
 close $in;
 close $out;
+if ( $fixrouting ) {
+    close $err;
+    }
 
 unlink "$file.old";
