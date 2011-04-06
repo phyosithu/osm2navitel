@@ -184,6 +184,7 @@
 
 - condition:
     - highway = service
+    - layer != -?[2-9]
   action:
     - action: load_road
       type: 0x07
