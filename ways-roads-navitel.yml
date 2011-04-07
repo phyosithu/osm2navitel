@@ -405,6 +405,20 @@
       level_h: 1
       routeparams: '0,0,0,0,1,1,1,1,1,0,1,1'
 
+# Maxweight, Maxheight
+- condition:
+    - maxheight = [123]|[12]\.\d*|3\.[0-5]\d*
+  action:
+    - action: modify_road
+      routeparams: '.,.,.,.,.,.,.,.,.,.,.,1'
+
+- condition:
+    - maxweight = [1-7]|[1-6]\.\d*|7\.[0-5]\d*
+  action:
+    - action: modify_road
+      routeparams: '.,.,.,.,.,.,.,.,.,.,.,1'
+
+
 # Winter roads
 - condition:
     - or:
