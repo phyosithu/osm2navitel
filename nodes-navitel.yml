@@ -588,6 +588,30 @@
       contacts: yes
 
 - condition:
+    - craft = carpenter
+  action:
+    - action: write_poi
+      type: 0xf60b
+      contacts: yes
+      Text: %opening_hours
+- condition:
+    - or:
+        - craft = tailor
+        - shop = tailor
+  action:
+    - action: write_poi
+      type: 0xf606
+      contacts: yes
+      Text: %opening_hours
+- condition:
+    - craft = electrician|plumber|hvac|locksmith
+  action:
+    - action: write_poi
+      type: 0x2f13
+      contacts: yes
+      Text: %opening_hours
+
+- condition:
     - covered = yes
   action:
     - action: write_poi
@@ -1396,7 +1420,9 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = photo_studio
+    - or:
+        - shop = photo_studio
+        - craft = photographer
   action:
     - action: write_poi
       type: 0xf605
@@ -1410,7 +1436,9 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = shoe_repair|shoes_repair
+    - or:
+        - shop = shoe_repair|shoes_repair
+        - craft = shoemaker
   action:
     - action: write_poi
       type: 0xf60a
