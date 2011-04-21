@@ -201,6 +201,9 @@ while ( my $line = readline $in ) {
         $line =~ s/\\N{COMBINING ACUTE ACCENT}//;
         $line =~ s/\\N{MASCULINE ORDINAL INDICATOR}//;
         $line =~ s/\\N{LATIN SMALL LETTER L WITH STROKE}/l/;
+        #Change Cyrillic IO to IE
+        $line =~ s/Ё/Е/g;
+        $line =~ s/ё/е/g;
     }
 
 
