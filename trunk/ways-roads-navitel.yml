@@ -407,16 +407,27 @@
 
 # Maxweight, Maxheight
 - condition:
-    - maxheight = [123]|[12]\.\d*|3\.[0-5]\d*
+    - maxheight = [123]|[012]\.\d*|3\.[0-5]\d*
   action:
     - action: modify_road
       routeparams: '.,.,.,.,.,.,.,.,.,.,.,1'
 
 - condition:
-    - maxweight = [1-7]|[1-6]\.\d*|7\.[0-5]\d*
+    - maxweight = [1-7]|[0-6]\.\d*|7\.[0-5]\d*
   action:
     - action: modify_road
       routeparams: '.,.,.,.,.,.,.,.,.,.,.,1'
+
+
+# Footway bridges
+- condition:
+    - highway = footway|steps
+    - footway != sidewalk
+    - bridge = yes
+  action:
+    - action: load_road
+      type: 0x16
+      routeparams: '0,0,0,0,1,1,1,1,1,0,1,1'
 
 
 # Winter roads
@@ -427,8 +438,8 @@
         - surface = ice_road
   action:
     - action: modify_road
-      type: 0x42
+      type: 0x0
       Label: %label (Зимник)
-      routeparams: '2,0,0,0,0,0,0,1,0,0,0,0'
+      routeparams: '1,0,0,0,1,1,1,1,1,1,1,1'
 
 # RouteParams=speed,class,oneway,toll,emergency,delivery,car,bus,taxi,foot,bike,truck

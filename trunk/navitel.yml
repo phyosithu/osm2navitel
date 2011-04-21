@@ -49,6 +49,8 @@ destination:    [ destination, label, name ]
 opening_hours:  [ opening_hours ]
 maxheight:      [ maxheight ]
 maxweight:      [ maxweight ]
+street2:        [ addr2:street, addr:street2, addr:street ]
+house2:         [ addr2:housenumber, addr:housenumber2, addr:housenumber ]
 
 
 ################################
