@@ -202,8 +202,7 @@ while ( my $line = readline $in ) {
         $line =~ s/\\N{MASCULINE ORDINAL INDICATOR}//;
         $line =~ s/\\N{LATIN SMALL LETTER L WITH STROKE}/l/;
         #Change Cyrillic IO to IE
-        $line =~ s/Ё/Е/g;
-        $line =~ s/ё/е/g;
+        $line =~ y/Ёё/Ее/;
     }
 
 
@@ -246,6 +245,10 @@ while ( my $line = readline $in ) {
         $line =~ s/Fr/Пт/;
         $line =~ s/Sa/Сб/;
         $line =~ s/Su/Вс/;
+    }
+
+    if ( $line =~ /^(HouseNumber)=/i ) { #Fix HouseNumber=00 bug
+        $line =~ s/=00$/=\-/;
     }
 
     # fix routing
