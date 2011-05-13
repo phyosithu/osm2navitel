@@ -133,11 +133,12 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - amenity = doctors
+    - or:
+        - amenity = doctors
+        - healthcare = doctor|blood_bank
   action:
     - action: write_poi
       type: 0x4b00
-      level_h: 1
       contacts: yes
       Text: %opening_hours
 - condition:
@@ -1372,7 +1373,9 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = funeral_directors
+    - or:
+        - shop = funeral_directors
+        - amenity = mortuary
   action:
     - action: write_poi
       type: 0x2f00
