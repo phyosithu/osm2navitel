@@ -6,12 +6,18 @@ use Getopt::Long;
 
 my $fixrouting  = 0;
 my $killrouting = 0;
+my $fixrestrictions = 0;
 GetOptions (
     'fixrouting!'  => \$fixrouting,
     'killrouting!'  => \$killrouting,
+    'fixrestrictions!'  => \$fixrestrictions,
 );
 
-if ( $killrouting ) { $fixrouting = 0; }
+if ( $killrouting ) { $fixrouting = 0; $fixrestrictions = 0;}
+
+my $traffpoints;
+my $traffroads;
+my $restrparam;
 
 my $file = shift @ARGV;
 exit unless $file;
@@ -270,6 +276,23 @@ while ( my $line = readline $in ) {
 
     # kill routing
     next if ($killrouting && $line =~ /^(Nod\d*=|\[Restrict\]|TraffPoints|TraffRoads|RestrParam|\[END-Restrict\])/i);
+
+    # remove restrictions except those for cars
+    if ($fixrestrictions) {
+        if ($line =~ /^\[Restrict\]/i) {$restrparam = "0,0,0,0,0,0,0,0"; next;}
+        if ($line =~ /^TraffPoints/i) {$traffpoints = $line; next;}
+        if ($line =~ /^TraffRoads/i) {$traffroads = $line; next;}
+        if ($line =~ /^RestrParam/i) {$restrparam = $line; next}
+        if ($line =~ /^\[END-Restrict\]/i) {
+            if ($restrparam =~ /.,.,0,.,.,.,./) {
+                print $out "[Restrict]\n";
+                print $out $traffpoints;
+                print $out $traffroads;
+                print $out "[END-Restrict]\n";
+                }
+            next;
+        }
+    }
 
     print $out $line;
 }
