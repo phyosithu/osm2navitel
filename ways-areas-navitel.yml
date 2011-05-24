@@ -119,7 +119,7 @@
     - building != no|factory|industrial|manufacture|apartments|dormitory|house|hut|residential|administrative|office|garage|garages|parking
     - building:use != apartments|residential
     - amenity != *
-    - man_made != works|gasometer
+    - man_made != works|gasometer|silo
     - office != *
     - power != *
     - shop != mall
@@ -186,7 +186,7 @@
 - condition:
     - or:
         - building = factory|industrial|manufacture
-        - man_made = works|gasometer
+        - man_made = works|gasometer|silo
         - power = sub_station
   action:
     - action: write_polygon
@@ -195,8 +195,9 @@
 
 - condition:
     - or:
-        - leisure = common|garden|park
-        - landuse = recreation_ground
+        - leisure = common|garden|park|resort
+        - landuse = recreation_ground|village_green
+        - tourism = resort
   action:
     - action: write_polygon
       type: 0x17
@@ -217,7 +218,7 @@
       level_h: [ 0, 0.01, 0.16 ]
 
 - condition:
-    - natural = heath
+    - natural = grassland|heath
   action:
     - action: write_polygon
       type: 0x95
@@ -273,7 +274,7 @@
 
 - condition:
     - or:
-        - landuse = basin|reservoir
+        - landuse = basin|pond|reservoir
         - natural = water
   action:
     - action: write_polygon

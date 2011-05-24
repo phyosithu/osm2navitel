@@ -67,6 +67,7 @@
     - waterway = stream
     - intermittent != yes
     - stream != intermittent|ephemeral
+    - water != intermittent
   action:
     - action: write_line
       type: 0x18
@@ -82,6 +83,7 @@
 - condition:
     - waterway = river
     - intermittent != yes
+    - water != intermittent
   action:
     - action: write_line
       type: 0x1f
@@ -89,13 +91,14 @@
 
 - condition:
     - or:
+        - barrier = ditch
         - waterway = ditch|drain
         - and:
-            - waterway = stream
-            - stream = intermittent|ephemeral
-        - and:
             - waterway = river|stream
-            - intermittent = yes
+            - or:
+                - intermittent = yes
+                - stream = intermittent|ephemeral
+                - water = intermittent
   action:
     - action: write_line
       type: 0x26
@@ -169,14 +172,7 @@
 # Navitel specific
 
 - condition:
-    - barrier = wall|city_wall
-  action:
-    - action: write_line
-      type: 0x46
-
-- condition:
-    - barrier = fence|hedge
-    - ~inside_city
+    - barrier = wall|city_wall|fence|hedge|wire_fence
   action:
     - action: write_line
       type: 0x46

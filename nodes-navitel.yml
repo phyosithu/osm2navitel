@@ -691,6 +691,11 @@
       type: 0x2c02
       contacts: yes
       Text: %opening_hours
+- condition:
+    - historic = wreck
+  action:
+    - action: write_poi
+      type: 0x4200
 
 - condition:
     - internet_access = public|wlan
@@ -826,6 +831,12 @@
   action:
     - action: write_poi
       type: 0x6407
+- condition:
+    - man_made = works|gasometer|silo
+    - only_node
+  action:
+    - action: write_poi
+      type: 0x6400
 - condition:
     - man_made = survey_point
   action:
@@ -1520,7 +1531,9 @@
     - action: write_poi
       type: 0x5c00
 - condition:
-    - sport = swimming
+    - or:
+        - amenity = swimming_pool
+        - sport = swimming
   action:
     - action: write_poi
       type: 0x2d09
@@ -1576,6 +1589,14 @@
     - action: write_poi
       type: 0x4a00
 - condition:
+    - or:
+        - tourism = resort
+        - leisure = resort
+  action:
+    - action: write_poi
+      type: 0x2b04
+      contacts: yes
+- condition:
     - tourism = viewpoint
     - only_node
   action:
@@ -1595,6 +1616,12 @@
     - action: write_poi
       type: 0xf204
 
+- condition:
+    - waterway = boatyard
+  action:
+    - action: write_poi
+      type: 0x2f09
+      contacts: yes
 - condition:
     - waterway = dam|weir
   action:
