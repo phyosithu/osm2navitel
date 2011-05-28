@@ -5,49 +5,24 @@
 --- load
 ---
 
+- output-polish-rt.yml
+
 - ways-roads-navitel.yml
 
 
 ################################
-##  MP header
+##  Predefined command-line options
 ################################
 
---- header
---- |
-  [IMG ID]
-  ID=[% mapid %]
-  Name=[% mapname %]
-  Copyright=OpenStreetMap project contributors under CC-BY-SA|OpenStreetMap data provided by GIS-Lab.info|Converted by 
 
-  TypeSet=Navitel
-
-  [% IF codepage %]
-  LblCoding=9
-  CodePage=[% codepage %]
-  [% ELSE %]
-  ; UTF-8 encoding
-  CodePage=utf8
-  [% END %]
-
-  POINumberFirst=N
-  DefaultCityCountry=[% defaultcountry %]
-  DefaultRegionCountry=[% defaultregion %]
-
-  MG=Y
-  POIIndex=Y
-  Routing=Y
-  Invisible=Y
-
-  Elevation=M
-  Preprocess=F
-  TreSize=3000
-
-  Levels=2
-  Level0=24
-  Level1=23
-
-  [END-IMG ID]
-
+--- command-line
+--- > 
+  --navitel
+  --mp-header "TypeSet=Navitel"
+  --mp-header "Invisible=Y"
+  --disableuturns
+  --nodestsigns
+  --detectdupes
 
 
 ################################
@@ -59,6 +34,7 @@
 ---
 
 label:          [ name, loc_name ]
+place:          [ cladr:name, addr:city, place_name, name ]
 
 ################################
 ##  Tags to skip
@@ -88,6 +64,8 @@ footway:            1
 highway:            1
 junction:           1
 layer:              1
+maxheight:          1
+maxweight:          1
 route:              1
 service:            1
 smoothness:         1
@@ -95,6 +73,7 @@ surface:            1
 tracktype:          1
 traffic_calming:    1
 tunnel:             1
+
 
 
 ################################
@@ -190,3 +169,23 @@ impassable:     0
 
 toll_booth:     0,0,0,0,0,0,0,0
 cattle_grid:    0,0,0,0,0,0,0,0
+entrance:       0,0,0,0,0,0,0,0
+
+
+
+################################
+##  Addressible places
+################################
+
+
+--- address
+---
+
+
+- condition:
+    - place = city|town|village|hamlet
+  action:
+    - action:       load_city
+      name:         %place
+      region:       %region
+      country:      %country
