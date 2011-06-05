@@ -259,7 +259,7 @@ while ( my $line = readline $in ) {
 
     # fix routing
     if ($fixrouting && $line =~ /^Data\d+/) {
-        (@points) = ($line =~ /(-?\d+\.\d+,-?\d+\.\d+)/g);
+        (@points) = ($line =~ /(-?\d+\.?\d*,-?\d+\.?\d*)/g);
     }
     if ($fixrouting && $line =~ /^Nod\d+/) {
         my ($nodname, $pos, $nodid, $nodtype) = split /[=,]/,$line;
