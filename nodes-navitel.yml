@@ -31,7 +31,11 @@
       type: 0x2c09
       contacts: yes
 - condition:
-    - amenity = atm
+    - or:
+        - amenity = atm
+        - and:
+            - amenity = bank
+            - atm = yes
   action:
     - action: write_poi
       type: 0xf601
@@ -42,14 +46,6 @@
   action:
     - action: write_poi
       type: 0x2f06
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - amenity = bank
-    - atm = yes
-  action:
-    - action: write_poi
-      type: 0xf601
       contacts: yes
       Text: %opening_hours
 - condition:
@@ -120,12 +116,6 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - amenity = crematorium
-  action:
-    - action: write_poi
-      type: 0x6403
-      contacts: yes
-- condition:
     - amenity = dentist
   action:
     - action: write_poi
@@ -154,7 +144,9 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - amenity = embassy
+    - or:
+        - amenity = embassy|prison
+        - office = employment_agency|government
   action:
     - action: write_poi
       type: 0x3007
@@ -215,7 +207,7 @@
       Text: %opening_hours
 - condition:
     - or:
-        - amenity = grave_yard
+        - amenity = grave_yard|crematorium
         - landuse = cemetery
   action:
     - action: write_poi
@@ -272,7 +264,9 @@
       type: 0x2f16
       contacts: yes
 - condition:
-    - amenity = pharmacy
+    - or:
+        - amenity = pharmacy
+        - shop = optician
   action:
     - action: write_poi
       type: 0x2e05
@@ -364,12 +358,6 @@
       type: 0x2f05
       contacts: yes
       Text: %opening_hours
-- condition:
-    - amenity = prison
-  action:
-    - action: write_poi
-      type: 0x3007
-      contacts: yes
 - condition:
     - amenity = public_building
     - only_node
@@ -497,8 +485,9 @@
       type: 0x2c05
       contacts: yes
 - condition:
-    - amenity = shelter
-    - only_node
+    - or:
+        - amenity = shelter
+        - tourism = alpine_hut|chalet
   action:
     - action: write_poi
       type: 0x6100
@@ -685,13 +674,6 @@
     - action: write_poi
       type: 0xf301
 - condition:
-    - historic = museum
-  action:
-    - action: write_poi
-      type: 0x2c02
-      contacts: yes
-      Text: %opening_hours
-- condition:
     - historic = wreck
   action:
     - action: write_poi
@@ -704,11 +686,14 @@
       type: 0xf615
 
 - condition:
-    - landuse = forest
+    - or:
+        - landuse = forest
+        - natural = wood
     - only_node
   action:
     - action: write_poi
       type: 0x660a
+      level_h: 1
 - condition:
     - landuse = garages
   action:
@@ -773,7 +758,9 @@
     - action: write_poi
       type: 0x6612
 - condition:
-    - leisure = sports_centre
+    - or:
+        - leisure = sports_centre
+        - sport = gymnastics
   action:
     - action: write_poi
       type: 0x2d0a
@@ -832,7 +819,9 @@
     - action: write_poi
       type: 0x6407
 - condition:
-    - man_made = works|gasometer|silo
+    - or:
+        - man_made = works|gasometer|silo
+        - power = generator|station|sub_station
     - only_node
   action:
     - action: write_poi
@@ -979,13 +968,6 @@
   action:
     - action: write_poi
       type: 0x650d
-- condition:
-    - natural = wood
-    - only_node
-  action:
-    - action: write_poi
-      type: 0x660a
-      level_h: 1
 
 - condition:
     - office = accountant|architect
@@ -1002,14 +984,9 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - office = employment_agency|government
-  action:
-    - action: write_poi
-      type: 0x3007
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - office = estate_agent
+    - or:
+        - office = estate_agent
+        - shop = estate_agent
   action:
     - action: write_poi
       type: 0xf60f
@@ -1053,7 +1030,9 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - office = travel_agent
+    - or:
+        - office = travel_agent
+        - shop = travel_agency
   action:
     - action: write_poi
       type: 0xf613
@@ -1071,17 +1050,9 @@
     - place = city
     - only_node
     - capital = yes
-    - admin_level = 1|2
-  action:
-    - action: write_poi
-      type: 0x0100
-      level_h: 4
-      city: yes
-- condition:
-    - place = city
-    - only_node
-    - capital = yes
-    - admin_level != *
+    - or:
+        - admin_level = 1|2
+        - admin_level != *
   action:
     - action: write_poi
       type: 0x0100
@@ -1100,7 +1071,12 @@
 - condition:
     - place = city
     - only_node
-    - admin_level != 1|2|3|4
+    - or:
+        - capital != yes
+        - and:
+            - capital = yes
+            - admin_level = *
+            - admin_level != 1|2|3|4
   action:
     - action: write_poi
       type: 0x0400
@@ -1161,13 +1137,6 @@
       type: 0x0b00
       level_h: 2
       city: yes
-
-- condition:
-    - power = generator|station|sub_station
-    - only_node
-  action:
-    - action: write_poi
-      type: 0x6400
 
 - condition:
     - railway = halt
@@ -1342,13 +1311,6 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = drugstore|optician
-  action:
-    - action: write_poi
-      type: 0x2e05
-      contacts: yes
-      Text: %opening_hours
-- condition:
     - shop = dry_cleaning
   action:
     - action: write_poi
@@ -1360,13 +1322,6 @@
   action:
     - action: write_poi
       type: 0xf705
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - shop = estate_agent
-  action:
-    - action: write_poi
-      type: 0xf60f
       contacts: yes
       Text: %opening_hours
 - condition:
@@ -1489,13 +1444,6 @@
       type: 0xf60a
       contacts: yes
       Text: %opening_hours
-- condition:
-    - shop = travel_agency
-  action:
-    - action: write_poi
-      type: 0xf613
-      contacts: yes
-      Text: %opening_hours
 
 - condition:
     - sport = 9pin|10pin|bowls
@@ -1509,12 +1457,6 @@
   action:
     - action: write_poi
       type: 0x2d05
-- condition:
-    - sport = gymnastics
-  action:
-    - action: write_poi
-      type: 0x2d0a
-      contacts: yes
 - condition:
     - sport = motor
   action:
@@ -1540,12 +1482,6 @@
       contacts: yes
       Text: %opening_hours
 
-- condition:
-    - tourism = alpine_hut|chalet
-  action:
-    - action: write_poi
-      type: 0x6100
-      contacts: yes
 - condition:
     - tourism = attraction
   action:
