@@ -10,7 +10,7 @@
       type: 0x01
       level_l: 2
       level_h: 4
-      Label:
+      Label: 
 
 - condition:
     - place = town
@@ -33,14 +33,9 @@
 # Man-made
 
 - condition:
-    - amenity = prison
-  action:
-    - action: write_polygon
-      type: 0x04
-      level_h: 1
-
-- condition:
-    - landuse = military
+    - or:
+        - amenity = prison
+        - landuse = military
   action:
     - action: write_polygon
       type: 0x04
@@ -54,17 +49,14 @@
       level_h: [ 0, 0.01 ]
 
 - condition:
-    - landuse = garages
+    - or:
+        - landuse = garages
+        - amenity = garage|parking_garage
+        - building = garage|garages|parking
   action:
     - action: write_polygon
       type: 0x06
       level_h: [ 0, 0.01 ]
-
-- condition:
-    - amenity = garage|parking_garage
-  action:
-    - action: write_polygon
-      type: 0x06
 
 - condition:
     - aeroway = terminal|helipad
@@ -73,20 +65,13 @@
       type: 0x07
 
 - condition:
-    - landuse = commercial|retail
+    - or:
+        - landuse = commercial|retail
+        - shop = mall
   action:
     - action: write_polygon
       type: 0x08
       level_h: [ 0, 0.01 ]
-    - action: address_poi
-
-- condition:
-    - shop = mall
-    - landuse != commercial|retail
-  action:
-    - action: write_polygon
-      type: 0x08
-      level_h: 1
     - action: address_poi
 
 - condition:
@@ -109,6 +94,9 @@
     - or:
         - landuse = industrial
         - power = generator|station
+        - and:
+            - landuse = landfill
+            - natural != *
   action:
     - action: write_polygon
       type: 0x0c
@@ -142,31 +130,13 @@
     - action: address_poi
 
 - condition:
-    - building = administrative|office
-  action:
-    - action: write_polygon
-      type: 0x6d
-      Label: %house
-    - action: address_poi
-
-- condition:
-    - building = garage|garages|parking
-  action:
-    - action: write_polygon
-      type: 0x06
-
-- condition:
-    - building = yes
-    - amenity = bank|police|post_office|prison|townhall
-  action:
-    - action: write_polygon
-      type: 0x6d
-      Label: %house
-    - action: address_poi
-
-- condition:
-    - building = yes
-    - office = *
+    - or:
+        - building = administrative|office
+        - and:
+            - building = yes
+            - or:
+                - amenity = bank|police|post_office|prison|townhall
+                - office = *
   action:
     - action: write_polygon
       type: 0x6d
@@ -177,6 +147,7 @@
     - building = yes
     - amenity = *
     - amenity != bank|police|post_office|prison|townhall|garage|parking_garage
+    - office != *
   action:
     - action: write_polygon
       type: 0x6e
@@ -255,14 +226,6 @@
       level_h: 1
 
 - condition:
-    - landuse = landfill
-    - natural != *
-  action:
-    - action: write_polygon
-      type: 0x0c
-      level_h: [ 0, 0.01, 0.16 ]
-
-- condition:
     - landuse = vineyard
   action:
     - action: write_polygon
@@ -316,29 +279,19 @@
       level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
 
 - condition:
-    - landuse = forest
+    - or:
+        - landuse = forest
+        - natural = wood
+    - burnt != *
   action:
     - action: write_polygon
       type: 0x50
       level_h: 3
 
 - condition:
-    - landuse = forest
-    - burnt = *
-  action:
-    - action: write_polygon
-      type: 0x84
-      level_h: 3
-
-- condition:
-    - natural = wood
-  action:
-    - action: write_polygon
-      type: 0x50
-      level_h: 3
-
-- condition:
-    - natural = wood
+    - or:
+        - landuse = forest
+        - natural = wood
     - burnt = *
   action:
     - action: write_polygon
@@ -385,18 +338,13 @@
       level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
 
 - condition:
-    - landuse = quarry
+    - or:
+        - landuse = quarry
+        - natural = scree
   action:
     - action: write_polygon
       type: 0x8a
       level_h: [ 0, 0.016, 0.5, 2.5 ]
-
-- condition:
-    - natural = scree
-  action:
-    - action: write_polygon
-      type: 0x8a
-      level_h: [ 0, 0.016, 0.5 ]
 
 - condition:
     - water = tidal|intermittent
