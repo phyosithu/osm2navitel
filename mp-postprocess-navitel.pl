@@ -257,6 +257,9 @@ while ( my $line = readline $in ) {
         $line =~ s/=00$/=\-/;
     }
 
+    # remove empty labels and notes
+    next if ($line =~ /^(Label|Text)=$/i);
+
     # fix routing
     if ($fixrouting && $line =~ /^Data\d+/) {
         (@points) = ($line =~ /(-?\d+\.?\d*,-?\d+\.?\d*)/g);
