@@ -265,7 +265,9 @@
       level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
 
 - condition:
-    - landuse = allotments|orchard
+    - or:
+        - landuse = allotments|orchard
+        - place = allotments
   action:
     - action: write_polygon
       type: 0x4e
