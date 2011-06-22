@@ -7,10 +7,12 @@ use Getopt::Long;
 my $fixrouting  = 0;
 my $killrouting = 0;
 my $fixrestrictions = 0;
+my $shorten = 1;
 GetOptions (
     'fixrouting!'  => \$fixrouting,
     'killrouting!'  => \$killrouting,
     'fixrestrictions!'  => \$fixrestrictions,
+    'shorten!'  => \$shorten
 );
 
 if ( $killrouting ) { $fixrouting = 0; $fixrestrictions = 0;}
@@ -208,11 +210,12 @@ while ( my $line = readline $in ) {
         $line =~ s/\\N{MASCULINE ORDINAL INDICATOR}//;
         $line =~ s/\\N{LATIN SMALL LETTER L WITH STROKE}/l/;
         #Change Cyrillic IO to IE
-        $line =~ y/Ёё/Ее/;
+        if ( $shorten ) { $line =~ y/Ёё/Ее/ }
     }
 
 
     #   street names
+    if ( $shorten ) {
     my $tag;
     if ( $object eq 'POLYLINE' && ( ($tag) = $line =~ /^(Label\d?)=/i ) 
             or ( ($tag) = $line =~ /^(StreetDesc)=/i ) ) {
@@ -240,7 +243,7 @@ while ( my $line = readline $in ) {
             $line = "$tag=" . $line . " " . $r . "\n";
             last SUFF;
         }
-    }
+    }}
 
 
     if ( $line =~ /^(Text)=/i ) { #часы работы
