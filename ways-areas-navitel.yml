@@ -92,7 +92,7 @@
 
 - condition:
     - or:
-        - landuse = industrial
+        - landuse = construction|industrial
         - power = generator|station
         - and:
             - landuse = landfill
