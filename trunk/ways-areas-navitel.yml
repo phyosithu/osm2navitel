@@ -266,7 +266,7 @@
 
 - condition:
     - or:
-        - landuse = allotments|orchard
+        - landuse = allotments|orchard|plant_nursery
         - place = allotments
   action:
     - action: write_polygon
@@ -333,7 +333,9 @@
       level_h: [ 0, 0.01 ]
 
 - condition:
-    - natural = beach|sand
+    - or:
+        - natural = beach|sand
+        - leisure = beach_resort
   action:
     - action: write_polygon
       type: 0x89

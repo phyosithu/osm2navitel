@@ -904,7 +904,9 @@
     - action: write_poi
       type: 0x6503
 - condition:
-    - natural = beach
+    - or:
+        - natural = beach
+        - leisure = beach_resort
   action:
     - action: write_poi
       type: 0x5400
