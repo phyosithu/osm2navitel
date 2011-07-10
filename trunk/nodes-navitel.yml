@@ -1093,6 +1093,7 @@
       type: 0x0800
       level_l: 4
       level_h: 4
+      DontFind: Y
 
 - condition:
     - place = hamlet
@@ -1173,7 +1174,7 @@
     - action: write_poi
       type: 0xf005
       level_l: 1
-      DontFind: 'Y'
+      DontFind: Y
 - condition:
     - railway = subway_entrance
   action:

@@ -231,7 +231,7 @@ entrance:       0,0,0,0,0,0,0,0
 
 
 - condition:
-    - place = city|town|village|hamlet
+    - place = city|town|village|hamlet|allotments|isolated_dwelling
   action:
     - action:       load_city
       name:         %place
