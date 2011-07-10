@@ -33,6 +33,7 @@
       DontFind: Y
 
 - condition:
+    - place != village|hamlet|isolated_dwelling
     - or:
         - place = farmyard
         - landuse = residential

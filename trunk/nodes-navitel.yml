@@ -575,16 +575,32 @@
       level_h: 4
 
 - condition:
-    - building = house|yes
-    - abandoned != *
+    - building = *
+    - building != no
+    - addr:housenumber = *
     - only_node
+    - inside_city
+  action:
+    - action: write_poi
+      type: 0x2800
+      Label: %house
+      contacts: yes
+- condition:
+    - building = *
+    - building != no
+    - abandoned != yes
+    - only_node
+    - ~inside_city
   action:
     - action: write_poi
       type: 0x6100
       contacts: yes
 - condition:
-    - building = house|yes
-    - abandoned = yes
+    - building = *
+    - or:
+        - building = no|collapsed
+        - abandoned = yes
+    - only_node
   action:
     - action: write_poi
       type: 0x6415
