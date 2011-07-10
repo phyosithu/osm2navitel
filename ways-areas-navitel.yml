@@ -11,6 +11,7 @@
       level_l: 2
       level_h: 4
       Label: 
+      DontFind: Y
 
 - condition:
     - place = town
@@ -19,10 +20,21 @@
       type: 0x02
       level_l: 1
       level_h: 3
+      Label: 
+      DontFind: Y
+
+- condition:
+    - place = village|hamlet|isolated_dwelling
+  action:
+    - action: write_polygon
+      type: 0x03
+      level_h: [ 0, 0, 0.5 ]
+      Label: 
+      DontFind: Y
 
 - condition:
     - or:
-        - place = village|hamlet|isolated_dwelling|farmyard
+        - place = farmyard
         - landuse = residential
   action:
     - action: write_polygon
