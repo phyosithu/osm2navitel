@@ -155,7 +155,7 @@
     - action: address_poi
 
 - condition:
-    - building = yes
+    - building = yes|church|university
     - amenity = *
     - amenity != bank|police|post_office|prison|townhall|garage|parking_garage
     - office != *
@@ -250,13 +250,18 @@
     - or:
         - landuse = basin|pond|reservoir
         - natural = water
+    - water != river|canal|oxbow
   action:
     - action: write_polygon
       type: 0x3f
       level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
 
 - condition:
-    - waterway = riverbank
+    - or:
+        - waterway = riverbank
+        - and:
+            - natural = water
+            - water = river|canal|oxbow
   action:
     - action: write_polygon
       type: 0x47
