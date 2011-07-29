@@ -6,7 +6,7 @@ use Getopt::Long;
 
 my $fixrouting  = 0;
 my $killrouting = 0;
-my $fixrestrictions = 0;
+my $fixrestrictions = 1;
 my $shorten = 1;
 GetOptions (
     'fixrouting!'  => \$fixrouting,
