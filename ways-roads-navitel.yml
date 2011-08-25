@@ -192,6 +192,8 @@
 
 - condition:
     - highway = service
+    - service != parking_aisle
+    - area != yes
     - layer != -?[2-9]
   action:
     - action: load_road

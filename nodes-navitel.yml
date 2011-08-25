@@ -10,9 +10,18 @@
 
 - condition:
     - aeroway = aerodrome
+    - iata != *
   action:
     - action: write_poi
       type: 0x5900
+      level_h: 2
+      contacts: yes
+- condition:
+    - aeroway = aerodrome
+    - iata = *
+  action:
+    - action: write_poi
+      type: 0x5901
       level_h: 3
       contacts: yes
 
@@ -21,6 +30,13 @@
   action:
     - action: write_poi
       type: 0x5904
+      level_h: 1
+      contacts: yes
+- condition:
+    - aeroway = terminal
+  action:
+    - action: write_poi
+      type: 0x2f04
       level_h: 1
       contacts: yes
 
@@ -250,7 +266,7 @@
 - condition:
     - amenity = parking
     - access != private
-    - parking != garages|garage_boxes
+    - parking != no|garages|garage_boxes
     - hgv != yes|designated
   action:
     - action: write_poi
@@ -258,6 +274,8 @@
       contacts: yes
 - condition:
     - amenity = parking
+    - access != private
+    - parking != no|garages|garage_boxes
     - hgv = yes|designated
   action:
     - action: write_poi
@@ -498,7 +516,9 @@
     - action: write_poi
       type: 0x6100
 - condition:
-    - amenity = telephone|emergency_phone
+    - or:
+        - amenity = telephone|emergency_phone
+        - emergency = phone
   action:
     - action: write_poi
       type: 0x5100
@@ -644,7 +664,9 @@
       Text: %opening_hours
 
 - condition:
-    - covered = yes
+    - or:
+        - barrier = sally_port
+        - covered = yes
   action:
     - action: write_poi
       type: 0x6601
@@ -668,10 +690,19 @@
     - action: write_poi
       type: 0xf20c
 - condition:
-    - highway = services
+    - highway = rest_area|services
+    - hgv != yes|designated
   action:
     - action: write_poi
-      type: 0x210f
+      type: 0x2f0b
+      level_h: 1
+- condition:
+    - highway = rest_area|services
+    - hgv = yes|designated
+  action:
+    - action: write_poi
+      type: 0x2f16
+      level_h: 1
 - condition:
     - highway = speed_camera
     - only_node
@@ -824,7 +855,7 @@
       type: 0x1600
       level_h: 1
 - condition:
-    - man_made = mineshaft
+    - man_made = adit|mineshaft
   action:
     - action: write_poi
       type: 0x640c
@@ -1203,11 +1234,6 @@
     - action: write_poi
       type: 0xf003
       contacts: yes
-- condition:
-    - railway = viaduct
-  action:
-    - action: write_poi
-      type: 0x6401
 
 - condition:
     - shop = adult|erotic|gift|toys
@@ -1245,7 +1271,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = books|frame|hearing_aids|photo|stationery
+    - shop = books|frame|hearing_aids|photo|stationery|tobacco
   action:
     - action: write_poi
       type: 0x2e0a
