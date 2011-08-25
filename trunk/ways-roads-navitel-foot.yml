@@ -123,6 +123,14 @@
       routeparams: '3,1,0,0,0,0,0,0,0,0,0,0'
 
 - condition:
+    - highway = tertiary_link
+  action:
+    - action: load_road
+      type: 0x08
+      level_h: 1
+      routeparams: '2,1,0,0,0,0,0,0,0,0,0,0'
+
+- condition:
     - highway = unclassified
   action:
     - action: load_road
@@ -184,6 +192,8 @@
 
 - condition:
     - highway = service
+    - service != parking_aisle
+    - area != yes
     - layer != -?[2-9]
   action:
     - action: load_road

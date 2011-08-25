@@ -47,7 +47,9 @@
 # Aerialway
 
 - condition:
-    - aerialway = cable_car|chair_lift|drag_lift|gondola|goods|j-bar|mixed_lift|platter|t-bar
+    - or:
+        - aerialway = cable_car|chair_lift|drag_lift|gondola|goods|j-bar|mixed_lift|platter|t-bar
+        - railway = funicular
   action:
     - action: write_line
       type: 0x41

@@ -37,7 +37,7 @@
 --- taglist
 ---
 
-label:          [ name, loc_name, operator ]
+label:          [ name, loc_name, brand, operator ]
 house:          [ addr:housenumber, addr:housename ]
 entrance:       [ name, ref ]
 place:          [ cladr:name, addr:city, place_name, name ]
