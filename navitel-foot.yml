@@ -37,7 +37,7 @@
 --- taglist
 ---
 
-label:          [ name, loc_name, operator ]
+label:          [ name, loc_name, brand, operator ]
 house:          [ addr:housenumber, addr:housename ]
 entrance:       [ name, ref ]
 place:          [ cladr:name, addr:city, place_name, name ]
@@ -218,6 +218,7 @@ impassable:     0
 toll_booth:     0,0,0,0,0,0,0,0
 cattle_grid:    0,0,0,0,0,0,0,0
 entrance:       0,0,0,0,0,0,0,0
+border_control: 0,0,0,0,0,0,0,0
 
 
 

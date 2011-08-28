@@ -33,7 +33,7 @@
 --- taglist
 ---
 
-label:          [ name, loc_name ]
+label:          [ name, loc_name, brand, operator ]
 place:          [ cladr:name, addr:city, place_name, name ]
 
 ################################
@@ -170,6 +170,7 @@ impassable:     0
 toll_booth:     0,0,0,0,0,0,0,0
 cattle_grid:    0,0,0,0,0,0,0,0
 entrance:       0,0,0,0,0,0,0,0
+border_control: 0,0,0,0,0,0,0,0
 
 
 
@@ -183,7 +184,7 @@ entrance:       0,0,0,0,0,0,0,0
 
 
 - condition:
-    - place = city|town|village|hamlet
+    - place = city|town|village|hamlet|allotments|isolated_dwelling
   action:
     - action:       load_city
       name:         %place
