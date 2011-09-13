@@ -747,12 +747,6 @@
       type: 0x660a
       level_h: 1
 - condition:
-    - landuse = garages
-  action:
-    - action: write_poi
-      type: 0x2f0b
-      Label: %label (Гаражи)
-- condition:
     - landuse = peat_cutting
   action:
     - action: write_poi
@@ -1031,13 +1025,6 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - office = company
-  action:
-    - action: write_poi
-      type: 0x2e03
-      contacts: yes
-      Text: %opening_hours
-- condition:
     - or:
         - office = estate_agent
         - shop = estate_agent
@@ -1047,7 +1034,9 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - office = insurance
+    - or:
+        - office = insurance
+        - shop = insurance
   action:
     - action: write_poi
       type: 0xf60e
