@@ -199,6 +199,14 @@
     - action: write_line
       type: 0x22
 
+- condition:
+    - natural = ridge
+  action:
+    - action: write_line
+      type: 0x3d
+      level_l: 1
+      level_h: 3
+
 
 - condition:
     - power = minor_line
