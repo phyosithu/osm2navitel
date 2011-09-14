@@ -1260,7 +1260,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = books|frame|hearing_aids|photo|stationery|tobacco
+    - shop = baby_goods|books|frame|hearing_aids|photo|stationery|tobacco
   action:
     - action: write_poi
       type: 0x2e0a
