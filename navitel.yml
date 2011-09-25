@@ -132,7 +132,7 @@ background:
     endlevel:   4
 
 sea:
-    type:       0x3C
+    type:       0x28
     endlevel:   4
 
 
