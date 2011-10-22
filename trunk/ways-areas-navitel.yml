@@ -122,7 +122,7 @@
     - office != *
     - power != *
     - shop != mall|supermarket
-    - leisure != stadium|arena|sports_centre|ice_rink
+    - leisure != stadium|arena|sports_centre|ice_rink|swimming_pool
     - sport != *
   action:
     - action: write_polygon
@@ -167,6 +167,9 @@
             - amenity = *
             - amenity != bank|police|post_office|prison|townhall
             - office != *
+        - and:
+            - building = *
+            - leisure = stadium|pitch|arena|sports_centre|swimming_pool
   action:
     - action: write_polygon
       type: 0x6e
@@ -215,16 +218,8 @@
       level_h: 2
 
 - condition:
-    - leisure = stadium|pitch|arena|sports_centre
-    - named
-  action:
-    - action: write_polygon
-      type: 0x19
-      level_h: 1
-
-- condition:
-    - leisure = stadium|pitch|arena|sports_centre
-    - ~named
+    - building != *
+    - leisure = stadium|pitch|arena|sports_centre|swimming_pool
   action:
     - action: write_polygon
       type: 0x19
