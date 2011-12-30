@@ -247,13 +247,6 @@
 
 - condition:
     - highway = track
-    - tracktype = grade4|grade5
-  action:
-    - action: modify_road
-      type: 0x16
-
-- condition:
-    - highway = track
     - tracktype = grade1|grade2
     - ~inside_city
   action:
