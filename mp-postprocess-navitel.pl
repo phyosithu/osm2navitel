@@ -258,6 +258,11 @@ while ( my $line = readline $in ) {
         $line =~ s/Su/Вс/;
     }
 
+    # Phone numbers
+    if ( $line =~ /^Phone=7([\(\)\-\s]*\d){10}/ ) {
+        $line =~ s/Phone=7/Phone=+7/;
+    }
+
     if ( $line =~ /^(HouseNumber)=/i ) { #Fix HouseNumber=00 bug
         $line =~ s/=00$/=\-/;
     }
