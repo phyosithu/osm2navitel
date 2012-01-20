@@ -753,6 +753,7 @@
       type: 0xf30b
 - condition:
     - landuse = quarry
+    - resource != peat
   action:
     - action: write_poi
       type: 0x640c
@@ -859,11 +860,6 @@
   action:
     - action: write_poi
       type: 0x640d
-- condition:
-    - man_made = power_hydro
-  action:
-    - action: write_poi
-      type: 0x6407
 - condition:
     - or:
         - man_made = works|gasometer|silo
@@ -982,6 +978,14 @@
       type: 0x6616
       level_h: 1
       ele: yes
+- condition:
+    - natural = ridge
+    - only_node
+  action:
+    - action: write_poi
+      type: 0x6613
+      level_l: 1
+      level_h: 3
 - condition:
     - natural = rock
   action:
@@ -1601,7 +1605,12 @@
       type: 0x2f09
       contacts: yes
 - condition:
-    - waterway = dam|weir|lock_gate
+    - waterway = dam
+  action:
+    - action: write_poi
+      type: 0x6407
+- condition:
+    - waterway = weir|lock_gate
   action:
     - action: write_poi
       type: 0x5500
