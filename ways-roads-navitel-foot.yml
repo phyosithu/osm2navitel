@@ -228,11 +228,8 @@
 - condition:
     - route = ferry
   action:
-    - action: load_road
+    - action: modify_road
       type: 0x1b
-      level_h: 2
-      routeparams: '1,0,0,1,0,0,0,0,0,0,0,0'
-
 
 
 ## Tracks
@@ -251,6 +248,7 @@
     - ~inside_city
   action:
     - action: modify_road
+      type: 0x42
       level_h: 2
 
 - condition:
@@ -351,14 +349,9 @@
 
 # tunnel
 - condition:
-    - tunnel = yes
-    - covered != yes
-  action:
-    - action: modify_road
-      type: 0x43
-
-- condition:
-    - layer = -[1-5]
+    - or:
+        - tunnel = yes
+        - layer = -[1-5]
     - covered != yes
   action:
     - action: modify_road

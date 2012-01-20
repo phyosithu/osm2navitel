@@ -260,7 +260,7 @@
     - or:
         - landuse = basin|pond|reservoir
         - natural = water
-    - water != river|canal|oxbow
+    - water != river|canal|oxbow|intermittent|tidal
   action:
     - action: write_polygon
       type: 0x3f
@@ -328,7 +328,7 @@
 
 - condition:
     - natural = marsh|wetland
-    - wetland != swamp
+    - wetland != swamp|tidalflat|reedbed|saltmarsh|mangrove
   action:
     - action: write_polygon
       type: 0x51
@@ -340,6 +340,30 @@
   action:
     - action: write_polygon
       type: 0x81
+      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
+
+- condition:
+    - natural = wetland
+    - wetland = reedbed
+  action:
+    - action: write_polygon
+      type: 0x8c
+      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
+
+- condition:
+    - natural = wetland
+    - wetland = saltmarsh
+  action:
+    - action: write_polygon
+      type: 0x8b
+      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
+
+- condition:
+    - natural = wetland
+    - wetland = mangrove
+  action:
+    - action: write_polygon
+      type: 0x94
       level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
 
 - condition:
@@ -371,13 +395,24 @@
     - or:
         - landuse = quarry
         - natural = scree
+    - resource != peat|sand
   action:
     - action: write_polygon
       type: 0x8a
       level_h: [ 0, 0.016, 0.5, 2.5 ]
 
 - condition:
-    - water = tidal|intermittent
+    - water = intermittent
+  action:
+    - action: write_polygon
+      type: 0x4c
+      level_h: [ 0, 0.016, 0.5, 2.5 ]
+
+- condition:
+    - or:
+        - water = tidal
+        - natural = mud
+        - wetland = tidalflat
   action:
     - action: write_polygon
       type: 0x53
