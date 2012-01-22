@@ -79,6 +79,7 @@
       contacts: yes
 - condition:
     - amenity = cafe
+    - cuisine != pizza
   action:
     - action: write_poi
       type: 0x2a0e
