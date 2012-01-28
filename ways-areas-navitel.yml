@@ -105,6 +105,7 @@
     - or:
         - landuse = construction|industrial
         - power = generator|station
+        - man_made = wastewater_plant
         - and:
             - landuse = landfill
             - natural != *
@@ -118,7 +119,7 @@
     - building != no|factory|industrial|manufacture|apartments|dormitory|house|hut|residential|administrative|office|garages
     - building:use != apartments|residential
     - amenity != *
-    - man_made != works|gasometer|silo
+    - man_made != works|gasometer|silo|storage_tank
     - office != *
     - power != *
     - shop != mall|supermarket
@@ -179,7 +180,7 @@
 - condition:
     - or:
         - building = factory|industrial|manufacture
-        - man_made = works|gasometer|silo
+        - man_made = works|gasometer|silo|storage_tank
         - power = sub_station
   action:
     - action: write_polygon
@@ -219,18 +220,13 @@
 
 - condition:
     - building != *
-    - leisure = stadium|pitch|arena|sports_centre|swimming_pool
+    - or:
+        - leisure = stadium|pitch|arena|sports_centre|swimming_pool|track
+        - sport = *
   action:
     - action: write_polygon
       type: 0x19
       level_h: [ 0, 0.01 ]
-
-- condition:
-    - sport = *
-    - leisure != *
-  action:
-    - action: write_polygon
-      type: 0x19
 
 - condition:
     - landuse = cemetery|grave_yard
