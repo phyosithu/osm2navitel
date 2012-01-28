@@ -711,7 +711,11 @@
     - action: write_poi
       type: 0xf205
 - condition:
-    - highway = traffic_signals
+    - or:
+        - highway = traffic_signals
+        - and:
+            - highway = crossing
+            - crossing = traffic_signals
   action:
     - action: write_poi
       type: 0xf201
@@ -806,16 +810,21 @@
     - action: write_poi
       type: 0x6612
 - condition:
-    - or:
-        - leisure = sports_centre
-        - sport = gymnastics
+    - leisure = sports_centre
+    - building = *
+    - sport != 9pin|10pin|bowls|golf|hockey|motor|skating|skiing|scuba_diving|swimming
   action:
     - action: write_poi
       type: 0x2d0a
       contacts: yes
       Text: %opening_hours
 - condition:
-    - leisure = stadium
+    - or:
+        - leisure = stadium|track
+        - and:
+            - leisure = sports_centre
+            - building != *
+    - sport != 9pin|10pin|bowls|golf|hockey|motor|skating|skiing|scuba_diving|swimming
     - named
   action:
     - action: write_poi
@@ -863,7 +872,7 @@
       type: 0x640d
 - condition:
     - or:
-        - man_made = works|gasometer|silo
+        - man_made = works|gasometer|silo|storage_tank
         - power = generator|station|sub_station
     - only_node
   action:
@@ -1197,6 +1206,7 @@
       contacts: yes
 - condition:
     - railway = level_crossing
+    - crossing != uncontrolled
   action:
     - action: write_poi
       type: 0xf203
