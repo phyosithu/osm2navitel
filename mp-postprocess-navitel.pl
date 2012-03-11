@@ -75,6 +75,10 @@ while ( my $line = readline $in ) {
     if ( $line =~ /^\[(.*)\]/ ) {
         $object = $1;
     }
+
+    if ( $line =~ /^(CodePage)/i ) {
+        $line =~ s/utf8/65001/;
+    }
     
     # ISO region names
     #   region names
