@@ -726,7 +726,7 @@
     - action: write_poi
       type: 0x2c04
 - condition:
-    - historic = memorial|monument
+    - historic = memorial|monument|wayside_cross|wayside_shrine
   action:
     - action: write_poi
       type: 0xf301
