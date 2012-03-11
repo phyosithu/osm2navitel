@@ -193,6 +193,20 @@ while ( my $line = readline $in ) {
         $line =~ s/Ukraine-Zakarpatsk/Закарпатська область/;
         $line =~ s/Ukraine-Zaporozhsk/Запорізька область/;
         $line =~ s/Ukraine-Zhytomyr/Житомирська область/;
+        #UZB области Узбекистана
+        $line =~ s/Toshkent Viloyati/Ташкентская область/;
+        $line =~ s/Buxoro Viloyati/Бухарская область/;
+        $line =~ s/Sirdaryo Viloyati/Сырдарьинская область/;
+        $line =~ s/Samarqand Viloyati/Самаркандская область/;
+        $line =~ s/Qashqadaryo Viloyati/Кашкадарьинская область/;
+        $line =~ s/Xorazm Viloyati/Хорезмская область/;
+        $line =~ s/Qaraqalpaqstan Respublikasi/Республика Каракалпакстан/;
+        $line =~ s/Farg'ona Viloyati/Ферганская область/;
+        $line =~ s/Namangan Viloyati/Наманганская область/;
+        $line =~ s/Surxondaryo Viloyati/Сурхандарьинская область/;
+        $line =~ s/Jizzax Viloyati/Джизакская область/;
+        $line =~ s/Navoiy Viloyati/Навоийская область/;
+        $line =~ s/Andijon Viloyati/Андижанская область/;
         # fix region names
         $line =~ s/область/обл./;
         $line =~ s/район/р-н/;
