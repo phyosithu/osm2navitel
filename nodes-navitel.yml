@@ -65,10 +65,17 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - amenity = bar|biergarten|nightclub|pub|stripclub
+    - amenity = bar|nightclub|stripclub
   action:
     - action: write_poi
       type: 0x2d02
+      contacts: yes
+      Text: %opening_hours
+- condition:
+    - amenity = biergarten|pub
+  action:
+    - action: write_poi
+      type: 0x4600
       contacts: yes
       Text: %opening_hours
 - condition:
