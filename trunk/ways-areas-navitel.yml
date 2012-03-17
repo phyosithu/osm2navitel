@@ -400,6 +400,7 @@
         - landuse = quarry
         - natural = scree
     - resource != peat|sand
+    - quarry:type != peat_cutting
   action:
     - action: write_polygon
       type: 0x8a
