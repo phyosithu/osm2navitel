@@ -9,7 +9,9 @@
       contacts: yes
 
 - condition:
-    - aeroway = aerodrome
+    - or:
+        - aeroway = aerodrome
+        - place = airport
     - iata != *
   action:
     - action: write_poi
@@ -17,12 +19,14 @@
       level_h: 2
       contacts: yes
 - condition:
-    - aeroway = aerodrome
+    - or:
+        - aeroway = aerodrome
+        - place = airport
     - iata = *
   action:
     - action: write_poi
       type: 0x5901
-      level_h: 3
+      level_h: 4
       contacts: yes
 
 - condition:
@@ -604,8 +608,11 @@
 
 - condition:
     - building = *
-    - building != no
+    - building != no|collapsed
     - addr:housenumber = *
+    - amenity != *
+    - shop != *
+    - tourism != *
     - only_node
     - inside_city
   action:
@@ -615,7 +622,7 @@
       contacts: yes
 - condition:
     - building = *
-    - building != no
+    - building != no|collapsed
     - abandoned != yes
     - only_node
     - ~inside_city
@@ -1104,13 +1111,6 @@
       Text: %opening_hours
 
 - condition:
-    - place = airport
-  action:
-    - action: write_poi
-      type: 0x5900
-      level_h: 4
-
-- condition:
     - place = city
     - only_node
     - capital = yes
@@ -1154,6 +1154,8 @@
 
 - condition:
     - place = hamlet
+    - population != 0
+    - abandoned != yes
     - only_node
   action:
     - action: write_poi
@@ -1169,6 +1171,8 @@
       level_h: 2
 - condition:
     - place = isolated_dwelling
+    - population != 0
+    - abandoned != yes
     - only_node
   action:
     - action: write_poi
@@ -1196,12 +1200,25 @@
       city: yes
 - condition:
     - place = village
+    - population != 0
+    - abandoned != yes
     - only_node
   action:
     - action: write_poi
       type: 0x0b00
       level_h: 2
       city: yes
+- condition:
+    - place = village|hamlet|isolated_dwelling
+    - or:
+        - abandoned = yes
+        - population = 0
+    - only_node
+  action:
+    - action: write_poi
+      type: 0x1100
+      Label: %label (нежил.)
+      level_h: 2
 
 - condition:
     - railway = halt
@@ -1563,6 +1580,15 @@
     - action: write_poi
       type: 0x2b02
       contacts: yes
+- condition:
+    - or:
+        - building = dormitory
+        - amenity = dormitory
+  action:
+    - action: write_poi
+      type: 0x2b02
+      contacts: yes
+      Label: %label (общ.)
 - condition:
     - tourism = hotel|motel
   action:
