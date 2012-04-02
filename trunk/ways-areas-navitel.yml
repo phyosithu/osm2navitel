@@ -57,6 +57,7 @@
     - or:
         - amenity = parking
         - highway = rest_area
+    - building != *
   action:
     - action: write_polygon
       type: 0x05
@@ -64,12 +65,34 @@
 
 - condition:
     - or:
-        - landuse = garages
-        - building = garages
+        - building = garage|garages
+        - and:
+            - or:
+                - amenity = parking
+                - landuse = garages
+            - building = *
   action:
     - action: write_polygon
       type: 0x06
       level_h: [ 0, 0.01 ]
+      Label: %house
+    - action: address_poi
+- condition:
+    - landuse = garages
+    - building != *
+  action:
+    - action: write_polygon
+      type: 0x05
+      Label: %label (гар.)
+- condition:
+    - landuse = garages
+    - building != *
+  action:
+    - action: write_polygon
+      type: 0x06
+      level_l: 1
+      level_h: [ 0.01 ]
+      DontFind: Y
 
 - condition:
     - aeroway = terminal|helipad
@@ -78,7 +101,11 @@
       type: 0x07
 
 - condition:
-    - landuse = commercial|retail
+    - or:
+        - shop = mall|supermarket
+        - landuse = commercial|retail
+        - amenity = marketplace
+    - building != *
   action:
     - action: write_polygon
       type: 0x08
@@ -104,8 +131,10 @@
 - condition:
     - or:
         - landuse = construction|industrial
-        - power = generator|station
         - man_made = wastewater_plant
+        - and:
+            - power = generator|station
+            - building != *
         - and:
             - landuse = landfill
             - natural != *
@@ -116,14 +145,15 @@
 
 - condition:
     - building = *
-    - building != no|factory|industrial|manufacture|apartments|dormitory|house|hut|residential|administrative|office|garages
-    - building:use != apartments|residential
+    - building != no|collapsed|apartments|detached|dormitory|house|residential|terrace|commercial|office|church|hospital|school|university|factory|industrial|manufacture|garage|garages
+    - building:use != residential|commercial
     - amenity != *
-    - man_made != works|gasometer|silo|storage_tank
+    - landuse != commercial|retail|garages
+    - leisure != sports_centre|stadium
+    - man_made != works|gasometer
     - office != *
     - power != *
     - shop != mall|supermarket
-    - leisure != stadium|arena|sports_centre|ice_rink|swimming_pool
     - sport != *
   action:
     - action: write_polygon
@@ -133,8 +163,8 @@
 
 - condition:
     - or:
-        - building = apartments|dormitory|house|hut|residential
-        - building:use = apartments|residential
+        - building = apartments|detached|dormitory|house|residential|terrace
+        - building:use = residential
   action:
     - action: write_polygon
       type: 0x6c
@@ -143,12 +173,14 @@
 
 - condition:
     - or:
-        - building = administrative|office
+        - building = commercial|office
+        - building:use = commercial
         - and:
-            - building = yes
+            - building = *
             - or:
-                - amenity = bank|police|post_office|prison|townhall
+                - amenity = bank|police|prison|townhall
                 - office = *
+                - landuse = commercial
   action:
     - action: write_polygon
       type: 0x6d
@@ -157,20 +189,17 @@
 
 - condition:
     - or:
-        - building = church|school|university
-        - and:
-            - shop = mall|supermarket
-            - or:
-                - building = *
-                - landuse != commercial|retail
-        - and:
-            - building = yes
-            - amenity = *
-            - amenity != bank|police|post_office|prison|townhall
-            - office != *
+        - building = church|hospital|school|university
         - and:
             - building = *
-            - leisure = stadium|pitch|arena|sports_centre|swimming_pool
+            - or:
+                - amenity = *
+                - leisure = sports_centre|stadium
+                - shop = mall|supermarket
+                - sport = *
+                - landuse = retail
+            - amenity != bank|dormitory|police|parking|prison|townhall
+            - office != *
   action:
     - action: write_polygon
       type: 0x6e
@@ -180,12 +209,16 @@
 - condition:
     - or:
         - building = factory|industrial|manufacture
-        - man_made = works|gasometer|silo|storage_tank
+        - man_made = works|gasometer
         - power = sub_station
+        - and:
+            - building = *
+            - power = generator|station
   action:
     - action: write_polygon
       type: 0x6f
       level_h: [ 0, 0.01 ]
+    - action: address_poi
 
 - condition:
     - or:

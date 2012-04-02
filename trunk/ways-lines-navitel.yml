@@ -174,7 +174,7 @@
 # Navitel specific
 
 - condition:
-    - barrier = wall|city_wall|fence|hedge|wire_fence
+    - barrier = wall|city_wall|fence|hedge|retaining_wall|wire_fence
   action:
     - action: write_line
       type: 0x46
