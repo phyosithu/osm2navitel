@@ -1586,9 +1586,8 @@
         - amenity = dormitory
   action:
     - action: write_poi
-      type: 0x2b02
+      type: 0x2b00
       contacts: yes
-      Label: %label (общ.)
 - condition:
     - tourism = hotel|motel
   action:
