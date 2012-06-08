@@ -5,18 +5,6 @@
 
 - condition:
     - only_node
-    - barrier = *
-  action:
-    - action: load_barrier
-
-- condition:
-    - only_node
-    - garmin:extnode = 1|yes
-  action:
-    - action: force_external_node
-
-- condition:
-    - only_node
     - building = entrance
   action:
     - action: load_building_entrance
