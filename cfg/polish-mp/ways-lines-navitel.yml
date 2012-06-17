@@ -10,8 +10,7 @@
       contacts: yes
 
 # Railways
-- id: railway
-  condition:
+- condition:
     - railway = rail
     - service != siding|spur|yard
   action:
@@ -19,26 +18,12 @@
       type: 0x14
       level_h: 3
 
-- id: service_railway
-  condition:
-    - railway = rail
-    - service = siding|spur|yard
-  action:
-    - action: write_line
-      type: 0x14
-      level_h: 1
-
-- id: service_railway_err
-  condition:
-    - railway = siding|spur|yard
-  action:
-    - action: write_line
-      type: 0x14
-      level_h: 1
-
-- id: light_railway
-  condition:
-    - railway = narrow_gauge|light_rail
+- condition:
+    - or:
+        - and:
+            - railway = rail
+            - service = siding|spur|yard
+        - railway = disused|siding|spur|yard|narrow_gauge|light_rail
   action:
     - action: write_line
       type: 0x14
