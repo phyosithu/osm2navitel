@@ -989,6 +989,12 @@
     - action: write_poi
       type: 0x5400
 - condition:
+    - natural = cape
+  action:
+    - action: write_poi
+      type: 0x6606
+      level_h: 2
+- condition:
     - natural = cave_entrance
   action:
     - action: write_poi
@@ -1012,6 +1018,13 @@
     - action: write_poi
       type: 0x650a
       level_h: 1
+- condition:
+    - natural = hill
+  action:
+    - action: write_poi
+      type: 0xf309
+      level_h: 1
+      ele: yes
 - condition:
     - natural = peak
   action:
@@ -1347,7 +1360,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = car|car_parts|motorcycle
+    - shop = car|car_parts|motorcycle|motorcycle_parts
     - or:
         - service = dealer|parts
         - service != *
