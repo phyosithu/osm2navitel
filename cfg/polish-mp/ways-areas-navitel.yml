@@ -24,7 +24,17 @@
       DontFind: Y
 
 - condition:
-    - place = village|hamlet|isolated_dwelling
+    - place = village
+  action:
+    - action: write_polygon
+      type: 0x03
+      level_l: 1
+      level_h: 2
+      Label: 
+      DontFind: Y
+
+- condition:
+    - place = hamlet|isolated_dwelling
   action:
     - action: write_polygon
       type: 0x03
