@@ -1140,13 +1140,12 @@
       contacts: yes
       Text: %opening_hours
 
+##  Settlements
+
 - condition:
     - place = city
     - only_node
-    - capital = yes
-    - or:
-        - admin_level = 1|2
-        - admin_level != *
+    - population = \d{8,}
   action:
     - action: write_poi
       type: 0x0100
@@ -1155,8 +1154,7 @@
 - condition:
     - place = city
     - only_node
-    - capital = yes
-    - admin_level = 3|4
+    - population = [5-9]\d{6}
   action:
     - action: write_poi
       type: 0x0200
@@ -1165,17 +1163,73 @@
 - condition:
     - place = city
     - only_node
-    - or:
-        - capital != yes
-        - and:
-            - capital = yes
-            - admin_level = *
-            - admin_level != 1|2|3|4
+    - population = [2-4]\d{6}
+  action:
+    - action: write_poi
+      type: 0x0300
+      level_h: 4
+      city: yes
+- condition:
+    - place = city
+    - only_node
+    - population = 1\d{6}
   action:
     - action: write_poi
       type: 0x0400
+      level_h: 4
+      city: yes
+- condition:
+    - place = city
+    - only_node
+    - population = [5-9]\d{5}
+  action:
+    - action: write_poi
+      type: 0x0500
+      level_h: 4
+      city: yes
+- condition:
+    - place = city
+    - only_node
+    - population = [2-4]\d{5}
+  action:
+    - action: write_poi
+      type: 0x0600
+      level_h: 4
+      city: yes
+- condition:
+    - place = city
+    - only_node
+    - population = 1\d{5}
+  action:
+    - action: write_poi
+      type: 0x0700
+      level_h: 4
+      city: yes
+- condition:
+    - place = city
+    - only_node
+    - or:
+        - population = \d{1,5}
+        - population != *
+  action:
+    - action: write_poi
+      type: 0x0800
       level_h: 3
       city: yes
+
+# Low/unknown population capitals
+- condition:
+    - place = city
+    - only_node
+    - or:
+        - population = \d{1,5}
+        - population != *
+    - or:
+        - capital = 1|2|3|4
+        - and:
+            - capital = yes
+            - admin_level = 1|2|3|4
+  action:
     - action: write_poi
       type: 0x0800
       level_l: 4
