@@ -1304,6 +1304,23 @@
       Label: %label (нежил.)
       level_h: 2
 
+# Public transport
+- condition:
+    - public_transport = stop_position
+    - monorail = yes
+  action:
+    - action: write_poi
+      type: 0xf008
+      level_h: 1
+      contacts: yes
+- condition:
+    - public_transport = stop_position
+    - trolleybus = yes
+  action:
+    - action: write_poi
+      type: 0xf004
+      contacts: yes
+
 - condition:
     - railway = halt
     - station != subway
