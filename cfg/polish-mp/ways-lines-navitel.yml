@@ -205,6 +205,7 @@
   action:
     - action: write_line
       type: 0x40
+      level_h: 1
 
 - condition:
     -  railway = tram
