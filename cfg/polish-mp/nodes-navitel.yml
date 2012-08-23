@@ -320,12 +320,14 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - amenity = place_of_worship
     - or:
+        - amenity = place_of_worship
+        - building = church
+    - and:
         - religion != muslim|jewish|buddhist|hindu
-        - and:
-            - religion = christian
-            - denomination != [a-z]*_?orthodox|old_believers|[a-z]*_?catholic|baptist|evangelical|lutheran|methodist|protestant
+        - or:
+            - religion != christian
+            - denomination != \w*orthodox|old_believers|\w*catholic|baptist|evangelical|lutheran|methodist|presbyterian|protestant
   action:
     - action: write_poi
       type: 0x2c0b
@@ -336,7 +338,7 @@
         - amenity = place_of_worship
         - building = church
     - religion = christian
-    - denomination = [a-z]*_?orthodox|old_believers
+    - denomination = \w*orthodox|old_believers
   action:
     - action: write_poi
       type: 0xf101
@@ -347,7 +349,7 @@
         - amenity = place_of_worship
         - building = church
     - religion = christian
-    - denomination = [a-z]*_?catholic
+    - denomination = \w*catholic
   action:
     - action: write_poi
       type: 0xf102
@@ -358,7 +360,7 @@
         - amenity = place_of_worship
         - building = church
     - religion = christian
-    - denomination = baptist|evangelical|lutheran|methodist|protestant
+    - denomination = baptist|evangelical|lutheran|methodist|presbyterian|protestant
   action:
     - action: write_poi
       type: 0xf103
