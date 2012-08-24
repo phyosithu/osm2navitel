@@ -173,6 +173,7 @@
 
 - condition:
     - or:
+        - amenity = dormitory
         - building = apartments|detached|dormitory|house|residential|terrace
         - building:use = residential
   action:
