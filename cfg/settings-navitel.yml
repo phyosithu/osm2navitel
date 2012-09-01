@@ -124,6 +124,7 @@ yes:            1
 true:           1
 designated:     1
 permissive:     1
+customers:      1
 
 0:              0
 no:             0
