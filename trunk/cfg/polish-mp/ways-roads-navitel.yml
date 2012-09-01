@@ -402,10 +402,10 @@
 - condition:
     - or:
         - living_street = yes
-        - access = destination
-        - vehicle = destination
-        - motor_vehicle = destination
-        - motorcar = destination
+        - access = customers|destination
+        - vehicle = customers|destination
+        - motor_vehicle = customers|destination
+        - motorcar = customers|destination
   action:
     - action: modify_road
       RouteParamExt: 1
