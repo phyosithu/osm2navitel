@@ -26,9 +26,7 @@
       contacts: yes
 
 - condition:
-    - or:
-        - aeroway = aerodrome
-        - place = airport
+    - aeroway = aerodrome
     - iata != *
   action:
     - action: write_poi
@@ -36,9 +34,7 @@
       level_h: 2
       contacts: yes
 - condition:
-    - or:
-        - aeroway = aerodrome
-        - place = airport
+    - aeroway = aerodrome
     - iata = *
   action:
     - action: write_poi
@@ -206,7 +202,11 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - amenity = ferry_terminal
+    - or:
+        - amenity = ferry_terminal
+        - and:
+            - public_transport = stop_position
+            - ferry = yes
   action:
     - action: write_poi
       type: 0xf00c
