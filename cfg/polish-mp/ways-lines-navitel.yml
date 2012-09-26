@@ -172,6 +172,13 @@
       type: 0x00
 
 - condition:
+    - highway = service
+    - access = private
+  action:
+    - action: write_line
+      type: 0x16
+
+- condition:
     - man_made = cutline
   action:
     - action: write_line

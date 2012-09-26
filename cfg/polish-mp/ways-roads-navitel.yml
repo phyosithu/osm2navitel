@@ -211,6 +211,7 @@
 
 - condition:
     - highway = service
+    - access != private
     - service != parking_aisle
     - area != yes
     - layer != -?[2-9]
