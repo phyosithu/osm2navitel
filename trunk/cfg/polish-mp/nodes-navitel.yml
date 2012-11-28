@@ -166,7 +166,7 @@
 - condition:
     - or:
         - amenity = doctors
-        - healthcare = doctor|blood_bank
+        - healthcare = doctor
   action:
     - action: write_poi
       type: 0x4b00
@@ -259,7 +259,9 @@
       type: 0x6403
       contacts: yes
 - condition:
-    - amenity = hospital
+    - or:
+        - amenity = clinic|hospital
+        - healthcare = centre|clinic
   action:
     - action: write_poi
       type: 0x3002
