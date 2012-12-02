@@ -11,6 +11,7 @@ entrance:       [ name, ref ]
 place:          [ place_name, name ]
 street:         [ addr:street, name ]
 destination:    [ destination, label, name ]
+house:          [ 'addr:housename', 'addr:housenumber' ]
 note:           [ note ]
 opening_hours:  [ opening_hours ]
 maxheight:      [ maxheight ]
@@ -18,6 +19,34 @@ maxweight:      [ maxweight ]
 street2:        [ addr2:street, addr:street2, addr:street ]
 house2:         [ addr2:housenumber, addr:housenumber2, addr:housenumber ]
 
+phone:          [ 'contact:phone', phone ]
+website:        [ 'contact:website', website, url ]
+email:          [ 'contact:email', email ]
+fax:            [ 'contact:fax', fax ]
+
+
+################################
+##  Field presets
+################################
+
+--- presets
+---
+contacts:
+    Phone: %phone
+    WebPage: %website
+    Email: %email
+    Fax: %fax
+
+building:
+    Label: %house
+    Floors: !!perl/code |-
+      {
+        my $tags = shift()->{tag};
+        my $levels = extract_number($tags->{'building:levels'});
+        return $levels  if $levels;
+        $levels = int(extract_number($tags->{'building:height'} || $tags->{'height'} || 0) / 3);
+        return $levels || undef;
+      }
 
 
 ################################
