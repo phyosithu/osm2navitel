@@ -9,15 +9,15 @@
 label:          [ name, loc_name, brand, operator ]
 entrance:       [ name, ref ]
 place:          [ place_name, name ]
-street:         [ addr:street, name ]
+street:         [ 'addr:street', name ]
 destination:    [ destination, label, name ]
 house:          [ 'addr:housename', 'addr:housenumber' ]
 note:           [ note ]
 opening_hours:  [ opening_hours ]
 maxheight:      [ maxheight ]
 maxweight:      [ maxweight ]
-street2:        [ addr2:street, addr:street2, addr:street ]
-house2:         [ addr2:housenumber, addr:housenumber2, addr:housenumber ]
+street2:        [ 'addr2:street', 'addr:street2', 'addr:street' ]
+house2:         [ 'addr2:housenumber', 'addr:housenumber2', 'addr:housenumber' ]
 
 phone:          [ 'contact:phone', phone ]
 website:        [ 'contact:website', website, url ]
@@ -128,11 +128,11 @@ whitewater:         1
 
 background:
     type:       0x4B
-    endlevel:   4
+    level_h:    4
 
 sea:
     type:       0x28
-    endlevel:   4
+    level_h:    4
 
 
 
