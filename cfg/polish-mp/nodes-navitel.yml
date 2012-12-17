@@ -1383,7 +1383,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = beverages|butcher|deli|farm|greengrocer|grocery|supermarket
+    - shop = beverages|butcher|convenience|deli|farm|greengrocer|grocery|supermarket
   action:
     - action: write_poi
       type: 0x2e02
@@ -1466,10 +1466,10 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = convenience|general|kiosk
+    - shop = general|kiosk
   action:
     - action: write_poi
-      type: 0x2e06
+      type: 0x2e00
       contacts: yes
       Text: %opening_hours
 - condition:
