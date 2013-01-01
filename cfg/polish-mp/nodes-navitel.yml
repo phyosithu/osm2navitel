@@ -103,7 +103,7 @@
       contacts: yes
 - condition:
     - amenity = cafe
-    - cuisine != pizza
+    - cuisine != *
   action:
     - action: write_poi
       type: 0x2a0e
@@ -195,7 +195,6 @@
       Text: %opening_hours
 - condition:
     - amenity = fast_food|food_court
-    - cuisine != pizza
   action:
     - action: write_poi
       type: 0x2a07
@@ -321,77 +320,49 @@
       type: 0x2e05
       contacts: yes
       Text: %opening_hours
-- condition:
-    - or:
-        - amenity = place_of_worship
-        - building = church
-    - and:
-        - religion != muslim|jewish|buddhist|hindu
-        - or:
-            - religion != christian
-            - denomination != \w*orthodox|old_believers|\w*catholic|baptist|evangelical|lutheran|methodist|presbyterian|protestant
-  action:
-    - action: write_poi
-      type: 0x2c0b
-      level_h: 1
-      contacts: yes
-- condition:
-    - or:
-        - amenity = place_of_worship
-        - building = church
-    - religion = christian
-    - denomination = \w*orthodox|old_believers
-  action:
-    - action: write_poi
-      type: 0xf101
-      level_h: 1
-      contacts: yes
-- condition:
-    - or:
-        - amenity = place_of_worship
-        - building = church
-    - religion = christian
-    - denomination = \w*catholic
-  action:
-    - action: write_poi
-      type: 0xf102
-      level_h: 1
-      contacts: yes
-- condition:
-    - or:
-        - amenity = place_of_worship
-        - building = church
-    - religion = christian
-    - denomination = baptist|evangelical|lutheran|methodist|presbyterian|protestant
-  action:
-    - action: write_poi
-      type: 0xf103
-      level_h: 1
-      contacts: yes
+
 - condition:
     - amenity = place_of_worship
-    - religion = muslim
   action:
     - action: write_poi
-      type: 0xf104
+      type:
+        selector: tag
+        tag: religion
+        christian:
+          selector: tag
+          tag: denomination
+          catholic: 0xf102
+          baptist: 0xf103
+          lutheran: 0xf103
+          methodist: 0xf103
+          orthodox: 0xf101
+          protestant: 0xf103
+          anglican: 0xf103
+          roman_catholic: 0xf102
+          presbyterian: 0xf103
+          evangelical: 0xf103
+          pentecostal: 0xf103
+          greek_orthodox: 0xf101
+          church_of_england: 0xf103
+          new_apostolic: 0xf103
+          russian_orthodox: 0xf101
+          seventh_day_adventist: 0xf103
+          episcopal: 0xf103
+          reformed: 0xf103
+          united_reformed: 0xf103
+          church_of_scotland: 0xf103
+          _empty: 0x2c0b
+          _default: 0x2c0b
+        muslim: 0xf104
+        jewish: 0xf105
+        buddhist: 0xf106
+        hindu: 0xf106
+        _empty: 0x2c0b
+        _default: 0x2c0b
       level_h: 1
       contacts: yes
-- condition:
-    - amenity = place_of_worship
-    - religion = jewish
-  action:
-    - action: write_poi
-      type: 0xf105
-      level_h: 1
-      contacts: yes
-- condition:
-    - amenity = place_of_worship
-    - religion = buddhist|hindu
-  action:
-    - action: write_poi
-      type: 0xf106
-      level_h: 1
-      contacts: yes
+      Text: %opening_hours
+
 - condition:
     - amenity = police
     - name != ДПС|[Пп]ост ДПС
@@ -422,110 +393,55 @@
     - action: write_poi
       type: 0x6405
       contacts: yes
+
 - condition:
-    - amenity = restaurant
-    - cuisine != asian|barbecue|cake|chinese|burger|chicken|italian|pizza|mexican|sandwich|seafood|coffee_shop|french|german
+    - or:
+        - amenity = restaurant
+        - and:
+           - amenity = cafe
+           - cuisine = *
   action:
     - action: write_poi
-      type: 0x4500
+      type:
+        selector: tag
+        tag: cuisine
+        _default: 0x2a00
+        _empty: 0x4500
+        american: 0x2a01
+        asian: 0x2a02
+        indian: 0x2a02
+        korean: 0x2a02
+        noodle: 0x2a02
+        thai: 0x2a02
+        barbecue: 0x2a03
+        bbq: 0x2a03
+        chinese: 0x2a04
+        cake: 0x2a05
+        coffee_shop: 0x2a0e
+        ice_cream: 0x2a05
+        pie: 0x2a05
+        international: 0x2a06
+        burger: 0x2a07
+        chicken: 0x2a07
+        kebab: 0x2a07
+        sandwich: 0x2a07
+        italian: 0x2a08
+        pasta: 0x2a08
+        mexican: 0x2a09
+        pizza: 0x2a0a
+        fish: 0x2a0b
+        seafood: 0x2a0b
+        grill: 0x2a0c
+        steak_house: 0x2a0c
+        bagel: 0x2a0d
+        donut: 0x2a0d
+        doughnut: 0x2a0d
+        french: 0x2a0f
+        german: 0x2a10
+        british: 0x2a11
       contacts: yes
       Text: %opening_hours
-- condition:
-    - amenity = restaurant
-    - cuisine = asian
-  action:
-    - action: write_poi
-      type: 0x2a02
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - amenity = restaurant
-    - cuisine = barbecue
-  action:
-    - action: write_poi
-      type: 0x2a03
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - amenity = restaurant|cafe
-    - cuisine = cake
-  action:
-    - action: write_poi
-      type: 0x2a0d
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - amenity = restaurant
-    - cuisine = chinese
-  action:
-    - action: write_poi
-      type: 0x2a04
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - amenity = restaurant|cafe
-    - cuisine = burger|chicken|sandwich
-  action:
-    - action: write_poi
-      type: 0x2a07
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - amenity = restaurant
-    - cuisine = italian
-  action:
-    - action: write_poi
-      type: 0x2a08
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - amenity = restaurant
-    - cuisine = mexican
-  action:
-    - action: write_poi
-      type: 0x2a09
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - amenity = restaurant|cafe|fast_food|food_court
-    - cuisine = pizza
-  action:
-    - action: write_poi
-      type: 0x2a0a
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - amenity = restaurant
-    - cuisine = seafood
-  action:
-    - action: write_poi
-      type: 0x2a0b
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - amenity = restaurant
-    - cuisine = coffee_shop
-  action:
-    - action: write_poi
-      type: 0x2a0e
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - amenity = restaurant
-    - cuisine = french
-  action:
-    - action: write_poi
-      type: 0x2a0f
-      contacts: yes
-      Text: %opening_hours
-- condition:
-    - amenity = restaurant
-    - cuisine = german
-  action:
-    - action: write_poi
-      type: 0x2a10
-      contacts: yes
-      Text: %opening_hours
+
 - condition:
     - or:
         - amenity = sauna
@@ -1035,7 +951,11 @@
     - action: write_poi
       type: 0x6616
       level_h: 1
-      ele: yes
+      extra_fields:
+        Label:
+          - %ele~[0x1f]%label
+          - %ele
+          - %label
 - condition:
     - natural = ridge
     - only_node
@@ -1141,6 +1061,13 @@
   action:
     - action: write_poi
       type: 0xf613
+      contacts: yes
+      Text: %opening_hours
+- condition:
+    - shop = ticket
+  action:
+    - action: write_poi
+      type: 0xf614
       contacts: yes
       Text: %opening_hours
 

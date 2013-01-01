@@ -85,7 +85,7 @@
     - action: write_polygon
       type: 0x06
       level_h: [ 0, 0.01 ]
-      Label: %house
+      presets: [ building ]
     - action: address_poi
 - condition:
     - landuse = garages
@@ -153,6 +153,7 @@
       type: 0x0c
       level_h: [ 0, 0.01, 0.16 ]
 
+# Buildings
 - condition:
     - building = *
     - building != no|collapsed|apartments|detached|dormitory|house|residential|terrace|commercial|office|church|hospital|school|university|factory|industrial|manufacture|garage|garages
@@ -168,7 +169,7 @@
   action:
     - action: write_polygon
       type: 0x13
-      Label: %house
+      presets: [ building ]
     - action: address_poi
 
 - condition:
@@ -179,7 +180,7 @@
   action:
     - action: write_polygon
       type: 0x6c
-      Label: %house
+      presets: [ building ]
     - action: address_poi
 
 - condition:
@@ -195,7 +196,7 @@
   action:
     - action: write_polygon
       type: 0x6d
-      Label: %house
+      presets: [ building ]
     - action: address_poi
 
 - condition:
@@ -214,7 +215,7 @@
   action:
     - action: write_polygon
       type: 0x6e
-      Label: %house
+      presets: [ building ]
     - action: address_poi
 
 - condition:
@@ -229,6 +230,7 @@
     - action: write_polygon
       type: 0x6f
       level_h: [ 0, 0.01 ]
+      presets: [ building ]
     - action: address_poi
 
 - condition:
@@ -375,8 +377,9 @@
       level_h: 3
 
 - condition:
-    - natural = marsh|wetland
-    - wetland != swamp|tidalflat|reedbed|saltmarsh|mangrove
+    - or:
+        - natural = marsh
+        - landuse = peat_cutting
   action:
     - action: write_polygon
       type: 0x51
@@ -384,43 +387,19 @@
 
 - condition:
     - natural = wetland
-    - wetland = swamp
   action:
     - action: write_polygon
-      type: 0x81
+      type:
+        selector: tag
+        tag: wetland
+        swamp: 0x81
+        reedbed: 0x8c
+        saltmarsh: 0x8b
+        mangrove: 0x94
+        tidalflat: 0x53
+        _empty: 0x51
+        _default: 0x51
       level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
-
-- condition:
-    - natural = wetland
-    - wetland = reedbed
-  action:
-    - action: write_polygon
-      type: 0x8c
-      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
-
-- condition:
-    - natural = wetland
-    - wetland = saltmarsh
-  action:
-    - action: write_polygon
-      type: 0x8b
-      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
-
-- condition:
-    - natural = wetland
-    - wetland = mangrove
-  action:
-    - action: write_polygon
-      type: 0x94
-      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
-
-- condition:
-    - landuse = peat_cutting
-    - natural != *
-  action:
-    - action: write_polygon
-      type: 0x51
-      level_h: [ 0, 0.016, 0.5 ]
 
 - condition:
     - highway = *
@@ -461,7 +440,6 @@
     - or:
         - water = tidal
         - natural = mud
-        - wetland = tidalflat
   action:
     - action: write_polygon
       type: 0x53
