@@ -1,0 +1,93 @@
+################################
+##  Base addressing model
+################################
+
+
+--- addr_prefixes
+---
+- addr
+#- is_in
+
+
+--- addr_levels
+---
+
+- level: country
+  tags: [ country ]
+
+- level: region
+  tags: [ region, state ]
+
+- level: district
+  tags: [ district, county ]
+
+- level: subdistrict
+  tags: [ subdistrict ]
+
+- level: city
+  tags: [ city, town, hamlet ]
+  area_condition: place = city|town|village|hamlet|allotments|isolated_dwelling
+
+- level: suburb
+  tags: [ suburb ]
+
+- level: street
+  tags: [ street ]
+# TODO relations: [ street, associatedStreet ]
+
+- level: quarter
+  tags: [ quarter, neighbourhood ]
+
+- level: postcode
+  tags: [ postcode ]
+
+- level: house
+  tags: [ housenumber, housename ]
+
+- level: building
+  tags: [ letter ]
+
+- level: entrance
+  tags: [ entrance ]
+
+- level: office
+  tags: [ office, apartment, flat ]
+
+
+
+
+# Common MP address levels
+# (country - region - city - street - housenumber)
+
+--- result_address
+---
+
+country:
+    - %country
+
+region:
+    - %region %district
+    - %region
+    - %district
+
+city:
+    - %city (%subdistrict)
+    - %city
+
+street:
+    - %street, %quarter (%suburb)
+    - %street (%suburb)
+    - %street, %quarter
+    - %street
+    - %quarter (%suburb)
+    - %quarter
+    - %suburb
+    - %city
+
+house:
+    - %house "%building"
+    - %house
+    - %building
+
+postcode:
+    - %postcode

@@ -525,18 +525,18 @@
       type: 0x2500
 
 - condition:
+    - type = boundary|multipolygon
     - boundary = administrative
     - admin_level = 4
-    - only_rel
   action:
     - action: write_poi
       type: 0x1500
       level_l: 4
       level_h: 4
 - condition:
+    - type = boundary|multipolygon
     - boundary = administrative
     - admin_level = 6
-    - only_rel
   action:
     - action: write_poi
       type: 0x1E00
@@ -577,19 +577,23 @@
     - action: write_poi
       type: 0x6415
       contacts: yes
-- condition:
-    - or:
-        - addr2:street = *
-        - addr:street2 = *
-        - addr2:housenumber = *
-        - addr:housenumber2 = *
-  action:
-    - action: write_poi
-      type: 0x2800
-      contacts: yes
-      Label: 
-      StreetDesc: %street2
-      HouseNumber: %house2
+
+# Secondary address
+#- condition:
+#    - or:
+#        - addr2:street = *
+#        - addr:street2 = *
+#        - addr2:housenumber = *
+#        - addr:housenumber2 = *
+#  action:
+#    - action: write_poi
+#      type: 0x2800
+#      contacts: yes
+#      extra_fields:
+#        StreetDesc:
+#          - %street2
+#        HouseNumber:
+#          - %house2
 
 - condition:
     - craft = carpenter
