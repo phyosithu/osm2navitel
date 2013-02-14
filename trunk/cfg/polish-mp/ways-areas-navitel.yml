@@ -38,7 +38,12 @@
   action:
     - action: write_polygon
       type: 0x03
-      level_h: [ 0, 0, 0.5 ]
+      level_h: &1 
+        selector: thresholds
+        value: !!perl/code |
+          { _get_obj_area_size(shift) }
+        0:      1
+        0.5:    2
       Label: 
       DontFind: Y
 
@@ -49,7 +54,7 @@
   action:
     - action: write_polygon
       type: 0x03
-      level_h: [ 0, 0, 0.5 ]
+      level_h: *1
 
 
 # Man-made
@@ -71,7 +76,12 @@
   action:
     - action: write_polygon
       type: 0x05
-      level_h: [ 0, 0.01 ]
+      level_h: &2 
+        selector: thresholds
+        value: !!perl/code |
+          { _get_obj_area_size(shift) }
+        0:      0
+        0.01:   1
 
 - condition:
     - or:
@@ -84,7 +94,7 @@
   action:
     - action: write_polygon
       type: 0x06
-      level_h: [ 0, 0.01 ]
+      level_h: *2
       presets: [ building ]
     - action: address_poi
 - condition:
@@ -101,7 +111,12 @@
     - action: write_polygon
       type: 0x06
       level_l: 1
-      level_h: [ 0.01 ]
+      level_h:
+        selector: thresholds
+        value: !!perl/code |
+          { _get_obj_area_size(shift) }
+        0:      1
+        0.01:   2
       DontFind: Y
 
 - condition:
@@ -119,7 +134,7 @@
   action:
     - action: write_polygon
       type: 0x08
-      level_h: [ 0, 0.01 ]
+      level_h: *2
     - action: address_poi
 
 - condition:
@@ -128,7 +143,7 @@
   action:
     - action: write_polygon
       type: 0x0a
-      level_h: [ 0, 0.01 ]
+      level_h: *2
 
 - condition:
     - amenity = hospital
@@ -136,7 +151,7 @@
   action:
     - action: write_polygon
       type: 0x0b
-      level_h: [ 0, 0.01 ]
+      level_h: *2
 
 - condition:
     - or:
@@ -151,7 +166,13 @@
   action:
     - action: write_polygon
       type: 0x0c
-      level_h: [ 0, 0.01, 0.16 ]
+      level_h: &4 
+        selector: thresholds
+        value: !!perl/code |
+          { _get_obj_area_size(shift) }
+        0:      0
+        0.01:   1
+        0.16:   2
 
 # Buildings
 - condition:
@@ -229,7 +250,7 @@
   action:
     - action: write_polygon
       type: 0x6f
-      level_h: [ 0, 0.01 ]
+      level_h: *2
       presets: [ building ]
     - action: address_poi
 
@@ -255,7 +276,7 @@
   action:
     - action: write_polygon
       type: 0x98
-      level_h: [ 0, 0.01, 0.16 ]
+      level_h: *4
 
 - condition:
     - natural = grassland|heath
@@ -272,7 +293,7 @@
   action:
     - action: write_polygon
       type: 0x19
-      level_h: [ 0, 0.01 ]
+      level_h: *2
 
 - condition:
     - landuse = cemetery|grave_yard
@@ -304,7 +325,12 @@
   action:
     - action: write_polygon
       type: 0x32
-      level_h: [ 0, 0, 0, 0, 9 ]
+      level_h: &5
+        selector: thresholds
+        value: !!perl/code |
+          { _get_obj_area_size(shift) }
+        0:      3
+        9:      4
 
 - condition:
     - or:
@@ -314,7 +340,15 @@
   action:
     - action: write_polygon
       type: 0x3f
-      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
+      level_h: &3 
+        selector: thresholds
+        value: !!perl/code |
+          { _get_obj_area_size(shift) }
+        0:      0
+        0.016:  1
+        0.5:    2
+        2.5:    3
+        9:      4
 
 - condition:
     - or:
@@ -325,7 +359,7 @@
   action:
     - action: write_polygon
       type: 0x47
-      level_h: [ 0, 0, 0, 0, 9 ]
+      level_h: *5
 
 - condition:
     - leisure = ice_rink
@@ -338,7 +372,7 @@
   action:
     - action: write_polygon
       type: 0x4d
-      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
+      level_h: *3
 
 - condition:
     - or:
@@ -347,14 +381,14 @@
   action:
     - action: write_polygon
       type: 0x4e
-      level_h: [ 0, 0.01, 0.16 ]
+      level_h: *4
 
 - condition:
     - natural = scrub
   action:
     - action: write_polygon
       type: 0x4f
-      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
+      level_h: *3
 
 - condition:
     - or:
@@ -383,7 +417,7 @@
   action:
     - action: write_polygon
       type: 0x51
-      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
+      level_h: *3
 
 - condition:
     - natural = wetland
@@ -399,7 +433,7 @@
         tidalflat: 0x53
         _empty: 0x51
         _default: 0x51
-      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
+      level_h: *3
 
 - condition:
     - highway = *
@@ -407,7 +441,7 @@
   action:
     - action: write_polygon
       type: 0x6a
-      level_h: [ 0, 0.01 ]
+      level_h: *2
 
 - condition:
     - or:
@@ -416,7 +450,7 @@
   action:
     - action: write_polygon
       type: 0x89
-      level_h: [ 0, 0.016, 0.5, 2.5, 9 ]
+      level_h: *3
 
 - condition:
     - or:
@@ -427,14 +461,14 @@
   action:
     - action: write_polygon
       type: 0x8a
-      level_h: [ 0, 0.016, 0.5, 2.5 ]
+      level_h: *3
 
 - condition:
     - water = intermittent
   action:
     - action: write_polygon
       type: 0x4c
-      level_h: [ 0, 0.016, 0.5, 2.5 ]
+      level_h: *3
 
 - condition:
     - or:
@@ -443,4 +477,4 @@
   action:
     - action: write_polygon
       type: 0x53
-      level_h: [ 0, 0.016, 0.5, 2.5 ]
+      level_h: *3

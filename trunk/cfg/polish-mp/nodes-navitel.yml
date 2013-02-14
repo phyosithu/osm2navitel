@@ -247,7 +247,9 @@
     - action: write_poi
       type: 0xf208
       contacts: yes
-      Label: %label (АГНКС)
+      name:
+        - %label (АГНКС)
+        - АГНКС
       Text: %opening_hours
 - condition:
     - or:
@@ -717,7 +719,9 @@
   action:
     - action: write_poi
       type: 0x640c
-      Label: %label (Карьер)
+      name:
+        - %label (Карьер)
+        - (Карьер)
 - condition:
     - landuse = residential
     - only_node
@@ -1080,96 +1084,25 @@
 - condition:
     - place = city
     - only_node
-    - population = \d{8,}
   action:
     - action: write_poi
-      type: 0x0100
+      type:
+        selector: if
+        condition: population != *
+        then: 0x700
+        else:
+          selector: thresholds
+          value: %population
+          0:        0x800
+          100000:   0x700
+          200000:   0x600
+          500000:   0x500
+          1000000:  0x400
+          2000000:  0x300
+          5000000:  0x200
+          10000000: 0x100
       level_h: 4
       city: yes
-- condition:
-    - place = city
-    - only_node
-    - population = [5-9]\d{6}
-  action:
-    - action: write_poi
-      type: 0x0200
-      level_h: 4
-      city: yes
-- condition:
-    - place = city
-    - only_node
-    - population = [2-4]\d{6}
-  action:
-    - action: write_poi
-      type: 0x0300
-      level_h: 4
-      city: yes
-- condition:
-    - place = city
-    - only_node
-    - population = 1\d{6}
-  action:
-    - action: write_poi
-      type: 0x0400
-      level_h: 4
-      city: yes
-- condition:
-    - place = city
-    - only_node
-    - population = [5-9]\d{5}
-  action:
-    - action: write_poi
-      type: 0x0500
-      level_h: 4
-      city: yes
-- condition:
-    - place = city
-    - only_node
-    - population = [2-4]\d{5}
-  action:
-    - action: write_poi
-      type: 0x0600
-      level_h: 4
-      city: yes
-- condition:
-    - place = city
-    - only_node
-    - population = 1\d{5}
-  action:
-    - action: write_poi
-      type: 0x0700
-      level_h: 4
-      city: yes
-- condition:
-    - place = city
-    - only_node
-    - or:
-        - population = \d{1,5}
-        - population != *
-  action:
-    - action: write_poi
-      type: 0x0800
-      level_h: 3
-      city: yes
-
-# Low/unknown population capitals
-- condition:
-    - place = city
-    - only_node
-    - or:
-        - population = \d{1,5}
-        - population != *
-    - or:
-        - capital = 1|2|3|4
-        - and:
-            - capital = yes
-            - admin_level = 1|2|3|4
-  action:
-    - action: write_poi
-      type: 0x0800
-      level_l: 4
-      level_h: 4
-      DontFind: Y
 
 - condition:
     - place = hamlet
@@ -1178,7 +1111,16 @@
     - only_node
   action:
     - action: write_poi
-      type: 0x0c00
+      type:
+        selector: if
+        condition: population != *
+        then: 0x1000
+        else:
+          selector: thresholds
+          value: %population
+          0:   0x1000
+          200: 0xf00
+          500: 0xe00
       level_h: 2
       city: yes
 - condition:
@@ -1214,7 +1156,18 @@
     - only_node
   action:
     - action: write_poi
-      type: 0x0800
+      type:
+        selector: if
+        condition: population != *
+        then: 0x900
+        else:
+          selector: thresholds
+          value: %population
+          0:      0xb00
+          10000:  0xa00
+          20000:  0x900
+          50000:  0x800
+          100000: 0x700
       level_h: 3
       city: yes
 - condition:
@@ -1224,7 +1177,17 @@
     - only_node
   action:
     - action: write_poi
-      type: 0x0b00
+      type:
+        selector: if
+        condition: population != *
+        then: 0xc00
+        else:
+          selector: thresholds
+          value: %population
+          0:     0xe00
+          1000:  0xd00
+          2000:  0xc00
+          5000:  0xb00
       level_h: 2
       city: yes
 - condition:
@@ -1236,7 +1199,9 @@
   action:
     - action: write_poi
       type: 0x1100
-      Label: %label (нежил.)
+      name:
+        - %label (нежил.)
+        - (нежил.)
       level_h: 2
 
 # Public transport
