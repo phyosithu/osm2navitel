@@ -13,12 +13,6 @@ use Getopt::Long;
 
 my $killrouting = 0;
 my $fixrestrictions = 1;
-GetOptions (
-    'killrouting!'  => \$killrouting,
-    'fixrestrictions!'  => \$fixrestrictions,
-);
-
-if ( $killrouting ) { $fixrestrictions = 0;}
 
 my $traffpoints;
 my $traffroads;
@@ -27,8 +21,11 @@ my $restrparam;
 Encode::Locale::decode_argv();
 GetOptions(
     'e|encoding=s' => \my $encoding,
+    'killrouting!'  => \$killrouting,
+    'fixrestrictions!'  => \$fixrestrictions,
 );
 
+if ( $killrouting ) { $fixrestrictions = 0;}
 
 while ( my $file = encode locale_fs => shift @ARGV ) {
     if ( $file =~ /\.dbf$/ix ) {
