@@ -367,18 +367,16 @@
 
 - condition:
     - amenity = police
-    - name != ДПС|[Пп]ост ДПС
   action:
     - action: write_poi
-      type: 0x3001
-      level_h: 1
-      contacts: yes
-- condition:
-    - amenity = police
-    - name = ДПС|[Пп]ост ДПС
-  action:
-    - action: write_poi
-      type: 0xf202
+      type:
+        selector: tag
+        tag: name
+        ДПС: 0xf202
+        Пост ДПС: 0xf202
+        пост ДПС: 0xf202
+        _empty: 0x3001
+        _default: 0x3001
       level_h: 1
       contacts: yes
 - condition:
