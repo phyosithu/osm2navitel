@@ -339,7 +339,19 @@
     - water != river|canal|oxbow|intermittent|tidal
   action:
     - action: write_polygon
-      type: 0x3f
+      type:
+        selector: thresholds
+        value: !!perl/code |
+          { _get_obj_area_size(shift) }
+        0:      0x41
+        0.25:   0x40
+        11:     0x3f
+        25:     0x3e
+        77:     0x3d
+        250:    0x3c
+        600:    0x44
+        1100:   0x43
+        3000:   0x42
       level_h: &3 
         selector: thresholds
         value: !!perl/code |
