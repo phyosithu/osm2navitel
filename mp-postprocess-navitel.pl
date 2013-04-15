@@ -11,8 +11,10 @@ use Encode::Locale;
 
 use Getopt::Long;
 
+my $fixrouting  = 0;
 my $killrouting = 0;
 my $fixrestrictions = 1;
+my $shorten = 1;
 
 my $traffpoints;
 my $traffroads;
@@ -21,11 +23,13 @@ my $restrparam;
 Encode::Locale::decode_argv();
 GetOptions(
     'e|encoding=s' => \my $encoding,
+    'fixrouting!'  => \$fixrouting,
     'killrouting!'  => \$killrouting,
     'fixrestrictions!'  => \$fixrestrictions,
+    'shorten!'  => \$shorten
 );
 
-if ( $killrouting ) { $fixrestrictions = 0;}
+if ( $killrouting ) { $fixrouting = 0; $fixrestrictions = 0;}
 
 while ( my $file = encode locale_fs => shift @ARGV ) {
     if ( $file =~ /\.dbf$/ix ) {
@@ -82,6 +86,11 @@ sub process_mp {
     open my $in,  "<:encoding($encoding)", "$file.old";
     open my $out, ">:encoding($encoding)", $file;
 
+    my $err;
+    if ( $fixrouting ) {
+        open $err, '>', "$file.err.htm";
+        }
+
     my $bitlevel = 24;
     my $mpfmt = "%.5f" ;
     my @points;
@@ -98,12 +107,6 @@ sub process_mp {
             my $mpfmt = $bitlevel > 24 ? "%.6f" : "%.5f" ;
         }
 
-        if ( $line =~ /^\[(.*)\]/ ) {
-            $object = $1;
-        }
-
-        my ($tag, $val) = $line =~ / ^ \s* (\w+) \s* = \s* (.*\S) \s* $ /xms;
-
         if ( $line =~ /^(Text)=/i ) { #часы работы
             $line =~ s/Mo/Пн/;
             $line =~ s/Tu/Вт/;
@@ -112,6 +115,23 @@ sub process_mp {
             $line =~ s/Fr/Пт/;
             $line =~ s/Sa/Сб/;
             $line =~ s/Su/Вс/;
+        }
+
+        # fix routing
+        if ($fixrouting && $line =~ /^Data\d+/) {
+            (@points) = ($line =~ /(-?\d+\.?\d*,-?\d+\.?\d*)/g);
+        }
+        if ($fixrouting && $line =~ /^Nod\d+/) {
+            my ($nodname, $pos, $nodid, $nodtype) = split /[=,]/,$line;
+            my ($lat, $lon) = split /,/, $points[$pos];
+            my ($mplat, $mplon) = (sprintf ($mpfmt, $lat), sprintf ($mpfmt, $lon));
+            if ($nodes{($mplat, $mplon)} && $nodes{($mplat, $mplon)} != $nodid) {
+                $line = "$nodname=$pos,$nodes{($mplat, $mplon)},$nodtype" ;
+                print "Fixed duplicate nodes $nodid and $nodes{($mplat, $mplon)} near $lat,$lon / $mplat,$mplon\n";
+                my $left=$lon-0.0003; my $right=$lon+0.0003; my $top=$lat+0.0002; my $bottom=$lat-0.0002;
+                print $err "Duplicate nodes near <a href=http://www.openstreetmap.org/?lat=$lat&lon=$lon&zoom=18>$lat,$lon</a> <a href=http://127.0.0.1:8111/load_and_zoom?left=$left&right=$right&top=$top&bottom=$bottom>**</a><br>\n";
+            }
+            else { $nodes{($mplat, $mplon)} = $nodid }
         }
 
         # kill routing
@@ -134,6 +154,12 @@ sub process_mp {
             }
         }
 
+        if ( $line =~ /^\[(.*)\]/ ) {
+            $object = $1;
+        }
+
+        my ($tag, $val) = $line =~ / ^ \s* (\w+) \s* = \s* (.*\S) \s* $ /xms;
+
         if ( $tag ~~ [ qw/ Label StreetDesc CityName RegionName / ] ) {
             $val = _clear_bad_symbols($val);
         }
@@ -144,7 +170,7 @@ sub process_mp {
         }
 
         #   street names
-        if ( ($object eq 'POLYLINE' && $tag ~~ 'Label') || $tag ~~ 'StreetDesc' ) {
+        if ( $shorten && (($object eq 'POLYLINE' && $tag ~~ 'Label') || $tag ~~ 'StreetDesc' )) {
             $val = _clear_street($val);
         }
 
@@ -154,6 +180,10 @@ sub process_mp {
 
     close $in;
     close $out;
+
+    if ( $fixrouting ) {
+        close $err;
+        }
 
     unlink "$file.old";
 
