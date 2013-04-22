@@ -1,5 +1,5 @@
 ################################
-##  Base addressing model
+##  Administrative level based addressing model
 ################################
 
 
@@ -30,6 +30,11 @@
 
 - level: district
   tags: [ district, county ]
+  area_condition:
+      and:
+        - type = multipolygon|boundary
+        - boundary = administrative
+        - admin_level = 6
 
 - level: subdistrict
   tags: [ subdistrict ]

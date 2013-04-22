@@ -103,7 +103,10 @@
   action:
     - action: write_polygon
       type: 0x05
-      Label: %label (гар.)
+      extra_fields:
+        Label:
+          - %label (гар.)
+          - (гар.)
 - condition:
     - landuse = garages
     - building != *
@@ -337,6 +340,7 @@
         - landuse = basin|pond|reservoir
         - natural = water
     - water != river|canal|oxbow|intermittent|tidal
+    - intermittent != yes
   action:
     - action: write_polygon
       type:
@@ -476,7 +480,9 @@
       level_h: *3
 
 - condition:
-    - water = intermittent
+    - or:
+        - water = intermittent
+        - intermittent = yes
   action:
     - action: write_polygon
       type: 0x4c
