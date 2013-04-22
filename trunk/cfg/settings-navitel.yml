@@ -48,6 +48,12 @@ building:
         return $levels || undef;
       }
 
+road:
+    Type:
+      selector: if
+      condition: tunnel = yes|1|true
+      then: 0x43
+
 
 ################################
 ##  Tags to skip

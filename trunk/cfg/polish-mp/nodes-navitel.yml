@@ -718,8 +718,8 @@
     - action: write_poi
       type: 0x640c
       name:
-        - %label (Карьер)
-        - (Карьер)
+        - %label (карьер)
+        - Карьер
 - condition:
     - landuse = residential
     - only_node
@@ -1487,7 +1487,9 @@
     - action: write_poi
       type: 0x2f06
       contacts: yes
-      Label: %label (Ломбард)
+      name:
+        - %label (ломбард)
+        - Ломбард
       Text: %opening_hours
 - condition:
     - shop = pet
