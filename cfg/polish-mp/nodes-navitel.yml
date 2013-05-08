@@ -1234,6 +1234,12 @@
     - action: write_poi
       type: 0xf203
 - condition:
+    - railway = level_crossing
+    - crossing = uncontrolled
+  action:
+    - action: write_poi
+      type: 0xf20b
+- condition:
     - railway = station
     - station != subway
   action:
