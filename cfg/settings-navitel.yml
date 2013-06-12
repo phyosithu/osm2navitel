@@ -49,10 +49,17 @@ building:
       }
 
 road:
-    Type:
+    RouteParamExt:
       selector: if
-      condition: tunnel = yes|1|true
-      then: 0x43
+      condition:
+        or:
+            - highway = living_street
+            - living_street = yes
+            - access = customers|destination
+            - vehicle = customers|destination
+            - motor_vehicle = customers|destination
+            - motorcar = customers|destination
+      then: 1
 
 
 ################################
