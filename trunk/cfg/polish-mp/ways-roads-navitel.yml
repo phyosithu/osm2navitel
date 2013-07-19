@@ -209,8 +209,12 @@
     - layer != -?[2-9]
   action:
     - action: load_road
+      presets: [ road ]
       type: 0x07
       routeparams: '1,0,0,0,0,0,0,0,0,0,0,0'
+      oneway: *2
+      toll: *3
+      reverted: *4
 
 ## Tracks
 
@@ -219,6 +223,7 @@
     - area != *
   action:
     - action: load_road
+      presets: [ road ]
       type:
         selector: if
         condition: tracktype = grade5
