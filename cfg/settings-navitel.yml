@@ -111,6 +111,7 @@ maxweight:          1
 military:           1
 natural:            1
 office:             1
+oneway:             1
 place:              1
 population:         1
 power:              1
