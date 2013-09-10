@@ -52,6 +52,7 @@
 
 - condition:
     - waterway = stream
+    - tunnel != yes|culvert
     - intermittent != yes
     - stream != intermittent|ephemeral
     - water != intermittent
@@ -62,6 +63,7 @@
 
 - condition:
     - waterway = canal
+    - tunnel != yes|culvert
   action:
     - action: write_line
       type: 0x1f
@@ -69,6 +71,7 @@
 
 - condition:
     - waterway = river
+    - tunnel != yes|culvert
     - intermittent != yes
     - water != intermittent
   action:
@@ -86,6 +89,7 @@
                 - intermittent = yes
                 - stream = intermittent|ephemeral
                 - water = intermittent
+    - tunnel != yes|culvert
   action:
     - action: write_line
       type: 0x26
