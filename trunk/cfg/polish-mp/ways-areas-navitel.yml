@@ -161,7 +161,7 @@
         - landuse = construction|industrial
         - man_made = wastewater_plant
         - and:
-            - power = generator|station
+            - power = generator|station|substation|sub_station
             - building != *
         - and:
             - landuse = landfill
@@ -246,10 +246,9 @@
     - or:
         - building = factory|industrial|manufacture
         - man_made = works|gasometer
-        - power = sub_station
         - and:
             - building = *
-            - power = generator|station
+            - power = generator|station|substation|sub_station
   action:
     - action: write_polygon
       type: 0x6f
