@@ -831,7 +831,7 @@
 - condition:
     - or:
         - man_made = works|gasometer|silo|storage_tank
-        - power = generator|station|sub_station
+        - power = generator|station|substation|sub_station
     - only_node
   action:
     - action: write_poi

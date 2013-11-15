@@ -49,18 +49,67 @@ building:
       }
 
 road:
-    RouteParamExt:
+  RouteParamExt:
+    selector: if
+    condition:
+      or:
+        - highway = living_street
+        - living_street = yes
+        - access = customers|destination
+        - vehicle = customers|destination
+        - motor_vehicle = customers|destination
+        - motorcar = customers|destination
+    then: 1
+
+  TrafficLanes: !!perl/code |-
+    {
+      my $tags = shift()->{tag};
+      my $lt = extract_number($tags->{'lanes'}) // q{};
+      my $lf = extract_number($tags->{'lanes:forward'}) // q{};
+      my $lb = extract_number($tags->{'lanes:backward'}) // q{};
+
+      if ( $lt ) {
+          $lf = length $lb ? $lt-$lb : int($lt/2+0.5)  if !length $lf;
+          $lb = length $lf ? $lt-$lf : int($lt/2)      if !length $lb;
+      }
+
+      return undef  if !length $lf || !length $lb || $lt<0 || $lb<0;
+      return "$lf,0,0,$lb,0,0";
+    }
+
+  TurnLanes: !!perl/code |-
+    {
+      return shift()->{tag}->{'turn:lanes'};
+    }
+  TurnLanesForward: !!perl/code |-
+    {
+      return shift()->{tag}->{'turn:lanes:forward'};
+    }
+  TurnLanesBackward: !!perl/code |-
+    {
+      return shift()->{tag}->{'turn:lanes:backward'};
+    }
+
+  LegalSpeed:
+    selector: if
+    condition: maxspeed = \d.*
+    then: %maxspeed
+    else:
       selector: if
-      condition:
-        or:
+      condition: highway = motorway
+      then: 110
+      else:
+        selector: if
+        condition:
+          or:
             - highway = living_street
             - living_street = yes
-            - access = customers|destination
-            - vehicle = customers|destination
-            - motor_vehicle = customers|destination
-            - motorcar = customers|destination
-      then: 1
-
+        then: 20
+        else:
+          selector: if
+          condition: inside_city
+          then: 60
+          else: 90
 
 ################################
 ##  Tags to skip
@@ -104,9 +153,11 @@ historic:           1
 junction:           1
 layer:              1
 landuse:            1
+lanes:              1
 leisure:            1
 man_made:           1
 maxheight:          1
+maxspeed:           1
 maxweight:          1
 military:           1
 natural:            1
@@ -170,6 +221,7 @@ no:             0
 false:          0
 private:        0
 restricted:     0
+very_horrible:  0
 impassable:     0
 
 
