@@ -150,6 +150,7 @@
           condition: inside_city
           then: '3,1,0,0,0,0,0,0,0,0,0,0'
           else: '4,1,0,0,0,0,0,0,0,0,0,0'
+        tertiary_link: '2,1,0,0,0,0,0,0,0,0,0,0'
         unclassified:
           selector: if
           condition: inside_city
