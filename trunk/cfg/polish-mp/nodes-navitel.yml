@@ -5,7 +5,10 @@
 
 - condition:
     - only_node
-    - building = entrance
+    - or:
+        - building = entrance
+        - entrance = *
+    - ref = *
   action:
     - action: load_building_entrance
       name: %entrance
@@ -266,7 +269,6 @@
   action:
     - action: write_poi
       type: 0x3002
-      level_h: 1
       contacts: yes
       Text: %opening_hours
 - condition:
@@ -559,8 +561,10 @@
       contacts: yes
 - condition:
     - building = *
-    - building != no|collapsed
-    - abandoned != yes
+    - building != no|collapsed|abandoned
+    - or:
+        - abandoned != yes|building
+        - abandoned:building != *
     - only_node
     - ~inside_city
   action:
@@ -571,7 +575,8 @@
     - building = *
     - or:
         - building = no|collapsed
-        - abandoned = yes
+        - abandoned = yes|building
+        - abandoned:building = *
     - only_node
   action:
     - action: write_poi
@@ -885,7 +890,6 @@
     - action: write_poi
       type: 0xf306
       level_h: 1
-      ele: yes
 
 - condition:
     - military = airfield|barracks|bunker|naval_base|range
@@ -946,13 +950,6 @@
       type: 0x650a
       level_h: 1
 - condition:
-    - natural = hill
-  action:
-    - action: write_poi
-      type: 0xf309
-      level_h: 1
-      ele: yes
-- condition:
     - natural = peak
   action:
     - action: write_poi
@@ -960,8 +957,8 @@
       level_h: 1
       extra_fields:
         Label:
-          - %ele~[0x1f]%label
-          - %ele
+          - %label~[0x1f]%ele
+          - ~[0x1f]%ele
           - %label
 - condition:
     - natural = ridge
@@ -998,7 +995,11 @@
     - action: write_poi
       type: 0x6608
       level_h: 1
-      ele: yes
+      extra_fields:
+        Label:
+          - %label~[0x1f]%ele
+          - ~[0x1f]%ele
+          - %label
 - condition:
     - natural = water
     - only_node
@@ -1140,10 +1141,24 @@
       level_h: 2
 - condition:
     - place = locality
+    - abandoned != *
+    - abandoned:place != *
+    - population !=0
   action:
     - action: write_poi
       type: 0x2800
       level_h: 2
+- condition:
+    - place = locality
+    - or:
+        - abandoned = *
+        - abandoned:place = *
+        - population = 0
+  action:
+    - action: write_poi
+      type: 0x6415
+      level_h: 2
+      city: yes
 - condition:
     - place = suburb
   action:
