@@ -10,7 +10,6 @@
       type: 0x01
       level_l: 2
       level_h: 4
-      Label: 
       DontFind: Y
 
 - condition:
@@ -20,7 +19,6 @@
       type: 0x02
       level_l: 1
       level_h: 3
-      Label: 
       DontFind: Y
 
 - condition:
@@ -30,7 +28,6 @@
       type: 0x03
       level_l: 1
       level_h: 2
-      Label: 
       DontFind: Y
 
 - condition:
@@ -44,11 +41,11 @@
           { _get_obj_area_size(shift) }
         0:      1
         0.5:    2
-      Label: 
       DontFind: Y
 
 - condition:
     - landuse = residential|farmyard
+    - building != yes
     - place != village|hamlet|isolated_dwelling
     - residential != urban
   action:
@@ -183,7 +180,7 @@
     - building != no|collapsed|apartments|detached|dormitory|house|residential|terrace|commercial|office|church|hospital|school|university|factory|industrial|manufacture|garage|garages
     - building:use != residential|commercial
     - amenity != *
-    - landuse != commercial|retail|garages
+    - landuse != commercial|retail|garages|residential|farmyard
     - leisure != sports_centre|stadium
     - man_made != works|gasometer
     - office != *
@@ -410,21 +407,34 @@
     - or:
         - landuse = forest
         - natural = wood
+    - landuse != logging
     - burnt != *
   action:
     - action: write_polygon
-      type: 0x50
+      type:
+        selector: if
+        condition: wood:density = very_sparse|sparse
+        then: 0x83
+        else: 0x50
       level_h: 3
 
 - condition:
     - or:
         - landuse = forest
         - natural = wood
+        - was:landuse = forest
     - burnt = *
   action:
     - action: write_polygon
       type: 0x84
-      level_h: 3
+      level_h: *3
+
+- condition:
+    - landuse = logging
+  action:
+    - action: write_polygon
+      type: 0x85
+      level_h: *3
 
 - condition:
     - or:

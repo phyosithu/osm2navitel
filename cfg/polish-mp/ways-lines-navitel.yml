@@ -167,7 +167,6 @@
   action:
     - action: write_line
       type: 0x46
-      Label: 
 
 - condition:
     - highway = construction
