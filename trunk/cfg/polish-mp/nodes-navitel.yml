@@ -1223,6 +1223,12 @@
         - %label (нежил.)
         - (нежил.)
       level_h: 2
+- condition:
+    - place = allotments
+  action:
+    - action: write_poi
+      type: 0x6416
+      level_h: 1
 
 # Public transport
 - condition:
