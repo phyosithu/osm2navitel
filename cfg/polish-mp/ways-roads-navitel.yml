@@ -28,7 +28,7 @@
 - condition:
     - highway = (?:motorway|trunk|primary|secondary|tertiary)(?:_link)?|unclassified|residential|living_street|pedestrian
     - route != ferry
-    - area != *
+    - area != yes
   action:
     - action: load_road
 
@@ -221,7 +221,7 @@
 
 - condition:
     - highway = track|road
-    - area != *
+    - area != yes
   action:
     - action: load_road
       presets: [ road ]
