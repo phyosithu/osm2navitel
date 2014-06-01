@@ -156,9 +156,9 @@
 - condition:
     - or:
         - landuse = construction|industrial
-        - man_made = wastewater_plant
+        - man_made = wastewater_plant|water_works
         - and:
-            - power = generator|station|substation|sub_station
+            - power = generator|station|substation|sub_station|plant
             - building != *
         - and:
             - landuse = landfill

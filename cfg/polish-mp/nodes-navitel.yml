@@ -842,7 +842,7 @@
 - condition:
     - or:
         - man_made = works|gasometer|silo|storage_tank
-        - power = generator|station|substation|sub_station
+        - power = generator|station|substation|sub_station|plant
     - only_node
   action:
     - action: write_poi
@@ -860,8 +860,11 @@
       type: 0x6411
       level_h: 1
 - condition:
-    - man_made = tower
-    - tower:type = communication
+    - or:
+        - man_made = antenna|communications_tower
+        - and:
+            - man_made = tower
+            - tower:type = communication
   action:
     - action: write_poi
       type: 0xf304
