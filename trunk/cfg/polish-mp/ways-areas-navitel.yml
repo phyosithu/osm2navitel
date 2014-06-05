@@ -311,7 +311,7 @@
 - condition:
     - or:
         - leisure = marina
-        - man_made = pier
+        - man_made = pier|breakwater|groyne
   action:
     - action: write_polygon
       type: 0x09
