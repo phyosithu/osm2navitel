@@ -632,8 +632,10 @@
 
 - condition:
     - or:
+        - and:
+            - highway = *
+            - covered = yes
         - barrier = sally_port
-        - covered = yes
         - tunnel = building_passage
   action:
     - action: write_poi
