@@ -1229,11 +1229,13 @@
         - (нежил.)
       level_h: 2
 - condition:
-    - place = allotments
+    - place = allotments|farm
+    - named
   action:
     - action: write_poi
       type: 0x6416
       level_h: 1
+      city: yes
 
 # Public transport
 - condition:
@@ -1309,14 +1311,14 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = alcohol|newsagent|video
+    - shop = alcohol|newsagent|video|wine
   action:
     - action: write_poi
       type: 0x2e00
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = beverages|butcher|convenience|deli|farm|greengrocer|grocery|supermarket
+    - shop = beverages|butcher|convenience|deli|farm|food|greengrocer|grocery|seafood|supermarket
   action:
     - action: write_poi
       type: 0x2e02
@@ -1337,7 +1339,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = baby_goods|books|frame|hearing_aids|photo|stationery|tobacco
+    - shop = antiques|art|baby_goods|books|charity|frame|hearing_aids|music|musical_instrument|paint|photo|stationery|tobacco
   action:
     - action: write_poi
       type: 0x2e0a
@@ -1441,7 +1443,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = curtain|fabrics|hardware
+    - shop = curtain|fabrics|hardware|variety_store
   action:
     - action: write_poi
       type: 0xf703
@@ -1464,7 +1466,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = furniture
+    - shop = bed|frame|furniture|carpet|curtain|interior_decoration|kitchen
   action:
     - action: write_poi
       type: 0x2e09
@@ -1499,7 +1501,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = mall
+    - shop = mall|trade
   action:
     - action: write_poi
       type: 0x2e04
@@ -1507,7 +1509,7 @@
       contacts: yes
       Text: %opening_hours
 - condition:
-    - shop = massage
+    - shop = massage|tattoo
   action:
     - action: write_poi
       type: 0x2f00
@@ -1698,7 +1700,9 @@
     - action: write_poi
       type: 0x5500
 - condition:
-    - waterway = rapids
+    - or:
+        - waterway = rapids
+        - whitewater = rapid
   action:
     - action: write_poi
       type: 0x650e
