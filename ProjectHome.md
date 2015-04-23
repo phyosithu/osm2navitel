@@ -1,0 +1,1 @@
+Configures OpenStreetMap data into Polish map format (MP) converter (osm2mp) with Navitel typeset.
