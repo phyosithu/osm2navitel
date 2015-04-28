@@ -169,16 +169,6 @@
       type: 0x46
 
 - condition:
-    - man_made = breakwater|groyne
-  action:
-    - action: write_line
-      type:
-        selector: if
-        condition: !!perl/code |
-          { !_get_obj_area_size(shift) }
-        then: 0x46
-
-- condition:
     - highway = construction
   action:
     - action: write_line

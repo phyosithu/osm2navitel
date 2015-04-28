@@ -205,11 +205,7 @@
 - condition:
     - highway = service
     - access != private
-# eliminate tagging mismatch here:
-# living_street cannot be parking_aisle
-    - or:
-        - service != parking_aisle
-        - living_street = yes
+    - service != parking_aisle
     - area != yes
     - layer != -?[2-9]
   action:
@@ -269,19 +265,6 @@
     - action: load_road
       type: 0x16
       routeparams: '0,0,0,0,1,1,1,1,1,0,1,1'
-
-## Piers (if line)
-
-- condition:
-    - man_made = pier
-  action:
-    - action: load_road
-      type:
-        selector: if
-        condition: !!perl/code |
-          { !_get_obj_area_size(shift) }
-        then: 0x16
-      routeparams: '0,0,0,0,1,1,1,1,1,0,0,1'
 
 ## Ferry lines
 
